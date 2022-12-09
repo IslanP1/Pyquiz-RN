@@ -24,4 +24,4 @@ export const db = getDatabase(app)
 
 //Islan
 //Gustavo
-Luiz Fernando - uma lenda enjaulada.
+//Luiz Fernando - uma lenda enjaulada.
