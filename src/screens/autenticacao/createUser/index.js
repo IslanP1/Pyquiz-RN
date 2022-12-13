@@ -3,63 +3,50 @@ import React, { useState } from 'react'
 import { useNavigation } from "@react-navigation/native"
 import { TextInput, Avatar, Button } from 'react-native-paper';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { set } from 'firebase/database';
 
 
 const TelaCriarUsuario = () => {
   const navigation = useNavigation()
-  const [email, setEmail] = useState(null);
-  const [senha, setSenha] = useState(null);
-  const [senha1, setSenha1] = useState(null);
-  const [senha2, setSenha2] = useState(null);
+  const [email, setEmail] = useState("");
+  const [senha1, setSenha1] = useState("");
+  const [senha2, setSenha2] = useState("");
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
 
-  function verificacao() {
-    if (senha1 === senha2) {
-      setSenha(senha1)
-      
-      if (senha != null) {
-        if (email != null) {
-          criar()
-          setSenha(null)
-          setEmail(null)
 
-        }
-        else {
-          alert("Não deixe o campo de e-mail vazio!")
-        }
-      } else {
-        alert("Não deixe o campo de senha vazio!")
-      }
+  function criar() {
+    if (senha1 === senha2) {
+      const auth = getAuth();
+      createUserWithEmailAndPassword(auth, email, senha2)
+        .then(() => {
+          alert('Conta de usuário criada e conectada!');
+          setSenha1(null)
+          setSenha2(null)
+          setEmail(null)
+          // navigation.navigate('TelaLogin')
+        })
+        .catch(error => {
+          if (error.code === 'auth/email-already-in-use') {
+            alert('Esse endereço de email já esta em uso!');
+          }
+          if (error.code === 'auth/invalid-email') {
+            alert('Esse endereço de e-mail é inválido!');
+          }
+          if (error.code === 'auth/weak-password') {
+            alert('Escolha uma senha mais forte, com pelo menos 6 caracteres, incluindo letras, números e símbolos')
+          }
+          alert(error);
+        });
 
     } else {
       alert("Senhas diferentes, preencha os dois campos iguais!")
     }
 
+
   }
 
-  function criar() {
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, senha)
-      .then(() => {
-        alert('Conta de usuário criada e conectada!');
-      })
-      .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          alert('Esse endereço de email já esta em uso!');
-        }
-        if (error.code === 'auth/invalid-email') {
-          alert('Esse endereço de e-mail é inválido!');
-        }
-        if (error.code === 'auth/weak-password'){
-          alert('Escolha uma senha mais forte, com pelo menos 6 caracteres, incluindo letras, números e símbolos')
-        }
-
-        alert(error);
-      });
-  }
-
-  // navigation.navigate('TelaModulos')
+  
   return (
     <View style={[styles.container, { width: screenWidth, height: screenHeight }]} >
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
@@ -81,6 +68,7 @@ const TelaCriarUsuario = () => {
               onChangeText={setEmail}
               value={email}
               textColor={'#fff'}
+
             />
 
             <TextInput
@@ -91,6 +79,7 @@ const TelaCriarUsuario = () => {
               value={senha1}
               textColor={'#fff'}
               secureTextEntry={true}
+
             />
 
             <TextInput
@@ -101,25 +90,16 @@ const TelaCriarUsuario = () => {
               value={senha2}
               textColor={'#fff'}
               secureTextEntry={true}
+
             />
           </View>
           <View style={styles.container}>
-            <Button style={styles.botaoEnviar} mode="contained" onPress={() => verificacao()}>Cadastrar usuário</Button>
+            <Button style={styles.botaoEnviar} mode="contained" onPress={() => criar()}>Cadastrar usuário</Button>
           </View>
           <Text />
           <Text />
-
-
-
-
         </ScrollView>
       </KeyboardAvoidingView>
-
-
-
-
-
-
     </View>
   )
 }
