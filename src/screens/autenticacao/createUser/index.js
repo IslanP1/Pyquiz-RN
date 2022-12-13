@@ -24,7 +24,7 @@ const TelaCriarUsuario = () => {
           setSenha1(null)
           setSenha2(null)
           setEmail(null)
-          // navigation.navigate('TelaLogin')
+          navigation.navigate('TelaLogin')
         })
         .catch(error => {
           if (error.code === 'auth/email-already-in-use') {

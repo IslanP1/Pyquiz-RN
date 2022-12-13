@@ -7,45 +7,6 @@ const TelaInicial = () => {
   const [email, setEmail] = useState('jose@gmail.com');
   const [senha, setSenha] = useState('123456');
 
-  function criar() {
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, senha)
-      .then(() => {
-        alert('Conta de usuário criada e conectada!');
-      })
-      .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          alert('Esse endereço de email já esta em uso!');
-        }
-        if (error.code === 'auth/invalid-email') {
-          alert('Esse endereço de e-mail é inválido!');
-        }
-        alert(error);
-      });
-  }
-
-  function logar() {
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, senha)
-      .then(() => {
-        alert('Usuário logado');
-      })
-      .catch(error => {
-        alert(error);
-      });
-  }
-
-  function deslogar() {
-    const auth = getAuth();
-    signOut(auth)
-      .then(() => {
-        alert('Usuário deslogado')
-
-      }).catch((error) => {
-        alert(error)
-
-      });
-  }
 
 
   const navigation = useNavigation()
@@ -56,11 +17,11 @@ const TelaInicial = () => {
       
       <Button title="Entrar" onPress={() => navigation.navigate('TelaModulos')}></Button>
    
-      <Button title='Criar' onPress={() => navigation.navigate('TelaCriarUsuario')}></Button>
+      <Button title='Criar'></Button>
     
-      <Button title='Logar' onPress={() => { logar() }}></Button>
+      <Button title='Logar'></Button>
      
-      <Button title='Deslogar' onPress={() => { deslogar() }}></Button>
+      <Button title='Deslogar'></Button>
     </View>
 
   )
