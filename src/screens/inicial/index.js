@@ -3,8 +3,10 @@ import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
+
+
 const TelaInicial = () => {
-  const [email, setEmail] = useState('islan@gmail.com');
+  const [email, setEmail] = useState('jose@gmail.com');
   const [senha, setSenha] = useState('123456');
 
   function criar() {
@@ -56,7 +58,7 @@ const TelaInicial = () => {
       
       <Button title="Entrar" onPress={() => navigation.navigate('TelaModulos')}></Button>
    
-      <Button title='Criar' onPress={() => { criar() }}></Button>
+      <Button title='Criar' onPress={() => navigation.navigate('TelaCriarUsuario')}></Button>
     
       <Button title='Logar' onPress={() => { logar() }}></Button>
      

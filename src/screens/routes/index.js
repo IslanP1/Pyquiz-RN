@@ -9,6 +9,7 @@ import TelaModulos from '../conteudo/index'
 import TelaExercicio from '../exercicios/modulo01/exercicio01/index'
 import TelaConteudo from '../estudar'
 import TelaPontuacaoModulo01 from '../exercicios/modulo01/exercicio01/pontuacaoexercicio'
+import TelaCriarUsuario from '../autenticacao/createUser'
 
 const AppRoutes = () => {
   return (
@@ -18,6 +19,7 @@ const AppRoutes = () => {
         <Stack.Screen name='TelaModulos'component={TelaModulos} />
         <Stack.Screen name='TelaExercicio'component={TelaExercicio} />
         <Stack.Screen name='TelaConteudo' component={TelaConteudo} />
+        <Stack.Screen name='TelaCriarUsuario' component={TelaCriarUsuario} />
         <Stack.Screen name='TelaPontuacaoModulo01' component={TelaPontuacaoModulo01} options={{headerBackVisible:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
