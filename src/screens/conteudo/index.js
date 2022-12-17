@@ -1,21 +1,55 @@
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { StyleSheet, Text, View, Button, TouchableOpacity, Dimensions, ScrollView } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 
 const TelaModulos = () => {
     const navigation = useNavigation()
+    const screenWidth = Dimensions.get('window').width;
+    const screenHeight = Dimensions.get('window').height;
+
     return (
-        <View>
-            <Text style={styles.texto}>Observe os Modulos das questões:</Text>
-            <Button title="Módulo 1 - Iniciando com python" onPress={() => navigation.navigate('TelaConteudo')}></Button>
-            <Button title="Módulo 2 - Condição"></Button>
-            <Button title="Módulo 3 - Repetição"></Button>
-            <Button title="Módulo 4 - Tuplas"></Button>
-            <Button title="Módulo 5 - Listas"></Button>
-            <Button title="Módulo 6 - Dicionário"></Button>
-            <Button title="Módulo 7 - Função"></Button>
-            <Button title="Módulo 8 - Tratamento de erros"></Button>
-         
+        <View style={[styles.container, { width: screenWidth, height: screenHeight }]} > 
+          <ScrollView>
+            <TouchableOpacity style={[styles.botao, { borderColor: '#8c52ff'  }]} onPress={() => navigation.navigate('TelaConteudo')}>
+                <Text style={styles.textog} >Módulo 1 - Iniciando com python</Text>
+                <Text style={styles.textop} >Introdução a linguagem</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.botao, { borderColor: '#ffaac4' }]} >
+                <Text style={styles.textog} >Módulo 2 - Condição</Text>
+                <Text style={styles.textop} >O basico de If, elif, else</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.botao, { borderColor: '#daa520' }]} >
+                <Text style={styles.textog} >Módulo 3 - Repetição</Text>
+                <Text style={styles.textop} >Estruturas For e while</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.botao, { borderColor: '#7cdb54' }]} >
+                <Text style={styles.textog} >Módulo 4 - Tuplas</Text>
+                <Text style={styles.textop} >Armazenando em variáveis</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.botao, { borderColor: '#ffaac4' }]} >
+                <Text style={styles.textog} >Módulo 5 - Listas</Text>
+                <Text style={styles.textop} >Armazenando em sequência</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.botao, { borderColor: '#8c52ff' }]} >
+                <Text style={styles.textog} >Módulo 6 - Dicionários</Text>
+                <Text style={styles.textop} >Armazenando diversos conteúdos</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.botao, { borderColor: '#daa520' }]} >
+                <Text style={styles.textog} >Módulo 7 - Funções</Text>
+                <Text style={styles.textop} >Chamando códigos</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.botao, { borderColor: '#f15551' }]} >
+                <Text style={styles.textog} >Módulo 8 - Tratamento de erros</Text>
+                <Text style={styles.textop} >O Fim</Text>
+            </TouchableOpacity>
+            <Text/>
+            <Text/>
+            <Text/>
+            <Text/>
+            <Text/>
+            <Text/>
+            <Text/>
+          </ScrollView>
         </View>
   )
 }
@@ -23,11 +57,31 @@ const TelaModulos = () => {
 export default TelaModulos
 
 const styles = StyleSheet.create({
-    texto:{
-        fontSize:25,
-        marginBottom:20,
+    container: {
+      marginBottom: 70,
+      backgroundColor: '#121212'
+    },
+    textog: {
+      color: '#fff',
+      fontSize: 18,
+      fontStyle: 'bold',
+    },
+    textop:{
+        color:'white',
+        fontSize:15,
     },
     botao:{
-        marginBottom:20,
+        
+        marginTop:'4%',
+        padding:20,
+        marginLeft:'5%',
+        marginRight:'5%',
+        borderWidth:2,
+        borderRadius:10,
+        
     },
-})
+
+    
+    
+  });
+  

@@ -17,9 +17,6 @@ const TelaInicial = () => {
       
       <Button title="Entrar" onPress={() => navigation.navigate('TelaModulos')}></Button>
    
-      <Button title='Criar'></Button>
-    
-      <Button title='Logar'></Button>
      
       <Button title='Deslogar'></Button>
     </View>

@@ -11,14 +11,16 @@ import TelaConteudo from '../estudar'
 import TelaPontuacaoModulo01 from '../exercicios/modulo01/exercicio01/pontuacaoexercicio'
 import TelaCriarUsuario from '../autenticacao/createUser'
 import TelaLogin from '../autenticacao/login'
+import Preload from '../Preload'
 
 
 const AppRoutes = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='TelaLogin'>
+      <Stack.Navigator initialRouteName='TelaPreload'>
+        <Stack.Screen name='TelaPreload' component={Preload} options={{headerBackVisible:false, headerShown:false}} />
         <Stack.Screen name='TelaInicial' component={TelaInicial} />
-        <Stack.Screen name='TelaModulos'component={TelaModulos} />
+        <Stack.Screen name='TelaModulos'component={TelaModulos} options={{title:'Lista de conteúdos', headerTitleAlign:'center'}}/>
         <Stack.Screen name='TelaExercicio'component={TelaExercicio} />
         <Stack.Screen name='TelaConteudo' component={TelaConteudo} />
         <Stack.Screen name='TelaCriarUsuario' component={TelaCriarUsuario} />
