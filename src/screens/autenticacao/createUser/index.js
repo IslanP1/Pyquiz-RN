@@ -38,15 +38,12 @@ const TelaCriarUsuario = () => {
           }
           alert(error);
         });
-
     } else {
       alert("Senhas diferentes, preencha os dois campos iguais!")
     }
-
-
   }
 
-  
+
   return (
     <View style={[styles.container, { width: screenWidth, height: screenHeight }]} >
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>

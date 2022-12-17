@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import {NavigationContainer} from "@react-navigation/native"
-import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import { NavigationContainer } from "@react-navigation/native"
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 const Stack = createNativeStackNavigator()
 import TelaInicial from '../inicial/index'
@@ -11,6 +11,8 @@ import TelaConteudo from '../estudar'
 import TelaPontuacaoModulo01 from '../exercicios/modulo01/exercicio01/pontuacaoexercicio'
 import TelaCriarUsuario from '../autenticacao/createUser'
 import TelaLogin from '../autenticacao/login'
+import TelaCreditos from '../creditos'
+import TelaSuporte from '../suporte'
 import Preload from '../Preload'
 
 
@@ -20,12 +22,14 @@ const AppRoutes = () => {
       <Stack.Navigator initialRouteName='TelaPreload'>
         <Stack.Screen name='TelaPreload' component={Preload} options={{headerBackVisible:false, headerShown:false}} />
         <Stack.Screen name='TelaInicial' component={TelaInicial} />
-        <Stack.Screen name='TelaModulos'component={TelaModulos} options={{title:'Lista de conteúdos', headerTitleAlign:'center'}}/>
-        <Stack.Screen name='TelaExercicio'component={TelaExercicio} />
+        <Stack.Screen name='TelaModulos' component={TelaModulos} options={{title:'Lista de conteúdos', headerTitleAlign:'center'}}/>
+        <Stack.Screen name='TelaExercicio' component={TelaExercicio} />
         <Stack.Screen name='TelaConteudo' component={TelaConteudo} />
         <Stack.Screen name='TelaCriarUsuario' component={TelaCriarUsuario} />
         <Stack.Screen name='TelaLogin' component={TelaLogin} />
-        <Stack.Screen name='TelaPontuacaoModulo01' component={TelaPontuacaoModulo01} options={{headerBackVisible:false}}/>
+        <Stack.Screen name='TelaPontuacaoModulo01' component={TelaPontuacaoModulo01} options={{ headerBackVisible: false }} />
+        <Stack.Screen name='TelaCreditos' component={TelaCreditos} />
+        <Stack.Screen name='TelaSuporte' component={TelaSuporte} />
       </Stack.Navigator>
     </NavigationContainer>
   )
