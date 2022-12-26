@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { get, ref, set } from 'firebase/database'
 import { getAuth } from "firebase/auth";
 import { db } from '../../../../../firebase'
 import { useNavigation } from '@react-navigation/native'
+
 
 //import database from '../../../../../perguntas';
 
@@ -15,19 +16,19 @@ const TelaExercicio = () => {
 
     const questoes = [
         {
-            questao: '1 Qual a função do print em python?', respostas: ['Imprimir mensagens', 'Permitir que o usuario escreva uma mensagem', 'Não faz nada'], respostacorreta: 'Imprimir mensagens'
+            questao: '1- Qual a função do print em python?', respostas: ['Imprimir mensagens', 'Permitir que o usuario escreva uma mensagem', 'Não faz nada', 'Teste'], respostacorreta: 'Imprimir mensagens'
         },
         {
-            questao: '2 Qual codigo está correto?', respostas: ['print("OLA MUNDO!")', 'Pint(OLA MUNDO)', 'Exibir OLA MUNDO'], respostacorreta: 'print("OLA MUNDO!")'
+            questao: '2- Qual codigo está correto?', respostas: ['print("OLA MUNDO!")', 'Pint(OLA MUNDO)', 'Exibir OLA MUNDO', 'Teste'], respostacorreta: 'print("OLA MUNDO!")'
         },
         {
-            questao: '3 Qual comando encaixa em: {}("Olá mundo")', respostas: ['Input', 'Print', 'Mostrar'], respostacorreta: 'Print'
+            questao: '3- Qual comando encaixa em: {}("Olá mundo")', respostas: ['Input', 'Print', 'Mostrar', 'Teste'], respostacorreta: 'Print'
         },
         {
-            questao: '4 Qual comando encaixa em: {}("Olá mundo")', respostas: ['Input', 'Print', 'Mostrar'], respostacorreta: 'Print'
+            questao: '4- Qual comando encaixa em: {}("Olá mundo")', respostas: ['Input', 'Print', 'Mostrar', 'Teste'], respostacorreta: 'Print'
         },
         {
-            questao: '5 Qual comando encaixa em: {}("Olá mundo")', respostas: ['Input', 'Print', 'Mostrar'], respostacorreta: 'Print'
+            questao: '5- Qual comando encaixa em: {}("Olá mundo")', respostas: ['Input', 'Print', 'Mostrar', 'Teste'], respostacorreta: 'Print'
         },
         {
             questao: '', respostas: ['', '', ''], respostacorreta: ''
@@ -43,7 +44,7 @@ const TelaExercicio = () => {
         const id = userCredential.uid;
         setUserID(id);
     }, []);
-    
+
 
     function armazenarRespostaCorreta() {
         set(ref(db, `users/${userID}/modulo1/respostaexercicios/`), {
@@ -85,12 +86,18 @@ const TelaExercicio = () => {
     };
 
     return (
-        <View>
-            <Text>{questoes[numeroquestaoatual].questao}</Text>
+        <View style={styles.container}>
+            <Text style={styles.textoPergunta}>
+                {questoes[numeroquestaoatual].questao}
+            </Text>
             {questoes[numeroquestaoatual].respostas.map((resposta) => (
-                <Button title={resposta} onPress={() => correcaoresposta(resposta)} />))}
-            <Text>Acertos: {pontuacao}</Text>
-
+                <View style={styles.button}>
+                    <TouchableOpacity onPress={() => correcaoresposta(resposta)}>
+                        <Text style={styles.textoResposta}>{resposta}</Text>
+                    </TouchableOpacity>
+                </View>
+            ))}
+            <Text style={styles.textoAcerto}>Acertos: {pontuacao}</Text>
         </View>
 
     )
@@ -100,10 +107,42 @@ const TelaExercicio = () => {
 
 export default TelaExercicio
 const styles = StyleSheet.create({
-    texto: {
-        fontSize: 20,
-        textAlign: 'center',
+    container: {
+        flex: 1,
+        backgroundColor: '#121212',
     },
+    textoPergunta: {
+        fontSize: 20,
+        color: '#fff',
+        marginTop: '5%',
+        marginLeft: '2%',
+        marginRight: '2%',
+        marginBottom: '5%',
+        justifyContent: 'center',
+    },
+    textoResposta: {
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: 16,
+        paddingTop: '5%',
+        paddingBottom: '5%',
+        paddingRight: '2%',
+        paddingLeft: '2%'
+    },
+    textoAcerto: {
+        fontSize: 20,
+        color: '#fff',
+        marginBottom: '5%',
+        textAlign: 'center',
+        marginTop: '50%',
+    },
+    button: {
+        marginBottom: '5%',
+        marginLeft: '10%',
+        marginRight: '10%',
+        backgroundColor: '#6750a4',
+        borderRadius: 20,
+    }
 })
 
 
