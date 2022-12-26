@@ -2299,9 +2299,9 @@
     "use-latest-callback" "^0.1.5"
 
 "@react-navigation/elements@^1.3.7", "@react-navigation/elements@^1.3.9":
-  "integrity" "sha512-V9aIZN19ufaKWlXT4UcM545tDiEt9DIQS+74pDgbnzoQcDypn0CvSqWopFhPACMdJatgmlZUuOrrMfTeNrBWgA=="
-  "resolved" "https://registry.npmjs.org/@react-navigation/elements/-/elements-1.3.9.tgz"
-  "version" "1.3.9"
+  "integrity" "sha512-iVcLIYg/XJk1p6X1rSFhNhCjAJ3ORqNT2/bJqw7I/liujeJAoz1oZ5JDoEcZaA0wMDts1txxLuqAYJmhCgU2aA=="
+  "resolved" "https://registry.npmjs.org/@react-navigation/elements/-/elements-1.3.12.tgz"
+  "version" "1.3.12"
 
 "@react-navigation/native-stack@^6.9.2":
   "integrity" "sha512-W5CYX+mYVyOYUgWoN15O34Pv/JieX2/pU09yh+kacxPHPEm4gYTQM/OIHACOov5T2WyiNSU6iIHjfzQ6e7M9zw=="
@@ -9336,6 +9336,11 @@
     "jscodeshift" "^0.13.1"
     "nullthrows" "^1.1.1"
 
+"react-native-communications@^2.2.1":
+  "integrity" "sha512-5+C0X9mopI0+qxyQHzOPEi5v5rxNBQjxydPPiKMQSlX1RBIcJ8uTcqUPssQ9Mo8p6c1IKIWJUSqCj4jAmD0qVQ=="
+  "resolved" "https://registry.npmjs.org/react-native-communications/-/react-native-communications-2.2.1.tgz"
+  "version" "2.2.1"
+
 "react-native-firebase@^5.6.0":
   "integrity" "sha512-I+o3zNLdIz4pxWTCSZH70M1BcPl+SdqKQfurOT0sWcaMSL2ecDqVy0PCTmN7ORt7/Z879Er6PLgA/psjArQlmw=="
   "resolved" "https://registry.npmjs.org/react-native-firebase/-/react-native-firebase-5.6.0.tgz"
@@ -9343,6 +9348,11 @@
   dependencies:
     "opencollective-postinstall" "^2.0.0"
     "prop-types" "^15.7.2"
+
+"react-native-form-validation@^1.0.5":
+  "integrity" "sha512-WKY1Rd/aQXFzfd/VMHZqaYv0dOY8uF8/randLpgrfR5JwvNU2NuTyEAWYlc7E9W6HiQlycwBFgZloZG8Q8/UBQ=="
+  "resolved" "https://registry.npmjs.org/react-native-form-validation/-/react-native-form-validation-1.0.5.tgz"
+  "version" "1.0.5"
 
 "react-native-gesture-handler@>= 1.0.0", "react-native-gesture-handler@~2.8.0":
   "integrity" "sha512-poOSfz/w0IyD6Qwq7aaIRRfEaVTl1ecQFoyiIbpOpfNTjm2B1niY2FLrdVQIOtIOe+K9nH55Qal04nr4jGkHdQ=="

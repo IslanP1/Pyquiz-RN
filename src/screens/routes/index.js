@@ -19,7 +19,7 @@ import Preload from '../Preload'
 const AppRoutes = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='TelaPreload'>
+      <Stack.Navigator initialRouteName='TelaLogin'>
         <Stack.Screen name='TelaPreload' component={Preload} options={{headerBackVisible:false, headerShown:false}} />
         <Stack.Screen name='TelaInicial' component={TelaInicial} />
         <Stack.Screen name='TelaModulos' component={TelaModulos} options={{title:'Lista de conteúdos', headerTitleAlign:'center'}}/>

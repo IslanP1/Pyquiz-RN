@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native"
 import { TextInput, Avatar, Button } from 'react-native-paper';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
+
 const TelaLogin = () => {
   const navigation = useNavigation()
   const screenWidth = Dimensions.get('window').width;
@@ -59,10 +60,10 @@ const TelaLogin = () => {
 
             />
           </View>
-          <View style={{marginTop:25}}>
+          <View style={{ marginTop: 25 }}>
             <Button style={styles.botaoEnviar} mode="contained" onPress={() => logar()}>Logar usuário</Button>
           </View>
-          <View style={{marginTop:10}}>
+          <View style={{ marginTop: 10 }}>
             <Button style={styles.botaoEnviar} mode="contained" onPress={() => navigation.navigate('TelaCriarUsuario')}>Criar nova conta</Button>
           </View>
           <Text />
