@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView, I
 import React, { useState } from 'react'
 import { Button, Avatar } from 'react-native-paper';
 import { useNavigation } from "@react-navigation/native"
-
+import BottomTabBar from '../Tabbar';
 
 const TelaInicial = () => {
   const navigation = useNavigation()
@@ -34,7 +34,12 @@ const TelaInicial = () => {
             <Text />
           </View>
         </ScrollView>
+        <BottomTabBar/>
       </KeyboardAvoidingView>
+      <Text />
+      <Text />
+      <Text />
+           
     </View>
   )
 }

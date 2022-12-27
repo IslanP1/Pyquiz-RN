@@ -62,7 +62,7 @@ const TelaPontuacaoModulo01 = () => {
 
             }).catch((error) => {
                 // Em caso de erro, mostra a mensagem de erro no console
-                alert(error);
+                
             });
     }
 
@@ -74,7 +74,7 @@ const TelaPontuacaoModulo01 = () => {
                 setPontuacao(data.pontuacao);
             }).catch((error) => {
                 // Em caso de erro, mostra a mensagem de erro no console
-                alert(error);
+                
             });
     }
 

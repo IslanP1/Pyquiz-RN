@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Button, TouchableOpacity, Dimensions, ScrollView } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
+import BottomTabBar from '../Tabbar'
 
 const TelaModulos = () => {
     const navigation = useNavigation()
@@ -50,6 +51,10 @@ const TelaModulos = () => {
             <Text/>
             <Text/>
           </ScrollView>
+          <BottomTabBar/>
+          <Text/>
+          <Text/>
+          <Text/>
         </View>
   )
 }

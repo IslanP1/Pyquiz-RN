@@ -3,7 +3,9 @@ import React, { useState } from 'react'
 import { useNavigation } from "@react-navigation/native"
 import { TextInput, Avatar, Button } from 'react-native-paper';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { set } from 'firebase/database';
+import { get, ref, set } from 'firebase/database'
+
+import { db } from '../../../../firebase';
 
 
 const TelaCriarUsuario = () => {
@@ -11,6 +13,7 @@ const TelaCriarUsuario = () => {
   const [email, setEmail] = useState("");
   const [senha1, setSenha1] = useState("");
   const [senha2, setSenha2] = useState("");
+  const [name, setName] = useState("")
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
 
@@ -18,9 +21,23 @@ const TelaCriarUsuario = () => {
   function criar() {
     if (senha1 === senha2) {
       const auth = getAuth();
+      
       createUserWithEmailAndPassword(auth, email, senha2)
         .then(() => {
           alert('Conta de usuário criada e conectada!');
+          const teste = auth.currentUser;
+          const userCredential = teste;
+          const id = userCredential.uid;
+          set(ref(db, `users/${id}/credenciais`), {
+            email:email,
+            nome:name
+            
+        }).then(() => {
+            
+        })
+            .catch((error) => {
+                alert(error)
+            });
           setSenha1(null)
           setSenha2(null)
           setEmail(null)
@@ -58,6 +75,15 @@ const TelaCriarUsuario = () => {
           </View >
           <View style={styles.container}>
 
+            <TextInput
+              style={styles.caixaTexto}
+              label="Nome"
+              mode="outlined"
+              onChangeText={setName}
+              value={name}
+              textColor={'#fff'}
+
+            />
             <TextInput
               style={styles.caixaTexto}
               label="Email"

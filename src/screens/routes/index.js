@@ -2,6 +2,8 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { IconButton } from 'react-native-paper'
+import { useNavigation } from '@react-navigation/native'
 
 const Stack = createNativeStackNavigator()
 import TelaInicial from '../inicial/index'
@@ -13,15 +15,14 @@ import TelaCriarUsuario from '../autenticacao/createUser'
 import TelaLogin from '../autenticacao/login'
 import TelaCreditos from '../creditos'
 import TelaSuporte from '../suporte'
-import Preload from '../Preload'
-
+import TelaPerfil from '../perfil'
 
 const AppRoutes = () => {
+  
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='TelaLogin'>
-        <Stack.Screen name='TelaPreload' component={Preload} options={{headerBackVisible:false, headerShown:false}} />
-        <Stack.Screen name='TelaInicial' component={TelaInicial} />
+        <Stack.Screen name='TelaInicial' component={TelaInicial} options={{title:'Tela inicial'}}/>
         <Stack.Screen name='TelaModulos' component={TelaModulos} options={{title:'Lista de conteúdos', headerTitleAlign:'center'}}/>
         <Stack.Screen name='TelaExercicio' component={TelaExercicio} />
         <Stack.Screen name='TelaConteudo' component={TelaConteudo} />
@@ -30,6 +31,7 @@ const AppRoutes = () => {
         <Stack.Screen name='TelaPontuacaoModulo01' component={TelaPontuacaoModulo01} options={{ headerBackVisible: false }} />
         <Stack.Screen name='TelaCreditos' component={TelaCreditos} />
         <Stack.Screen name='TelaSuporte' component={TelaSuporte} />
+        <Stack.Screen name='TelaPerfil' component={TelaPerfil} />
       </Stack.Navigator>
     </NavigationContainer>
   )

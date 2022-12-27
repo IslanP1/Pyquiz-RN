@@ -54,7 +54,7 @@ const TelaExercicio = () => {
             exercicio04: questoes[3].respostacorreta,
             exercicio05: questoes[4].respostacorreta,
         }).then(() => {
-            alert("Guardei")
+            
         })
             .catch((error) => {
                 alert(error)
