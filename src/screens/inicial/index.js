@@ -35,10 +35,14 @@ const TelaInicial = () => {
           </View>
         </ScrollView>
         <BottomTabBar/>
+       
       </KeyboardAvoidingView>
       <Text />
       <Text />
       <Text />
+      <Text />
+      
+      
            
     </View>
   )

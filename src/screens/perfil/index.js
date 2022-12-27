@@ -84,7 +84,7 @@ function updateusername(){
               underlineColor={'white'}
 
             />
-          <Button onPress={( ) => updateusername()} >Confirmar</Button>
+          <Button onPress={() => updateusername()} >Confirmar</Button>
           <Button onPress={() => setShowContent(false)}>Cancelar</Button>
         </View>
       )}
@@ -98,11 +98,9 @@ function updateusername(){
         <Text/>
        
       </ScrollView>
-      
-      
-      
       <BottomTabBar/>
 
+      <Text/>
       <Text/>
       <Text/>
       <Text/>

@@ -4,7 +4,6 @@ import { useNavigation } from "@react-navigation/native"
 import { IconButton } from 'react-native-paper';
 
 function BottomTabBar() {
-  const [activeTab, setActiveTab] = useState('Home');
   const navigation = useNavigation()
 
   function ap1(){
@@ -43,7 +42,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height:70,
     backgroundColor: '#fff',
-  
   },
   tab: {
     flex: 1,

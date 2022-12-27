@@ -50,8 +50,10 @@ const TelaModulos = () => {
             <Text/>
             <Text/>
             <Text/>
+
           </ScrollView>
           <BottomTabBar/>
+          <Text/>
           <Text/>
           <Text/>
           <Text/>
