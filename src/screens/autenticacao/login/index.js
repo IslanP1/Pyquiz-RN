@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigation } from "@react-navigation/native"
 import { TextInput, Avatar, Button } from 'react-native-paper';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TelaLogin = () => {
   const navigation = useNavigation()
@@ -12,18 +12,52 @@ const TelaLogin = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
+  useEffect(() => {
+    verificarLogin()
+  }, []);
+
   function logar() {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, senha)
       .then(() => {
         alert('Usuário logado');
-        navigation.navigate('TelaInicial')
+        manterLogin();
+        navigation.navigate('TelaInicial');
       })
       .catch(error => {
         alert(error);
       });
   }
 
+  async function manterLogin() {
+    try {
+      await AsyncStorage.setItem('email', email);
+      await AsyncStorage.setItem('senha', senha);
+      alert('Guardei no local')
+    } catch (error) {
+      alert(error)
+    }
+  }
+
+  async function verificarLogin() {
+    try {
+      const emailLocal = await AsyncStorage.getItem('email')
+      const senhaLocal = await AsyncStorage.getItem('senha')
+      if (emailLocal && senhaLocal) {
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, emailLocal, senhaLocal)
+          .then(()=> {
+            alert('Seja bem vindo de volta!');
+            navigation.navigate('TelaInicial');
+          })
+          .catch(error => {
+            alert(error);
+          })
+      }
+    } catch (error) {
+      alert(error)
+    }
+  }
 
   return (
     <View style={[styles.container, { width: screenWidth, height: screenHeight }]} >
@@ -57,8 +91,8 @@ const TelaLogin = () => {
               value={senha}
               textColor={'#fff'}
               secureTextEntry={true}
-
             />
+
           </View>
           <View style={{ marginTop: 25 }}>
             <Button style={styles.botaoEnviar} mode="contained" onPress={() => logar()}>Logar usuário</Button>
