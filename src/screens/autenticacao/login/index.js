@@ -1,9 +1,11 @@
-import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView, Image, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from "@react-navigation/native"
 import { TextInput, Avatar, Button } from 'react-native-paper';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Animatable from 'react-native-animatable'
+
 
 const TelaLogin = () => {
   const navigation = useNavigation()
@@ -60,19 +62,27 @@ const TelaLogin = () => {
   }
 
   return (
-    <View style={[styles.container, { width: screenWidth, height: screenHeight }]} >
+    <Animatable.View 
+    style={[styles.container, { width: screenWidth, height: screenHeight }]}
+    animation=''>
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
         <ScrollView keyboardShouldPersistTaps="always">
-          <View style={styles.imagem}>
-            <View>
-              <Avatar.Image style={{ backgroundColor: '#121212' }} size={200} source={require('../../../../assets/pyquiz.png')} />
-            </View>
+          <View style = {styles.containerLogo}>
+                <Animatable.Image
+                    animation="flipInY"
+                    source={require('../../../../assets/pyquiz1.png')}
+                    style={{ width: 300, height: 300 }}
+                    resizeMode='contain'
+                />
           </View>
-          <View style={styles.container}>
-            <Text style={styles.texto} >LOGIN </Text>
-          </View >
-          <View style={styles.container}>
 
+          <Animatable.View 
+          style={styles.container}
+          animation='fadeInLeft'>
+
+            <View style={styles.container}>
+              <Text style={styles.texto} >LOGIN </Text>
+            </View >
             <TextInput
               style={styles.caixaTexto}
               label="Email"
@@ -80,9 +90,7 @@ const TelaLogin = () => {
               onChangeText={setEmail}
               value={email}
               textColor={'#fff'}
-
             />
-
             <TextInput
               style={styles.caixaTexto}
               label="Senha"
@@ -92,23 +100,27 @@ const TelaLogin = () => {
               textColor={'#fff'}
               secureTextEntry={true}
             />
+          </Animatable.View>
 
-          </View>
-          <View style={{ marginTop: 25 }}>
-            <Button style={styles.botaoEnviar} mode="contained" onPress={() => logar()}>Logar usuário</Button>
-          </View>
-          <View style={{ marginTop: 10 }}>
-            <Button style={styles.botaoEnviar} mode="contained" onPress={() => navigation.navigate('TelaCriarUsuario')}>Criar nova conta</Button>
-          </View>
-          <Text />
-          <Text />
-          <Text />
-          <Text />
-          <Text />
-          <Text />
+          <Animatable.View
+          animation="fadeInUp"
+          delay={500}>
+            <Animatable.View 
+            animation="shake"
+            iterationCount='infinite'
+            iterationDelay={2000}>
+              <View style={{ marginTop: 25 }}>
+                <Button style={styles.botaoEnviar} mode="contained" onPress={() => logar()}>Conectar-se</Button>
+              </View>
+            </Animatable.View>
+            <View style={{ marginTop: 15 }}>
+              <Button textColor='#5015bd' fontSize='20' style={[styles.botaoEnviar, {backgroundColor: '#fff'}]} mode="contained" onPress={() => navigation.navigate('TelaCriarUsuario')}>Inscrever-se</Button>
+            </View>
+          </Animatable.View>
+
         </ScrollView>
       </KeyboardAvoidingView>
-    </View>
+    </Animatable.View>
   )
 }
 
@@ -117,29 +129,34 @@ export default TelaLogin
 const styles = StyleSheet.create({
   container: {
     marginBottom: 70,
-    backgroundColor: '#121212'
+    backgroundColor: '#000000'
+  },
+  containerLogo:{
+    flex:1,
+    backgroundColor:'#000000',
+    justifyContent:'center',
+    alignItems:'center',
   },
   texto: {
     color: '#fff',
     textAlign: 'center',
     fontSize: 20,
     fontStyle: 'bold',
-
-
-  },
-  imagem: {
-    alignItems: 'center',
   },
   caixaTexto: {
+    borderRadius:50,
+    paddingVertical:8,
     marginLeft: 30,
     marginRight: 30,
-    backgroundColor: '#121212',
+    backgroundColor: '#000000',
+    fontSize: 18,
   },
   botaoEnviar: {
+    backgroundColor:'#5015bd',
     marginLeft: 80,
     marginRight: 80,
+    justifyContent: 'center',
+    textAlignVertical: 'center',
+    height: 50,
   }
 });
-
-
-

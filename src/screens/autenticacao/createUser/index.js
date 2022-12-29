@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { useNavigation } from "@react-navigation/native"
 import { TextInput, Avatar, Button } from 'react-native-paper';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { get, ref, set } from 'firebase/database'
-
+import * as Animatable from 'react-native-animatable'
 import { db } from '../../../../firebase';
 
 
@@ -65,60 +65,80 @@ const TelaCriarUsuario = () => {
     <View style={[styles.container, { width: screenWidth, height: screenHeight }]} >
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
         <ScrollView keyboardShouldPersistTaps="always">
-          <View style={styles.imagem}>
-            <View>
-              <Avatar.Image style={{ backgroundColor: '#121212' }} size={200} source={require('../../../../assets/pyquiz.png')} />
+          <View style = {styles.containerLogo}>
+                  <Animatable.Image
+                      animation="flipInY"
+                      source={require('../../../../assets/pyquiz1.png')}
+                      style={{ width: 300, height: 300 }}
+                      resizeMode='contain'
+                  />
+          </View>
+
+          <Animatable.View animation="fadeInLeft" delay={500} style={styles.container}>
+                <Text style={styles.message}>CRIAR USUÁRIOS</Text>
+          </Animatable.View>
+
+          <Animatable.View 
+          style={styles.container}
+          animation='fadeInLeft'>
+            <View style={styles.container}>
+              <TextInput
+                style={styles.caixaTexto}
+                label="Nome"
+                mode="outlined"
+                onChangeText={setName}
+                value={name}
+                textColor={'#fff'}
+
+              />
+              <TextInput
+                style={styles.caixaTexto}
+                label="Email"
+                mode="outlined"
+                onChangeText={setEmail}
+                value={email}
+                textColor={'#fff'}
+              />
+
+              <TextInput
+                style={styles.caixaTexto}
+                label="Senha"
+                mode="outlined"
+                onChangeText={setSenha1}
+                value={senha1}
+                textColor={'#fff'}
+                secureTextEntry={true}
+              />
+
+              <TextInput
+                style={styles.caixaTexto}
+                label="Confirme sua senha"
+                mode="outlined"
+                onChangeText={setSenha2}
+                value={senha2}
+                textColor={'#fff'}
+                secureTextEntry={true}
+              />
             </View>
-          </View>
-          <View style={styles.container}>
-            <Text style={styles.texto} >CRIAR USUÁRIOS </Text>
-          </View >
-          <View style={styles.container}>
+          </Animatable.View>
 
-            <TextInput
-              style={styles.caixaTexto}
-              label="Nome"
-              mode="outlined"
-              onChangeText={setName}
-              value={name}
-              textColor={'#fff'}
-
-            />
-            <TextInput
-              style={styles.caixaTexto}
-              label="Email"
-              mode="outlined"
-              onChangeText={setEmail}
-              value={email}
-              textColor={'#fff'}
-
-            />
-
-            <TextInput
-              style={styles.caixaTexto}
-              label="Senha"
-              mode="outlined"
-              onChangeText={setSenha1}
-              value={senha1}
-              textColor={'#fff'}
-              secureTextEntry={true}
-
-            />
-
-            <TextInput
-              style={styles.caixaTexto}
-              label="Confirme sua senha"
-              mode="outlined"
-              onChangeText={setSenha2}
-              value={senha2}
-              textColor={'#fff'}
-              secureTextEntry={true}
-
-            />
-          </View>
-          <View style={styles.container}>
-            <Button style={styles.botaoEnviar} mode="contained" onPress={() => criar()}>Cadastrar usuário</Button>
-          </View>
+          <Animatable.View
+          animation="fadeInUp"
+          delay={500}>
+            <Animatable.View 
+            animation="shake"
+            iterationCount='infinite'
+            iterationDelay={2000}>
+              <View style={[styles.container, { marginTop: 70 }]}>
+                <Button style={styles.botaoEnviar} mode="contained" onPress={() => criar()}>Cadastrar</Button>
+              </View>
+            </Animatable.View>
+            <TouchableOpacity 
+            style={styles.buttonLogin}
+            onPress={() => navigation.navigate('TelaLogin')}>
+                    <Text style={styles.loginText}>Possui uma conta? Conecte-se</Text>
+            </TouchableOpacity>
+          </Animatable.View>
           <Text />
           <Text />
         </ScrollView>
@@ -131,27 +151,45 @@ export default TelaCriarUsuario
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 70,
-    backgroundColor: '#121212'
+    marginBottom: 10,
+    backgroundColor: '#000000'
+  },
+  message:{
+    fontSize:28,
+    textAlign: 'center',
+    fontWeight:'bold',
+    color:'#aFFF',
   },
   texto: {
     color: '#fff',
     textAlign: 'center',
     fontSize: 20,
     fontStyle: 'bold',
-
-
   },
-  imagem: {
-    alignItems: 'center',
+  containerLogo:{
+    flex:1,
+    backgroundColor:'#000000',
+    justifyContent:'center',
+    alignItems:'center',
   },
   caixaTexto: {
     marginLeft: 30,
     marginRight: 30,
-    backgroundColor: '#121212',
+    backgroundColor: '#000000',
   },
   botaoEnviar: {
+    backgroundColor:'#5015bd',
     marginLeft: 80,
     marginRight: 80,
+    justifyContent: 'center',
+    textAlignVertical: 'center',
+    height: 50,
+  },
+  buttonLogin:{
+    marginTop: 1,
+    alignSelf: 'center',
+  },
+  loginText:{
+      color: '#a1a1a1'
   }
 });
