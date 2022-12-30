@@ -22,7 +22,7 @@ function BottomTabBar() {
         ]}
         onPress={() => ap1()}
       >
-        <IconButton size={30} icon="home" onPress={() => ap1()}/>
+        <IconButton iconColor='#a8939ecc' size={30} icon="home" onPress={() => ap1()}/>
       </TouchableOpacity>
       <TouchableOpacity
         style={[
@@ -31,7 +31,7 @@ function BottomTabBar() {
         ]}
         onPress={() => ap2()}
       >
-        <IconButton size={30} icon="account-circle" onPress={() => ap2()}/>
+        <IconButton iconColor='#a8939ecc' size={30} icon="account-circle" onPress={() => ap2()}/>
       </TouchableOpacity>
     </View>
   );
@@ -41,15 +41,15 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     height:70,
-    backgroundColor: '#fff',
+    backgroundColor: '#000000',
   },
   tab: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    borderTopWidth: 5,
+    borderTopWidth: 2,
     position:'relative',
-    borderTopColor: '#8c52ff',
+    borderTopColor: '#121212',
   },
  
   tabText: {

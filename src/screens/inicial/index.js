@@ -1,9 +1,11 @@
-import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView, Image, BackHandler } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView, Image, BackHandler, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Button } from 'react-native-paper';
 import { useNavigation } from "@react-navigation/native"
 import BottomTabBar from '../Tabbar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Animatable from 'react-native-animatable'
+
 import { getAuth, signOut } from "firebase/auth";
 
 const TelaInicial = () => {
@@ -25,42 +27,55 @@ const TelaInicial = () => {
   }
 
   return (
-    <View style={[styles.container, { width: screenWidth, height: screenHeight }]}>
-      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
-        <ScrollView keyboardShouldPersistTaps="always">
-          <View style={[styles.app, { width: screenWidth, height: screenHeight }]}>
-
-            <View style={styles.container}>
-              <Image style={styles.imagem} source={require('../../../assets/pyquiz-unscreen.gif')} />
-            </View>
-            <View style={styles.container}>
-              <Button style={styles.botaoJogar} mode="contained" onPress={() => navigation.navigate('TelaModulos')}>Jogar</Button>
-            </View>
-            <View style={styles.container}>
-              <Button style={styles.botaoCreditos} mode="contained" onPress={() => navigation.navigate('TelaCreditos')}>Créditos</Button>
-            </View>
-            <View style={styles.container}>
-              <Button style={styles.botaoSuporte} mode="contained" onPress={() => navigation.navigate('TelaSuporte')}>Suporte</Button>
-            </View>
-            <View style={styles.container}>
-              <Button style={styles.botaoSair} mode="contained" onPress={() => sair()}>Sair</Button>
-            </View>
-            
 
 
+    <View style={[styles.container, { width: screenWidth, height: screenHeight-10 }]}>
+      <ScrollView>
+        <View style = {styles.containerLogo}>
+          <Animatable.Image
+              animation="flipInY"
+              source={require('../../../assets/pyquiz-unscreen.gif')}
+              style={{ width: 300, height: 300 }}
+              resizeMode='contain'
+          />
+        </View>
 
-            <Text />
-            <Text />
+        <Animatable.View
+        style={{width: screenWidth}}
+        animation="fadeInUp"
+        delay={500}>
+          <View>
+            <TouchableOpacity 
+            style={styles.botoes} 
+            onPress={() => navigation.navigate('TelaModulos')}>
+              <Text style={styles.botaoTxt}>Jogar</Text>
+            </TouchableOpacity>
           </View>
-        </ScrollView>
-        <BottomTabBar />
-
-      </KeyboardAvoidingView>
-      <Text />
-      <Text />
-      <Text />
-      <Text />
-
+          <View>
+            <TouchableOpacity 
+            style={styles.botoes} 
+            onPress={() => navigation.navigate('TelaCreditos')}>
+              <Text style={styles.botaoTxt}>Créditos</Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity 
+            style={styles.botoes} 
+            onPress={() => navigation.navigate('TelaSuporte')}>
+              <Text style={styles.botaoTxt}>Suporte</Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity 
+            style={[styles.botoes]} 
+            onPress={() => sair()}>
+              <Text style={styles.botaoTxt}>Sair</Text>
+            </TouchableOpacity>
+          </View>
+        </Animatable.View>
+      </ScrollView>
+      <BottomTabBar/>
+      <BottomTabBar/>
     </View>
   )
 }
@@ -69,33 +84,27 @@ export default TelaInicial;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#121212',
-    alignItems: 'center',
+    backgroundColor: '#000000',
+    marginBottom: 60,
   },
-  app: {
-    justifyContent: "space-evenly"
+  containerLogo:{
+    flex:1,
+    backgroundColor:'#000000',
+    justifyContent:'center',
+    alignItems:'center',
   },
-  imagem: {
-    alignItems: 'center',
-    backgroundColor: '#121212',
-    width: 250,
-    height: 250,
+  botoes: {
+    backgroundColor:'#5015bd',
+    height: 70,
+    width: '75%',
+    marginTop: '5%',
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    alignItems:'center',
   },
-  botaoJogar: {
-    paddingLeft: 50,
-    paddingRight: 50,
-  },
-  botaoCreditos: {
-    paddingLeft: 42,
-    paddingRight: 42,
-
-  },
-  botaoSair: {
-    paddingLeft: 56,
-    paddingRight: 56,
-  },
-  botaoSuporte: {
-    paddingLeft: 43,
-    paddingRight: 43,
+  botaoTxt: {
+    fontSize: 40,
+    color: '#fff'
   }
 })

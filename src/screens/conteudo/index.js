@@ -271,28 +271,25 @@ export default TelaModulos
 const styles = StyleSheet.create({
     container: {
         marginBottom: 70,
-        backgroundColor: '#121212'
+        backgroundColor: '#000000'
     },
     textog: {
-        color: '#fff',
-        fontSize: 18,
-        fontStyle: 'bold',
+    color: '#fff',
+    fontSize: 22,
+    fontStyle: 'bold',
     },
-    textop: {
-        color: 'white',
-        fontSize: 15,
+    textop:{
+        color:'#a8939ecc',
+        fontSize:18,
     },
-    botao: {
-
-        marginTop: '4%',
-        padding: 20,
-        marginLeft: '5%',
-        marginRight: '5%',
-        borderWidth: 2,
-        borderRadius: 10,
-
+    botao:{
+        
+        marginTop:'4%',
+        padding:20,
+        marginLeft:'5%',
+        marginRight:'5%',
+        borderWidth:5,
+        borderRadius:30,
+        height: '10.6%',
     },
-
-
-
 });

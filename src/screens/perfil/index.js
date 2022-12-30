@@ -68,7 +68,7 @@ function updateusername(){
     <View style={[styles.container,{ width: screenWidth, height: screenHeight }]}>
       
       <ScrollView >
-        <IconButton style={{backgroundColor:'clay'}} icon="account-circle" size={200} onPress={() => console.log('Pressed')} />
+        <IconButton style={{backgroundColor:'#000000', alignSelf:'center'}} icon="account-circle" size={200} onPress={() => console.log('Pressed')} />
         <View>
           <Text style={styles.texto} onPress={() => setShowContent(true)}>Username:</Text>
           <Text style={styles.texto2} onPress={() => setShowContent(true)}>{name}</Text>
@@ -117,7 +117,7 @@ export default TelaPerfil
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#121212',
+        backgroundColor: '#000000',
         alignItems: 'center',
     },
     texto:{

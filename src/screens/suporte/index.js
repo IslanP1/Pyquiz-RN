@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { TextInput, Button } from 'react-native-paper';
 import Communications from 'react-native-communications';
+import * as Animatable from 'react-native-animatable'
 
 
 const TelaSuporte = () => {
@@ -11,7 +12,7 @@ const TelaSuporte = () => {
     function enviarEmail() {
         if (assunto != null && mensagem != null) {
             Communications.email(
-                ['islanpereiradeoliveira@gmail.com'],
+                ['pyquizapp@gmail.com'],
                 null,
                 null,
                 assunto,
@@ -45,9 +46,23 @@ const TelaSuporte = () => {
                     multiline={true}
                     placeholder={'Escreva a dúvida ou mensagem'}
                 />
-                <Button style={styles.buttonEnviar} mode="contained" onPress={() => enviarEmail()}>Enviar</Button>
-                <Text/>
-                <Text/>
+
+                <Animatable.View
+                animation="fadeInUp"
+                delay={500}>
+                    <Animatable.View 
+                    animation="shake"
+                    iterationCount='infinite'
+                    iterationDelay={2000}>
+                        <View>
+                            <TouchableOpacity 
+                            style={styles.buttonEnviar} 
+                            onPress={() => enviarEmail()}>
+                                <Text style={styles.botaoTxt}>Enviar</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </Animatable.View>
+                </Animatable.View>
             </ScrollView>
         </View>
     )
@@ -58,7 +73,7 @@ export default TelaSuporte
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#121212',
+        backgroundColor: '#000000',
     },
     titulo: {
         color: '#fff',
@@ -83,8 +98,18 @@ const styles = StyleSheet.create({
         marginRight: '5%',
     },
     buttonEnviar: {
-        marginTop: '10%',
         marginLeft: '30%',
-        marginRight: '30%'
+        marginRight: '30%',
+        backgroundColor:'#5015bd',
+        height: 70,
+        width: '75%',
+        marginTop: '5%',
+        borderRadius: 50,
+        alignSelf: 'center',
+        alignItems:'center',
+    },
+    botaoTxt: {
+        fontSize: 40,
+        color: '#fff',
     }
 })

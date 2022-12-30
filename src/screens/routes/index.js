@@ -17,13 +17,14 @@ import TelaCreditos from '../creditos'
 import TelaSuporte from '../suporte'
 import TelaPerfil from '../perfil'
 import TelaRecuperarSenha from '../recuperarSenha'
+import TelaPreload from '../preload'
 
 
 const AppRoutes = () => {
   
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='TelaLogin'>
+      <Stack.Navigator initialRouteName='TelaPreload'>
         <Stack.Screen name='TelaInicial' component={TelaInicial} options={{title:'Tela inicial', headerTitleAlign:'center'}}/>
         <Stack.Screen name='TelaModulos' component={TelaModulos} options={{title:'Lista de conteúdos', headerTitleAlign:'center'}}/>
         <Stack.Screen name='TelaExercicio' component={TelaExercicio} />
@@ -35,7 +36,7 @@ const AppRoutes = () => {
         <Stack.Screen name='TelaSuporte' component={TelaSuporte} />
         <Stack.Screen name='TelaPerfil' component={TelaPerfil} options={{title:'Perfil', headerBackVisible: false, headerTitleAlign:'center'}}/>
         <Stack.Screen name='TelaRecuperarSenha' component={TelaRecuperarSenha} />
-
+        <Stack.Screen name='TelaPreload' component={TelaPreload} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   )
