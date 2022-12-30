@@ -29,7 +29,7 @@ const TelaInicial = () => {
   return (
 
 
-    <View style={[styles.container, { width: screenWidth, height: screenHeight-10 }]}>
+    <View style={[styles.container, { width: screenWidth, height: screenHeight+14 }]}>
       <ScrollView>
         <View style = {styles.containerLogo}>
           <Animatable.Image
@@ -67,7 +67,8 @@ const TelaInicial = () => {
           </View>
           <View>
             <TouchableOpacity 
-            style={[styles.botoes]} 
+            style={[styles.botoes, {marginBottom:'5%', backgroundColor:'red', height: 50,
+            width: '50%',}]} 
             onPress={() => sair()}>
               <Text style={styles.botaoTxt}>Sair</Text>
             </TouchableOpacity>
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
   },
   botoes: {
     backgroundColor:'#5015bd',
-    height: 70,
+    height: 60,
     width: '75%',
     marginTop: '5%',
     borderRadius: 50,
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
     alignItems:'center',
   },
   botaoTxt: {
-    fontSize: 40,
+    fontSize: 30,
     color: '#fff'
   }
 })

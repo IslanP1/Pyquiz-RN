@@ -116,7 +116,8 @@ export default TelaConteudo
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#121212'
+        flex: 1,
+        backgroundColor: '#000000'
     },
     header: {
         backgroundColor: "#323232",
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
     },
     subHeader: {
         marginTop: 5,
-        backgroundColor: "#323232",
+        backgroundColor: "#000000",
         height: 60,
         alignItems: 'center',
         textAlign: 'center',
@@ -147,7 +148,7 @@ const styles = StyleSheet.create({
     },
     screen: {
         flex: 1,
-        backgroundColor: '#121212',
+        backgroundColor: '#000000',
         width,
         height
     },
@@ -156,7 +157,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 20,
         paddingVertical: 20,
-        borderBottomColor: '#454545',
+        borderBottomColor: '#000000',
         borderBottomWidth: 1,
     },
     item: {

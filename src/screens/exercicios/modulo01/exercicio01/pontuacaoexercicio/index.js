@@ -1,4 +1,4 @@
-import { View, Text, Button, BackHandler, Alert } from 'react-native'
+import { View, Text, TouchableOpacity, BackHandler, Alert, StyleSheet } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { getAuth } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native"
@@ -92,18 +92,53 @@ const TelaPontuacaoModulo01 = () => {
     
 
     return (
-        <View>
-            <Text>Respostas dos exercícios: </Text>
-            <Text>Primeiro exercício: {respostaCorreta01}</Text>
-            <Text>Segundo exercício: {respostaCorreta02}</Text>
-            <Text>Terceiro exercício: {respostaCorreta03}</Text>
-            <Text>Quarto exercício: {respostaCorreta04}</Text>
-            <Text>Quinto exercício: {respostaCorreta05}</Text>
-            <Text>Pontuação obtida:</Text>
-            <Text>{pontuacao}</Text>
-            <Button title="Voltar" onPress={() => navigation.navigate('TelaInicial')}></Button>
+        <View style={{backgroundColor:'#000000', flex:1}}>
+            <Text style={styles.textog}>Respostas dos exercícios: </Text>
+            <Text style={styles.textop}>Primeiro exercício: {respostaCorreta01}</Text>
+            <Text style={styles.textop}>Segundo exercício: {respostaCorreta02}</Text>
+            <Text style={styles.textop}>Terceiro exercício: {respostaCorreta03}</Text>
+            <Text style={styles.textop}>Quarto exercício: {respostaCorreta04}</Text>
+            <Text style={styles.textop}>Quinto exercício: {respostaCorreta05}</Text>
+            <Text style={styles.textop}>Pontuação obtida:</Text>
+            <Text style={styles.textop}>{pontuacao}</Text>
+            <TouchableOpacity style={styles.botoes} title="Voltar" onPress={() => navigation.navigate('TelaInicial')}>
+                <Text style={styles.textog}>Voltar</Text>
+            </TouchableOpacity>
         </View>
     )
 }
 
 export default TelaPontuacaoModulo01
+
+const styles = StyleSheet.create({
+    container: {
+      backgroundColor: '#000000',
+      marginBottom: 60,
+    },
+    containerLogo:{
+      flex:1,
+      backgroundColor:'#000000',
+      justifyContent:'center',
+      alignItems:'center',
+    },
+    botoes: {
+      backgroundColor:'#5015bd',
+      height: 60,
+      width: '75%',
+      marginTop: '5%',
+      borderRadius: 50,
+      justifyContent: 'center',
+      alignSelf: 'center',
+      alignItems:'center',
+    },
+    textog: {
+    color: '#fff',
+    fontSize: 22,
+    fontStyle: 'bold',
+    },
+    textop:{
+        color:'#a8939ecc',
+        fontSize:18,
+    },
+  })
+  

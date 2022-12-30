@@ -25,18 +25,31 @@ const AppRoutes = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='TelaPreload'>
-        <Stack.Screen name='TelaInicial' component={TelaInicial} options={{title:'Tela inicial', headerTitleAlign:'center'}}/>
-        <Stack.Screen name='TelaModulos' component={TelaModulos} options={{title:'Lista de conteúdos', headerTitleAlign:'center'}}/>
-        <Stack.Screen name='TelaExercicio' component={TelaExercicio} />
-        <Stack.Screen name='TelaConteudo' component={TelaConteudo} />
-        <Stack.Screen name='TelaCriarUsuario' component={TelaCriarUsuario} />
-        <Stack.Screen name='TelaLogin' component={TelaLogin} />
-        <Stack.Screen name='TelaPontuacaoModulo01' component={TelaPontuacaoModulo01} options={{ headerBackVisible: false }} />
-        <Stack.Screen name='TelaCreditos' component={TelaCreditos} />
-        <Stack.Screen name='TelaSuporte' component={TelaSuporte} />
-        <Stack.Screen name='TelaPerfil' component={TelaPerfil} options={{title:'Perfil', headerBackVisible: false, headerTitleAlign:'center'}}/>
-        <Stack.Screen name='TelaRecuperarSenha' component={TelaRecuperarSenha} />
+
+        <Stack.Screen name='TelaInicial' component={TelaInicial} options={{title:'Tela inicial', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
+
+        <Stack.Screen name='TelaModulos' component={TelaModulos} options={{title:'Lista de conteúdos', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
+
+        <Stack.Screen name='TelaExercicio' component={TelaExercicio} options={{title:'Exercícios', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
+
+        <Stack.Screen name='TelaConteudo' component={TelaConteudo} options={{title:'Aprendendo', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
+
+        <Stack.Screen name='TelaCriarUsuario' component={TelaCriarUsuario} options={{title:'Inscrever-se', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}, headerBackVisible: false }}/>
+
+        <Stack.Screen name='TelaLogin' component={TelaLogin} options={{title:'Login', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}, headerBackVisible: false }}/>
+
+        <Stack.Screen name='TelaPontuacaoModulo01' component={TelaPontuacaoModulo01} options={{title:'Resultados', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}, headerBackVisible: false }} />
+
+        <Stack.Screen name='TelaCreditos' component={TelaCreditos} options={{title:'Creditos', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
+
+        <Stack.Screen name='TelaSuporte' component={TelaSuporte} options={{title:'Suporte', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
+
+        <Stack.Screen name='TelaPerfil' component={TelaPerfil} options={{title:'Perfil', headerBackVisible: false, headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
+
+        <Stack.Screen name='TelaRecuperarSenha' component={TelaRecuperarSenha} options={{title:'Recuperar Senha', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
+
         <Stack.Screen name='TelaPreload' component={TelaPreload} options={{headerShown: false}}/>
+
       </Stack.Navigator>
     </NavigationContainer>
   )

@@ -131,7 +131,7 @@ export default TelaExercicio
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#121212',
+        backgroundColor: '#000000',
     },
     textoPergunta: {
         fontSize: 20,
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
         marginBottom: '5%',
         marginLeft: '10%',
         marginRight: '10%',
-        backgroundColor: '#6750a4',
+        backgroundColor: '#5015bd',
         borderRadius: 20,
     }
 })
