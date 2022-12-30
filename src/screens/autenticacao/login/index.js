@@ -15,7 +15,7 @@ const TelaLogin = () => {
   const [senha, setSenha] = useState("");
 
   useEffect(() => {
-    // verificarLogin()
+    verificarLogin()
   }, []);
 
   function logar() {

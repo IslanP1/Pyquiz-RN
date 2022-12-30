@@ -91,6 +91,7 @@ function updateusername(){
         </View>
         <Text style={styles.texto} >Email:</Text>
         <Text style={styles.texto2}>{email}</Text>
+        <Button style={{fontSize: 30}} onPress={''} >Sair da conta</Button>
         <Text/>
         <Text/>
         <Text/>

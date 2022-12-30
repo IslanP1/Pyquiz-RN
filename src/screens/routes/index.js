@@ -24,7 +24,7 @@ const AppRoutes = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='TelaLogin'>
-        <Stack.Screen name='TelaInicial' component={TelaInicial} options={{title:'Tela inicial'}}/>
+        <Stack.Screen name='TelaInicial' component={TelaInicial} options={{title:'Tela inicial', headerTitleAlign:'center'}}/>
         <Stack.Screen name='TelaModulos' component={TelaModulos} options={{title:'Lista de conteúdos', headerTitleAlign:'center'}}/>
         <Stack.Screen name='TelaExercicio' component={TelaExercicio} />
         <Stack.Screen name='TelaConteudo' component={TelaConteudo} />
@@ -33,7 +33,7 @@ const AppRoutes = () => {
         <Stack.Screen name='TelaPontuacaoModulo01' component={TelaPontuacaoModulo01} options={{ headerBackVisible: false }} />
         <Stack.Screen name='TelaCreditos' component={TelaCreditos} />
         <Stack.Screen name='TelaSuporte' component={TelaSuporte} />
-        <Stack.Screen name='TelaPerfil' component={TelaPerfil} />
+        <Stack.Screen name='TelaPerfil' component={TelaPerfil} options={{title:'Perfil', headerBackVisible: false, headerTitleAlign:'center'}}/>
         <Stack.Screen name='TelaRecuperarSenha' component={TelaRecuperarSenha} />
 
       </Stack.Navigator>

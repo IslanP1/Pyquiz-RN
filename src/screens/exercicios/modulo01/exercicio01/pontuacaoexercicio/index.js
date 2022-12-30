@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { getAuth } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native"
 import { db } from '../../../../../../firebase';
-import { get, ref, set } from 'firebase/database'
+import { get, ref, set, update } from 'firebase/database'
 import react from 'react';
 
 
@@ -72,11 +72,24 @@ const TelaPontuacaoModulo01 = () => {
                 const data = snapshot.val()
                 // Atribui a resposta a variável
                 setPontuacao(data.pontuacao);
+                if (data.pontuacao == 5){
+                    update(ref(db, `users/${userID}/pontuacaogeral`), {
+                        pontuacaomodulo1: data.pontuacao,
+                           
+                    }).then(() => {
+                    })
+                        .catch((error) => {
+                            alert(error)
+                    });
+                    
+                }
             }).catch((error) => {
                 // Em caso de erro, mostra a mensagem de erro no console
                 
             });
     }
+    
+    
 
     return (
         <View>
@@ -88,7 +101,7 @@ const TelaPontuacaoModulo01 = () => {
             <Text>Quinto exercício: {respostaCorreta05}</Text>
             <Text>Pontuação obtida:</Text>
             <Text>{pontuacao}</Text>
-            <Button title="Voltar" onPress={() => navigation.navigate('TelaModulos')}></Button>
+            <Button title="Voltar" onPress={() => navigation.navigate('TelaInicial')}></Button>
         </View>
     )
 }
