@@ -4,6 +4,7 @@ import { get, ref, set } from 'firebase/database'
 import { getAuth } from "firebase/auth";
 import { db } from '../../../../../firebase'
 import { useNavigation } from '@react-navigation/native'
+import * as Expo from 'expo-av';
 
 
 //import database from '../../../../../perguntas';
@@ -13,6 +14,8 @@ const TelaExercicio = () => {
     const [userID, setUserID] = useState(null);
     const [pontuacao, setPontuacao] = useState(0)
     const [numeroquestaoatual, setnumeroquestaoatual] = useState(0)
+    
+
 
     const questoes = [
         {
@@ -46,6 +49,19 @@ const TelaExercicio = () => {
     }, []);
 
 
+
+    async function mensagemCorreta() {
+        const som = new Expo.Audio.Sound()
+        await som.loadAsync(require('../../../../../sounds/correta.mp3'));
+        await som.playAsync();
+    }
+
+    async function mensagemErrada() {
+        const som = new Expo.Audio.Sound()
+        await som.loadAsync(require('../../../../../sounds/errada.mp3'));
+        await som.playAsync();
+    }
+
     function armazenarRespostaCorreta() {
         set(ref(db, `users/${userID}/modulo1/respostaexercicios/`), {
             exercicio01: questoes[0].respostacorreta,
@@ -54,7 +70,7 @@ const TelaExercicio = () => {
             exercicio04: questoes[3].respostacorreta,
             exercicio05: questoes[4].respostacorreta,
         }).then(() => {
-            
+
         })
             .catch((error) => {
                 alert(error)
@@ -64,16 +80,22 @@ const TelaExercicio = () => {
     const correcaoresposta = (questaoselecionada) => {
         if (questaoselecionada == questoes[numeroquestaoatual].respostacorreta) {
             setPontuacao(pontuacao + 1)
+            mensagemCorreta()
             set(ref(db, `users/${userID}/modulo1/exercicios`), {
                 pontuacao: pontuacao + 1
-            }).then(() => {
 
+            }).then(() => {
+                
             }).catch((error) => {
                 alert(error)
             });
+        }else{
+            mensagemErrada();
         };
 
         setnumeroquestaoatual(numeroquestaoatual + 1);
+        
+
 
 
         if (numeroquestaoatual === questoes.length - 2) {

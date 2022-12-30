@@ -45,6 +45,10 @@ const TelaInicial = () => {
             <View style={styles.container}>
               <Button style={styles.botaoSair} mode="contained" onPress={() => sair()}>Sair</Button>
             </View>
+            
+
+
+
             <Text />
             <Text />
           </View>

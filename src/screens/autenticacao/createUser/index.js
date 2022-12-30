@@ -6,6 +6,10 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { get, ref, set } from 'firebase/database'
 import * as Animatable from 'react-native-animatable'
 import { db } from '../../../../firebase';
+//import { auth } from 'react-native-firebase';
+
+
+
 
 
 const TelaCriarUsuario = () => {
@@ -21,7 +25,6 @@ const TelaCriarUsuario = () => {
   function criar() {
     if (senha1 === senha2) {
       const auth = getAuth();
-      
       createUserWithEmailAndPassword(auth, email, senha2)
         .then(() => {
           alert('Conta de usuário criada e conectada!');
@@ -29,14 +32,14 @@ const TelaCriarUsuario = () => {
           const userCredential = teste;
           const id = userCredential.uid;
           set(ref(db, `users/${id}/credenciais`), {
-            email:email,
-            nome:name
-            
-        }).then(() => {
-            
-        })
+            email: email,
+            nome: name
+
+          }).then(() => {
+
+          })
             .catch((error) => {
-                alert(error)
+              alert(error)
             });
           setSenha1(null)
           setSenha2(null)
@@ -60,27 +63,26 @@ const TelaCriarUsuario = () => {
     }
   }
 
-
   return (
     <View style={[styles.container, { width: screenWidth, height: screenHeight }]} >
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
         <ScrollView keyboardShouldPersistTaps="always">
-          <View style = {styles.containerLogo}>
-                  <Animatable.Image
-                      animation="flipInY"
-                      source={require('../../../../assets/pyquiz1.png')}
-                      style={{ width: 300, height: 300 }}
-                      resizeMode='contain'
-                  />
+          <View style={styles.containerLogo}>
+            <Animatable.Image
+              animation="flipInY"
+              source={require('../../../../assets/pyquiz1.png')}
+              style={{ width: 300, height: 300 }}
+              resizeMode='contain'
+            />
           </View>
 
           <Animatable.View animation="fadeInLeft" delay={500} style={styles.container}>
-                <Text style={styles.message}>CRIAR USUÁRIOS</Text>
+            <Text style={styles.message}>CRIAR USUÁRIOS</Text>
           </Animatable.View>
 
-          <Animatable.View 
-          style={styles.container}
-          animation='fadeInLeft'>
+          <Animatable.View
+            style={styles.container}
+            animation='fadeInLeft'>
             <View style={styles.container}>
               <TextInput
                 style={styles.caixaTexto}
@@ -123,20 +125,20 @@ const TelaCriarUsuario = () => {
           </Animatable.View>
 
           <Animatable.View
-          animation="fadeInUp"
-          delay={500}>
-            <Animatable.View 
-            animation="shake"
-            iterationCount='infinite'
-            iterationDelay={2000}>
+            animation="fadeInUp"
+            delay={500}>
+            <Animatable.View
+              animation="shake"
+              iterationCount='infinite'
+              iterationDelay={2000}>
               <View style={[styles.container, { marginTop: 70 }]}>
                 <Button style={styles.botaoEnviar} mode="contained" onPress={() => criar()}>Cadastrar</Button>
               </View>
             </Animatable.View>
-            <TouchableOpacity 
-            style={styles.buttonLogin}
-            onPress={() => navigation.navigate('TelaLogin')}>
-                    <Text style={styles.loginText}>Possui uma conta? Conecte-se</Text>
+            <TouchableOpacity
+              style={styles.buttonLogin}
+              onPress={() => navigation.navigate('TelaLogin')}>
+              <Text style={styles.loginText}>Possui uma conta? Conecte-se</Text>
             </TouchableOpacity>
           </Animatable.View>
           <Text />
@@ -154,11 +156,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: '#000000'
   },
-  message:{
-    fontSize:28,
+  message: {
+    fontSize: 28,
     textAlign: 'center',
-    fontWeight:'bold',
-    color:'#aFFF',
+    fontWeight: 'bold',
+    color: '#aFFF',
   },
   texto: {
     color: '#fff',
@@ -166,11 +168,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontStyle: 'bold',
   },
-  containerLogo:{
-    flex:1,
-    backgroundColor:'#000000',
-    justifyContent:'center',
-    alignItems:'center',
+  containerLogo: {
+    flex: 1,
+    backgroundColor: '#000000',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   caixaTexto: {
     marginLeft: 30,
@@ -178,18 +180,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000',
   },
   botaoEnviar: {
-    backgroundColor:'#5015bd',
+    backgroundColor: '#5015bd',
     marginLeft: 80,
     marginRight: 80,
     justifyContent: 'center',
     textAlignVertical: 'center',
     height: 50,
+    
   },
-  buttonLogin:{
+  buttonLogin: {
     marginTop: 1,
     alignSelf: 'center',
+    marginBottom: '30%'
   },
-  loginText:{
-      color: '#a1a1a1'
+  loginText: {
+    color: '#a1a1a1'
   }
 });

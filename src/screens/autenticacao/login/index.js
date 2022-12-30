@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView, I
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from "@react-navigation/native"
 import { TextInput, Avatar, Button } from 'react-native-paper';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, updatePassword } from "firebase/auth";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Animatable from 'react-native-animatable'
 
@@ -15,11 +15,12 @@ const TelaLogin = () => {
   const [senha, setSenha] = useState("");
 
   useEffect(() => {
-    verificarLogin()
+    // verificarLogin()
   }, []);
 
   function logar() {
     const auth = getAuth();
+
     signInWithEmailAndPassword(auth, email, senha)
       .then(() => {
         alert('Usuário logado');
@@ -48,7 +49,7 @@ const TelaLogin = () => {
       if (emailLocal && senhaLocal) {
         const auth = getAuth();
         signInWithEmailAndPassword(auth, emailLocal, senhaLocal)
-          .then(()=> {
+          .then(() => {
             alert('Seja bem vindo de volta!');
             navigation.navigate('TelaInicial');
           })
@@ -62,23 +63,23 @@ const TelaLogin = () => {
   }
 
   return (
-    <Animatable.View 
-    style={[styles.container, { width: screenWidth, height: screenHeight }]}
-    animation=''>
+    <Animatable.View
+      style={[styles.container, { width: screenWidth, height: screenHeight }]}
+      animation=''>
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
         <ScrollView keyboardShouldPersistTaps="always">
-          <View style = {styles.containerLogo}>
-                <Animatable.Image
-                    animation="flipInY"
-                    source={require('../../../../assets/pyquiz1.png')}
-                    style={{ width: 300, height: 300 }}
-                    resizeMode='contain'
-                />
+          <View style={styles.containerLogo}>
+            <Animatable.Image
+              animation="flipInY"
+              source={require('../../../../assets/pyquiz1.png')}
+              style={{ width: 300, height: 300 }}
+              resizeMode='contain'
+            />
           </View>
 
-          <Animatable.View 
-          style={styles.container}
-          animation='fadeInLeft'>
+          <Animatable.View
+            style={styles.container}
+            animation='fadeInLeft'>
 
             <View style={styles.container}>
               <Text style={styles.texto} >LOGIN </Text>
@@ -103,21 +104,31 @@ const TelaLogin = () => {
           </Animatable.View>
 
           <Animatable.View
-          animation="fadeInUp"
-          delay={500}>
-            <Animatable.View 
-            animation="shake"
-            iterationCount='infinite'
-            iterationDelay={2000}>
+            animation="fadeInUp"
+            delay={500}>
+            <Animatable.View
+              animation="shake"
+              iterationCount='infinite'
+              iterationDelay={2000}>
               <View style={{ marginTop: 25 }}>
                 <Button style={styles.botaoEnviar} mode="contained" onPress={() => logar()}>Conectar-se</Button>
               </View>
+             
             </Animatable.View>
-            <View style={{ marginTop: 15 }}>
-              <Button textColor='#5015bd' fontSize='20' style={[styles.botaoEnviar, {backgroundColor: '#fff'}]} mode="contained" onPress={() => navigation.navigate('TelaCriarUsuario')}>Inscrever-se</Button>
+            <View style={{ marginTop: 15, marginBottom: '3%' }}>
+              <Button textColor='#5015bd' fontSize='20' style={[styles.botaoEnviar, { backgroundColor: '#fff' }]} mode="contained" onPress={() => navigation.navigate('TelaCriarUsuario')}>Inscrever-se</Button>
             </View>
+            <View style={{ marginBottom: '30%' }}>
+              <TouchableOpacity textColor='#5015bd' fontSize='20' style={[styles.botaoRecuperar, { backgroundColor: '#fff' }]} mode="contained" onPress={() => navigation.navigate('TelaRecuperarSenha')}>
+                <Text style={styles.recuperarTexto}>
+                  Perdeu a senha? Recupere
+                </Text>
+              </TouchableOpacity>
+            </View>
+    
           </Animatable.View>
-
+          
+        
         </ScrollView>
       </KeyboardAvoidingView>
     </Animatable.View>
@@ -131,11 +142,11 @@ const styles = StyleSheet.create({
     marginBottom: 70,
     backgroundColor: '#000000'
   },
-  containerLogo:{
-    flex:1,
-    backgroundColor:'#000000',
-    justifyContent:'center',
-    alignItems:'center',
+  containerLogo: {
+    flex: 1,
+    backgroundColor: '#000000',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   texto: {
     color: '#fff',
@@ -144,19 +155,28 @@ const styles = StyleSheet.create({
     fontStyle: 'bold',
   },
   caixaTexto: {
-    borderRadius:50,
-    paddingVertical:8,
+    borderRadius: 50,
+    paddingVertical: 8,
     marginLeft: 30,
     marginRight: 30,
     backgroundColor: '#000000',
     fontSize: 18,
   },
   botaoEnviar: {
-    backgroundColor:'#5015bd',
+    backgroundColor: '#5015bd',
     marginLeft: 80,
     marginRight: 80,
     justifyContent: 'center',
     textAlignVertical: 'center',
     height: 50,
+  },
+  botaoRecuperar: {
+    marginTop: 1,
+    alignSelf: 'center',
+  },
+  recuperarTexto: {
+    color: '#a1a1a1',
+    backgroundColor: '#000000'
+    
   }
 });

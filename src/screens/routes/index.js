@@ -16,6 +16,8 @@ import TelaLogin from '../autenticacao/login'
 import TelaCreditos from '../creditos'
 import TelaSuporte from '../suporte'
 import TelaPerfil from '../perfil'
+import TelaRecuperarSenha from '../recuperarSenha'
+
 
 const AppRoutes = () => {
   
@@ -32,6 +34,8 @@ const AppRoutes = () => {
         <Stack.Screen name='TelaCreditos' component={TelaCreditos} />
         <Stack.Screen name='TelaSuporte' component={TelaSuporte} />
         <Stack.Screen name='TelaPerfil' component={TelaPerfil} />
+        <Stack.Screen name='TelaRecuperarSenha' component={TelaRecuperarSenha} />
+
       </Stack.Navigator>
     </NavigationContainer>
   )

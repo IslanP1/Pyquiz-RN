@@ -88,7 +88,7 @@ const TelaPontuacaoModulo01 = () => {
             <Text>Quinto exercício: {respostaCorreta05}</Text>
             <Text>Pontuação obtida:</Text>
             <Text>{pontuacao}</Text>
-            <Button title="Voltar" onPress={() => navigation.navigate('TelaConteudo')}></Button>
+            <Button title="Voltar" onPress={() => navigation.navigate('TelaModulos')}></Button>
         </View>
     )
 }
