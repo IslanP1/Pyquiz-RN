@@ -13,11 +13,7 @@ const TelaLogin = () => {
   const screenHeight = Dimensions.get('window').height;
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-
-  useEffect(() => {
-    verificarLogin()
-  }, []);
-
+  
   function logar() {
     const auth = getAuth();
 
@@ -42,25 +38,6 @@ const TelaLogin = () => {
     }
   }
 
-  async function verificarLogin() {
-    try {
-      const emailLocal = await AsyncStorage.getItem('email')
-      const senhaLocal = await AsyncStorage.getItem('senha')
-      if (emailLocal && senhaLocal) {
-        const auth = getAuth();
-        signInWithEmailAndPassword(auth, emailLocal, senhaLocal)
-          .then(() => {
-            alert('Seja bem vindo de volta!');
-            navigation.navigate('TelaInicial');
-          })
-          .catch(error => {
-            alert(error);
-          })
-      }
-    } catch (error) {
-      alert(error)
-    }
-  }
 
   return (
     <Animatable.View

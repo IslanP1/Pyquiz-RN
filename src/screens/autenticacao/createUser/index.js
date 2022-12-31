@@ -18,46 +18,60 @@ const TelaCriarUsuario = () => {
   const [senha1, setSenha1] = useState("");
   const [senha2, setSenha2] = useState("");
   const [name, setName] = useState("")
+  const [checkValidEmail, setCheckValidEmail] = useState(false);
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
 
+  const handleCheckEmail = text => {
+    let re = /\S+@\S+\.\S+/;
+    let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+
+    setEmail(text);
+    if (re.test(text) || regex.test(text)) {
+      setCheckValidEmail(false);
+    } else {
+      setCheckValidEmail(true);
+    }
+  };
 
   function criar() {
     if (senha1 === senha2) {
-      const auth = getAuth();
-      createUserWithEmailAndPassword(auth, email, senha2)
-        .then(() => {
-          alert('Conta de usuário criada e conectada!');
-          const teste = auth.currentUser;
-          const userCredential = teste;
-          const id = userCredential.uid;
-          set(ref(db, `users/${id}/credenciais`), {
-            email: email,
-            nome: name
+      if (checkValidEmail != true) {
+        const auth = getAuth();
+        createUserWithEmailAndPassword(auth, email, senha2)
+          .then(() => {
+            alert('Conta de usuário criada e conectada!');
+            const teste = auth.currentUser;
+            const userCredential = teste;
+            const id = userCredential.uid;
+            set(ref(db, `users/${id}/credenciais`), {
+              email: email,
+              nome: name
 
-          }).then(() => {
+            }).then(() => {
 
+            })
+              .catch((error) => {
+                alert(error)
+              });
+            setSenha1(null)
+            setSenha2(null)
+            setEmail(null)
+            navigation.navigate('TelaLogin')
           })
-            .catch((error) => {
-              alert(error)
-            });
-          setSenha1(null)
-          setSenha2(null)
-          setEmail(null)
-          navigation.navigate('TelaLogin')
-        })
-        .catch(error => {
-          if (error.code === 'auth/email-already-in-use') {
-            alert('Esse endereço de email já esta em uso!');
-          }
-          if (error.code === 'auth/invalid-email') {
-            alert('Esse endereço de e-mail é inválido!');
-          }
-          if (error.code === 'auth/weak-password') {
-            alert('Escolha uma senha mais forte, com pelo menos 6 caracteres, incluindo letras, números e símbolos')
-          }
-          alert(error);
-        });
+          .catch(error => {
+            if (error.code === 'auth/email-already-in-use') {
+              alert('Esse endereço de email já esta em uso!');
+            }
+            if (error.code === 'auth/invalid-email') {
+              alert('Esse endereço de e-mail é inválido!');
+            }
+            if (error.code === 'auth/weak-password') {
+              alert('Escolha uma senha mais forte, com pelo menos 6 caracteres, incluindo letras, números e símbolos')
+            }
+            alert(error);
+          });
+      }
     } else {
       alert("Senhas diferentes, preencha os dois campos iguais!")
     }
@@ -97,10 +111,14 @@ const TelaCriarUsuario = () => {
                 style={styles.caixaTexto}
                 label="Email"
                 mode="outlined"
-                onChangeText={setEmail}
+                onChangeText={text => handleCheckEmail(text)}
                 value={email}
                 textColor={'#fff'}
               />
+              
+              {checkValidEmail && email != "" &&(
+                <Text style={styles.textFailed}>Digite um email válido!</Text>
+              )}
 
               <TextInput
                 style={styles.caixaTexto}
@@ -121,6 +139,11 @@ const TelaCriarUsuario = () => {
                 textColor={'#fff'}
                 secureTextEntry={true}
               />
+
+              {senha1 != senha2 && senha1 != "" && senha2 != "" &&(
+                <Text style={styles.textFailed}>As senhas não coincidem!</Text>
+              )}
+
             </View>
           </Animatable.View>
 
@@ -177,6 +200,7 @@ const styles = StyleSheet.create({
   caixaTexto: {
     marginLeft: 30,
     marginRight: 30,
+    marginBottom: 5,
     backgroundColor: '#000000',
   },
   botaoEnviar: {
@@ -195,5 +219,9 @@ const styles = StyleSheet.create({
   },
   loginText: {
     color: '#a1a1a1'
-  }
+  },
+  textFailed: {
+    marginHorizontal:30,
+    color: 'red',
+  },
 });
