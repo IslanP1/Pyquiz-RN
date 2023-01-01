@@ -27,7 +27,7 @@ const TelaPreload = () => {
           signInWithEmailAndPassword(auth, emailLocal, senhaLocal)
             .then(() => {
               alert('Seja bem vindo de volta!');
-              navigation.navigate('TelaInicial');
+              navigation.navigate('BottomTabBar');
             })
             .catch(error => {
               navigation.navigate('TelaLogin')

@@ -29,7 +29,7 @@ const TelaInicial = () => {
   return (
 
 
-    <View style={[styles.container, { width: screenWidth, height: screenHeight+14 }]}>
+    <View style={[styles.container, { width: screenWidth, height: screenHeight}]}>
       <ScrollView>
         <View style = {styles.containerLogo}>
           <Animatable.Image
@@ -73,11 +73,13 @@ const TelaInicial = () => {
               <Text style={styles.botaoTxt}>Sair</Text>
             </TouchableOpacity>
           </View>
+        
         </Animatable.View>
+        
       </ScrollView>
-      <BottomTabBar/>
-      <BottomTabBar/>
+    
     </View>
+    
   )
 }
 

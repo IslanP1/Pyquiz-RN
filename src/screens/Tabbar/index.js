@@ -1,61 +1,66 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useNavigation } from "@react-navigation/native"
-import { IconButton } from 'react-native-paper';
+import React from 'react';
+import { View, ScrollView, TouchableOpacity, Text } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import TelaInicial from '../inicial';
+import TelaPerfil from '../perfil';
+import { MaterialIcons } from '@expo/vector-icons';
 
-function BottomTabBar() {
-  const navigation = useNavigation()
 
-  function ap1(){
-    navigation.navigate('TelaInicial')
-  }
+const Tab = createBottomTabNavigator();
 
-  function ap2(){
-    navigation.navigate('TelaPerfil')
-  }
-
+const MyTabs = () => {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={[
-          styles.tab,
-        ]}
-        onPress={() => ap1()}
-      >
-        <IconButton iconColor='#a8939ecc' size={30} icon="home" onPress={() => ap1()}/>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[
-          styles.tab,
-          
-        ]}
-        onPress={() => ap2()}
-      >
-        <IconButton iconColor='#a8939ecc' size={30} icon="account-circle" onPress={() => ap2()}/>
-      </TouchableOpacity>
-    </View>
+    <Tab.Navigator
+    screenOptions={{
+      tabBarActiveTintColor: '#5015bd',
+      tabBarStyle: { position: 'absolute', backgroundColor: '#000000'},
+    }}>
+      <Tab.Screen 
+      name="Tela inicial"
+      component={HomeScreen}
+      options={{
+        headerStyle: {backgroundColor:'#000000'},
+        headerTitleStyle: {color:"#fff"},
+        headerTitleAlign:'center',
+        tabBarIcon: ({ color, size }) => (
+          <MaterialIcons name="home" style={{color: '#a8939ecc'}} size={size} />
+        ),
+        
+        
+      }}
+      
+      />
+
+
+      <Tab.Screen 
+      name="Tela de perfil" 
+      component={SettingsScreen} 
+      options={{
+        headerStyle: {backgroundColor:'#000000'},
+        headerTitleStyle: {color:"#fff"},
+        headerTitleAlign:'center',
+        tabBarIcon: ({ color='red', size }) => (
+          <MaterialIcons name="account-circle" style={{color: '#a8939ecc'}} size={size} />
+        ),
+        
+        
+        
+      }}/>
+  
+    </Tab.Navigator>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    height:70,
-    backgroundColor: '#000000',
-  },
-  tab: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderTopWidth: 2,
-    position:'relative',
-    borderTopColor: '#121212',
-  },
- 
-  tabText: {
-    fontSize: 12,
-    color: '#333',
-  },
-});
+const HomeScreen = () => {
+  return (
+    <TelaInicial/>
+  );
+};
 
-export default BottomTabBar;
+const SettingsScreen = () => {
+  return (
+    <TelaPerfil/> 
+  );
+};
+
+export default MyTabs

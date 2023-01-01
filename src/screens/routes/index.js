@@ -18,6 +18,7 @@ import TelaSuporte from '../suporte'
 import TelaPerfil from '../perfil'
 import TelaRecuperarSenha from '../recuperarSenha'
 import TelaPreload from '../preload'
+import BottomTabBar from '../Tabbar'
 
 
 const AppRoutes = () => {
@@ -26,7 +27,7 @@ const AppRoutes = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='TelaPreload'>
 
-        <Stack.Screen name='TelaInicial' component={TelaInicial} options={{title:'Tela inicial', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
+        <Stack.Screen name='TelaInicial' component={TelaInicial} options={{title:'Tela inicial', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerShown: false, headerStyle:{backgroundColor: '#000000'}}}/>
 
         <Stack.Screen name='TelaModulos' component={TelaModulos} options={{title:'Lista de conteúdos', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
 
@@ -49,6 +50,8 @@ const AppRoutes = () => {
         <Stack.Screen name='TelaRecuperarSenha' component={TelaRecuperarSenha} options={{title:'Recuperar Senha', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
 
         <Stack.Screen name='TelaPreload' component={TelaPreload} options={{headerShown: false}}/>
+
+        <Stack.Screen name='BottomTabBar' component={BottomTabBar} options={{headerShown: false}}/>
 
       </Stack.Navigator>
     </NavigationContainer>

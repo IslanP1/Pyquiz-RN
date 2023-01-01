@@ -257,7 +257,6 @@ const TelaModulos = () => {
                 <Text />
 
             </ScrollView>
-            <BottomTabBar />
             <Text />
             <Text />
             <Text />
