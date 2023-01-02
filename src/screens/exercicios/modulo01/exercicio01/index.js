@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { get, ref, set } from 'firebase/database'
 import { getAuth } from "firebase/auth";
@@ -108,7 +108,7 @@ const TelaExercicio = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container} scrollsToTop={true}>
             <Text style={styles.textoPergunta}>
                 {questoes[numeroquestaoatual].questao}
             </Text>
@@ -120,8 +120,7 @@ const TelaExercicio = () => {
                 </View>
             ))}
             <Text style={styles.textoAcerto}>Acertos: {pontuacao}</Text>
-        </View>
-
+        </ScrollView>
     )
 
 

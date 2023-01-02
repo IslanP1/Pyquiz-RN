@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView, Image, BackHandler, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView, Image, BackHandler, TouchableOpacity, StatusBar } from 'react-native'
 import React from 'react'
 import { Button } from 'react-native-paper';
 import { useNavigation } from "@react-navigation/native"
@@ -27,9 +27,8 @@ const TelaInicial = () => {
   }
 
   return (
-
-
     <View style={[styles.container, { width: screenWidth, height: screenHeight}]}>
+      <StatusBar barStyle="dark-content" backgroundColor="#000000" />
       <ScrollView>
         <View style = {styles.containerLogo}>
           <Animatable.Image
