@@ -12,7 +12,7 @@ import {
 import React, { useRef, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import TelaExercicio from '../exercicios/modulo01/exercicio01';
+import TelaExercicio from '../../exercicios/modulo01/exercicio01';
 
 const {width, height} = Dimensions.get('window');
 
@@ -21,31 +21,57 @@ const Teoria = () => {
     
     return(
         <ScrollView style={[styles.container, {backgroundColor:'#000008'}]} scrollsToTop={true}>
-            <Text style={styles.title}>Hello, Python!</Text>
-            <View style = {styles.containerLogo}>
-                <Image source={require("../../../assets/python.png")} style={{ width: 200, height: 200 }}/>
-            </View>
+            <Text style={styles.title}>If, Elif, Else</Text>
             <View>
-                <Text style={styles.subtitle}>Bem vindo ao Python</Text>
                 <Text style={styles.message}>
-                    São várias as características do Python que o tornam uma linguagem tão promissora e, que atrai a cada dia, mais desenvolvedores. A seguir, foram elucidados alguma dessas características e junto, uma breve descrição.</Text>
+                    If em Python nos permite contar ao computador para executar ações alternativas com base em um determinado conjunto de resultados. Verbalmente, podemos imaginar que estamos informando o computador:    
+                </Text>
+                <Text>
+                    "Se isso caso acontecer, execute alguma ação". Podemos então expandir a idéia com declarações elif e else, o que nos permite contar ao computador:
+                </Text>
+                <Text>
+                    "Se esse caso acontecer, execute alguma ação. Caso contrário, se aquilo acontecer, execute alguma outra ação. Caso contrário, se nenhum dos casos acima aconteceu, execute esta ação". Vamos avançar e ver o formato de sintaxe para as instruções if para ter uma idéia melhor disso:
+                </Text>
+                <Text style={styles.subtitle}>Exemplos</Text>
+                <Text style={[styles.message, {marginBottom: '7%'}]}>
+                    Vamos ver um exemplo rápido disso:
+                </Text>
+                <View style={styles.terminal}>
+                    <Text style={[styles.messageTerminal, {color: 'blue'}]}>
+                        <Text style={[styles.messageTerminal, {color: 'red'}]}>if </Text>
+                        True
+                        <Text style={[styles.messageTerminal, {color: '#fff'}]}>:</Text>
+                    </Text>
+                    <Text style={styles.messageTerminal}>
+                        <Text style={[styles.messageTerminal, {color: 'blue'}]}>print(</Text>
+                        "x é verdadeiro!"
+                        <Text style={[styles.messageTerminal, {color: 'blue'}]}>)</Text>
+                    </Text>
+                </View>
+                <View style={[styles.terminal, {backgroundColor: '#fff', marginBottom: '20%', marginTop: '2%'}]}>
+                    <Text style={[styles.messageTerminal, {color: '#000000'}]}>
+                        Hello, Python!
+                    </Text>
+                </View>
                 <Text style={styles.message}>
-                    <Text style={styles.messageDestaque}> 1. Fácil de aprender: </Text>
-                    O Python é uma linguagem fácil de ser aprendida e poderosa para trabalharmos. A mesma possui uma sintaxe limpa e clara, como também, contém um conjunto de bibliotecas estáveis e bem estruturadas.</Text>
+                    Vamos adicionar outra lógica:
+                </Text>
+                <Text style={styles.subtitle}>Múltiplos ramos</Text>
                 <Text style={styles.message}>
-                    <Text style={styles.messageDestaque}> 2. Fácil leitura e compreensão: </Text>
-                    A sintaxe da linguagem é minimalista, isso é, mantém somente o necessário, o que torna o código escrito, muitas vezes, a um texto em Inglês.</Text>
+                    Vamos ver de forma mais completa de quão longe if, elif e else podem nos levar! Nós escrevemos isso em uma estrutura aninhada. Tome nota de como o if, elif e else se alinham no código. Isso pode ajudá-lo a ver o que se relaciona com o elif ou outras afirmações.
+                </Text>
                 <Text style={styles.message}>
-                    <Text style={styles.messageDestaque}> 3. Fácil manutenção: </Text>
-                    Em decorrência da simplicidade sintática e da excelente estruturação das bibliotecas, a manutenção de códigos, seja aquele que desenvolvemos ou mesmo de terceiros, muito mais fácil e compreensível.</Text>
+                    Vamos reintroduzir uma sintaxe de comparação para o Python.
+                </Text>
                 <Text style={styles.message}>
-                    <Text style={styles.messageDestaque}> 4. Multiplataforma: </Text>
-                    O interpretador do Python é escrito com a Linguagem C e C++, assim, o mesmo pode ser portado a todas as plataformas que possuam compiladores para a linguagem. Tendo em vista que o C++ é a linguagem mais difundida e a base de praticamente toda a informática, temos compiladores nativos ou portados para quase todas as plataformas existentes.</Text>
+                    Observe como as declarações if aninhadas são verificadas até que um booleano True faça com que o código aninhado abaixo seja executado. Você também deve notar que você pode colocar as declarações elif quando desejar antes de fechar com outra.
+                </Text>
                 <Text style={styles.message}>
-                    <Text style={styles.messageDestaque}>  5. Modo interativo: </Text>
-                    Sendo o Python uma linguagem interpretada, foi possível o desenvolvimento de ferramentas interativas, isto é, ferramentas majoritariamente em linha de comando, onde podemos executar instruções e nalisar a saída.</Text>
-                <Text style={styles.message}>Hoje Python está presente nas áreas de Desenvolvimento Web, Inteligência Artificial, Computação Gráfica, Big Data, Ciência de Dados e Muito Mais!</Text>
-                <Text style={styles.message}>Os tópicos aqui elucidados estão longe de esgotar os recursos do Python! Por essa razão, continuaremos o nosso estudo sobre as principais características e recursos da linguagem nas próximas seções.</Text>
+                    Vamos criar dois exemplos mais simples para as afirmações if, elif e else:
+                </Text>
+                <Text style={styles.message}>
+                    Agora você já sabe como criar estruturas de decisão no seu código, isso será muito útil para quando o programa deve se comportar de determinada forma dependendo da situação.
+                </Text>
                 <Text style={[styles.message, {marginBottom: '7%'}]}>Vamos agora escrever nosso primeiro código em Python, printando na tela "Hello, Python".</Text>
 
                 <View style={styles.terminal}>

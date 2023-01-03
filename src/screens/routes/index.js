@@ -9,7 +9,8 @@ const Stack = createNativeStackNavigator()
 import TelaInicial from '../inicial/index'
 import TelaModulos from '../conteudo/index'
 import TelaExercicio from '../exercicios/modulo01/exercicio01/index'
-import TelaConteudo from '../estudar'
+import TelaModulo1 from '../estudar/modulo01'
+import TelaModulo2 from '../estudar/modulo02'
 import TelaPontuacaoModulo01 from '../exercicios/modulo01/exercicio01/pontuacaoexercicio'
 import TelaCriarUsuario from '../autenticacao/createUser'
 import TelaLogin from '../autenticacao/login'
@@ -33,7 +34,9 @@ const AppRoutes = () => {
 
         <Stack.Screen name='TelaExercicio' component={TelaExercicio} options={{title:'Exercícios', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
 
-        <Stack.Screen name='TelaConteudo' component={TelaConteudo} options={{title:'Aprendendo', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
+        <Stack.Screen name='TelaModulo1' component={TelaModulo1} options={{title:'Aprendendo', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
+
+        <Stack.Screen name='TelaModulo2' component={TelaModulo2} options={{title:'Aprendendo', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
 
         <Stack.Screen name='TelaCriarUsuario' component={TelaCriarUsuario} options={{title:'Inscrever-se', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}, headerBackVisible: false }}/>
 

@@ -23,7 +23,6 @@ const TelaInicial = () => {
       }).catch((error) => {
         alert(error)
       })
-
   }
 
   return (

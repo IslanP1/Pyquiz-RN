@@ -8,11 +8,13 @@ import {
     SafeAreaView, 
     ScrollView, 
     Animated,
-    Image } from 'react-native'
-import React, { useRef, useState } from 'react'
+    Image, 
+    TouchableOpacity} from 'react-native'
+import React, { useRef, useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import TelaExercicio from '../exercicios/modulo01/exercicio01';
+import TelaExercicio from '../../exercicios/modulo01/exercicio01';
+import { set } from 'firebase/database';
 
 const {width, height} = Dimensions.get('window');
 
@@ -23,7 +25,7 @@ const Teoria = () => {
         <ScrollView style={[styles.container, {backgroundColor:'#000008'}]} scrollsToTop={true}>
             <Text style={styles.title}>Hello, Python!</Text>
             <View style = {styles.containerLogo}>
-                <Image source={require("../../../assets/python.png")} style={{ width: 200, height: 200 }}/>
+                <Image source={require("../../../../assets/python.png")} style={{ width: 200, height: 200 }}/>
             </View>
             <View>
                 <Text style={styles.subtitle}>Bem vindo ao Python</Text>
@@ -73,6 +75,13 @@ const TelaConteudo = () => {
     const [senha, setSenha] = useState('teste5620')
     const x = useRef(new Animated.Value(0)).current;
 
+    const scrollRef = useRef();
+    const [bloqRef, setBloqRef] = useState(true);
+
+    const handlePress = () => {
+        scrollRef.current.scrollTo({ x: 0, y: 0, animated: false });
+      };
+
     const inputRange = `${Array(2).fill(0).map((_,idx) => [
         width*idx,
         width*(idx+0.5),
@@ -81,7 +90,7 @@ const TelaConteudo = () => {
 
     const outputRange = `${Array(2).fill(0).map((_) => [1,1.5,1])}`.split(',').map((i)=>Number(i));
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView style={styles.container} ref={scrollRef} scrollEnabled={bloqRef}>
             <View>
                 <View style={[styles.subHeader]}>
                     <Text style={styles.txtHeader}>TEORIA</Text>
@@ -113,9 +122,13 @@ const TelaConteudo = () => {
                 showsHorizontalScrollIndicator={false}
                 pagingEnabled={true}
                 scrollEventThrottle={16}
-                onScroll={Animated.event([{nativeEvent: {contentOffset: {x}}}], {
-                    useNativeDriver: true,
-                })}
+                onScroll={Animated.event([{nativeEvent: {contentOffset: {x}}}], {useNativeDriver: true, listener: ({ nativeEvent }) => {
+                    if (nativeEvent.contentOffset.x != 0) {
+                      scrollRef.current.scrollTo({ x: 0, y: 0, animated: false},)
+                      setBloqRef(false)}
+                    else {
+                        setBloqRef(true)
+                    }}})}
                 >   
                     <View style={styles.screen}>
                         <Teoria/>

@@ -90,7 +90,7 @@ const TelaModulos = () => {
     return (
         <View style={[styles.container, { width: screenWidth, height: screenHeight }]} >
             <ScrollView>
-                <TouchableOpacity style={[styles.botao, { borderColor: '#8c52ff' }]} onPress={() => navigation.navigate('TelaConteudo')}>
+                <TouchableOpacity style={[styles.botao, { borderColor: '#8c52ff' }]} onPress={() => navigation.navigate('TelaModulo1')}>
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
                             <Text style={styles.textog} >Módulo 1 - Iniciando com python</Text>
@@ -110,7 +110,7 @@ const TelaModulos = () => {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={[styles.botao, { borderColor: '#ffaac4' }]} >
+                <TouchableOpacity style={[styles.botao, { borderColor: '#ffaac4' }]} onPress={() => navigation.navigate('TelaModulo2')}>
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
                             <Text style={styles.textog} >Módulo 2 - Condição</Text>

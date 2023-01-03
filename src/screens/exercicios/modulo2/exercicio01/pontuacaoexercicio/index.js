@@ -4,7 +4,7 @@ import { getAuth } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native"
 import { db } from '../../../../../../firebase';
 import { get, ref, set, update } from 'firebase/database'
-
+import react from 'react';
 
 
 const TelaPontuacaoModulo01 = () => {
@@ -16,8 +16,6 @@ const TelaPontuacaoModulo01 = () => {
     const [respostaCorreta04, setRespostaCorreta04] = useState(null);
     const [respostaCorreta05, setRespostaCorreta05] = useState(null);
     const [pontuacao, setPontuacao] = useState(null);
-    const [result, setResult] = useState('');
-    
     const navigation = useNavigation()
 
     useEffect(() => {
@@ -33,7 +31,7 @@ const TelaPontuacaoModulo01 = () => {
         return () =>
             BackHandler.removeEventListener("hardwareBackPress", backAction);
 
-    }, [buscarRespostas(), buscarPontuacao()]);
+    }, [buscarRespostas(), buscarPontuacao() ]);
 
     function backAction() {
         Alert.alert("Atenção!", "Tem certeza que deseja sair?", [
@@ -64,7 +62,7 @@ const TelaPontuacaoModulo01 = () => {
 
             }).catch((error) => {
                 // Em caso de erro, mostra a mensagem de erro no console
-
+                
             });
     }
 
@@ -74,42 +72,36 @@ const TelaPontuacaoModulo01 = () => {
                 const data = snapshot.val()
                 // Atribui a resposta a variável
                 setPontuacao(data.pontuacao);
-                if (data.pontuacao == 5) {
-                    setResult('Parabéns! Você completou o módulo')
+                if (data.pontuacao == 5){
                     update(ref(db, `users/${userID}/pontuacaogeral`), {
                         pontuacaomodulo1: data.pontuacao,
-
+                           
                     }).then(() => {
                     })
                         .catch((error) => {
                             alert(error)
-                        });
-
-                } else {
-                    setResult('Infelizmente você não atingiu o limite de questões para completar o modulo!')
+                    });
+                    
                 }
             }).catch((error) => {
                 // Em caso de erro, mostra a mensagem de erro no console
-
+                
             });
     }
-
+    
+    
 
     return (
-        <View style={{ backgroundColor: '#000000', flex: 1 }}>
-           
+        <View style={{backgroundColor:'#000000', flex:1}}>
             <Text style={styles.textog}>Respostas dos exercícios: </Text>
-            <View style={{marginTop:'5%', marginBottom:'5%'}} >
-                <Text style={styles.texto}>Primeiro exercício: {respostaCorreta01}</Text>
-                <Text style={styles.texto}>Segundo exercício: {respostaCorreta02}</Text>
-                <Text style={styles.texto}>Terceiro exercício: {respostaCorreta03}</Text>
-                <Text style={styles.texto}>Quarto exercício: {respostaCorreta04}</Text>
-                <Text style={styles.texto}>Quinto exercício: {respostaCorreta05}</Text>    
-            </View>
-            <Text style={styles.textog}>Pontuação obtida:</Text>
+            <Text style={styles.textop}>Primeiro exercício: {respostaCorreta01}</Text>
+            <Text style={styles.textop}>Segundo exercício: {respostaCorreta02}</Text>
+            <Text style={styles.textop}>Terceiro exercício: {respostaCorreta03}</Text>
+            <Text style={styles.textop}>Quarto exercício: {respostaCorreta04}</Text>
+            <Text style={styles.textop}>Quinto exercício: {respostaCorreta05}</Text>
+            <Text style={styles.textop}>Pontuação obtida:</Text>
             <Text style={styles.textop}>{pontuacao}</Text>
-            <Text style={styles.textresult}>{result}</Text>
-            <TouchableOpacity style={styles.botoes} title="Voltar" onPress={() => navigation.navigate('BottomTabBar')}>
+            <TouchableOpacity style={styles.botoes} title="Voltar" onPress={() => navigation.navigate('TelaInicial')}>
                 <Text style={styles.textog}>Voltar</Text>
             </TouchableOpacity>
         </View>
@@ -120,59 +112,33 @@ export default TelaPontuacaoModulo01
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#000000',
-        marginBottom: 60,
+      backgroundColor: '#000000',
+      marginBottom: 60,
     },
-    containerLogo: {
-        flex: 1,
-        backgroundColor: '#000000',
-        justifyContent: 'center',
-        alignItems: 'center',
+    containerLogo:{
+      flex:1,
+      backgroundColor:'#000000',
+      justifyContent:'center',
+      alignItems:'center',
     },
     botoes: {
-        backgroundColor: '#5015bd',
-        height: 60,
-        width: '75%',
-        marginTop: '5%',
-        borderRadius: 50,
-        justifyContent: 'center',
-        alignSelf: 'center',
-        alignItems: 'center',
+      backgroundColor:'#5015bd',
+      height: 60,
+      width: '75%',
+      marginTop: '5%',
+      borderRadius: 50,
+      justifyContent: 'center',
+      alignSelf: 'center',
+      alignItems:'center',
     },
     textog: {
-        color: '#fff',
-        fontSize: 22,
-        fontStyle: 'bold',
-        textAlign: 'center'
+    color: '#fff',
+    fontSize: 22,
+    fontStyle: 'bold',
     },
-    texto: {
-        color: '#a8939ecc',
-        fontSize: 18,
-        textAlign:'left',
-        marginLeft:'10%',
-        marginRight:'10%'
+    textop:{
+        color:'#a8939ecc',
+        fontSize:18,
     },
-    textop: {
-        color: 'white',
-        fontSize: 27,
-        textAlign: 'center',
-        marginTop: '4%',
-        padding: 20,
-        marginLeft: '30%',
-        marginRight: '30%',
-        borderWidth: 5,
-        borderRadius: 30,
-        height: '10.6%',
-        borderColor: 'black',
-        backgroundColor: '#8c52ff'
-    },
-    textresult: {
-        color: 'white',
-        marginLeft: '10%',
-        marginRight: '10%',
-        textAlign: 'center',
-        fontSize: 20,
-        marginTop: '10%',
-        marginBottom: '10%'
-    }
-})
+  })
+  
