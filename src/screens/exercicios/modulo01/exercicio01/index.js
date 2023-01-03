@@ -12,8 +12,9 @@ import * as Expo from 'expo-av';
 const TelaExercicio = () => {
     const navigation = useNavigation()
     const [userID, setUserID] = useState(null);
-    const [pontuacao, setPontuacao] = useState(0)
-    const [numeroquestaoatual, setnumeroquestaoatual] = useState(0)
+    const [pontuacao, setPontuacao] = useState(0);
+    const [numeroquestaoatual, setnumeroquestaoatual] = useState(0);
+    const [mostrarquestoes, setMostrarquestoes] = useState(true)
     
 
 
@@ -99,6 +100,7 @@ const TelaExercicio = () => {
 
 
         if (numeroquestaoatual === questoes.length - 2) {
+            setMostrarquestoes(false)
             armazenarRespostaCorreta()
             // Mostrar a pontuação final
             navigation.navigate('TelaPontuacaoModulo01')
@@ -108,6 +110,9 @@ const TelaExercicio = () => {
     };
 
     return (
+        <View>
+        {mostrarquestoes && (
+ 
         <ScrollView style={styles.container} scrollsToTop={true}>
             <Text style={styles.textoPergunta}>
                 {questoes[numeroquestaoatual].questao}
@@ -121,11 +126,13 @@ const TelaExercicio = () => {
             ))}
             <Text style={styles.textoAcerto}>Acertos: {pontuacao}</Text>
         </ScrollView>
-    )
+    
+       )}
+        </View>
 
 
-};
-
+)
+}
 export default TelaExercicio
 const styles = StyleSheet.create({
     container: {
