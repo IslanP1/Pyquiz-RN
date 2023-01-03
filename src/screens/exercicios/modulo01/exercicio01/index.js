@@ -17,6 +17,7 @@ const TelaExercicio = () => {
     const [mostrarquestoes, setMostrarquestoes] = useState(true)
     
 
+
     const questoes = [
         {
             questao: '1- Qual a função do print em python?', respostas: ['Imprimir mensagens', 'Permitir que o usuario escreva uma mensagem', 'Não faz nada', 'Teste'], respostacorreta: 'Imprimir mensagens'
@@ -110,8 +111,9 @@ const TelaExercicio = () => {
 
     return (
         <View>
-            {mostrarquestoes && (
-        <ScrollView style={styles.container}>
+        {mostrarquestoes && (
+
+        <ScrollView style={styles.container} scrollsToTop={true}>
             <Text style={styles.textoPergunta}>
                 {questoes[numeroquestaoatual].questao}
             </Text>
@@ -124,11 +126,13 @@ const TelaExercicio = () => {
             ))}
             <Text style={styles.textoAcerto}>Acertos: {pontuacao}</Text>
         </ScrollView>
-        )}
+    
+       )}
         </View>
-    )
-};
 
+
+)
+}
 export default TelaExercicio
 const styles = StyleSheet.create({
     container: {
