@@ -29,24 +29,16 @@ const TelaPontuacaoModulo01 = () => {
         const id = userCredential.uid;
         setUserID(id);
 
-        BackHandler.addEventListener("hardwareBackPress", backAction);
+        BackHandler.addEventListener("hardwareBackPress", telaModulos);
         return () =>
-            BackHandler.removeEventListener("hardwareBackPress", backAction);
+            BackHandler.removeEventListener("hardwareBackPress", telaModulos);
 
     }, [buscarRespostas(), buscarPontuacao()]);
 
-    function backAction() {
-        Alert.alert("Atenção!", "Tem certeza que deseja sair?", [
-            {
-                text: "Cancelar",
-                onPress: () => null,
-                style: "cancel"
-            },
-            {
-                text: "SIM",
-                onPress: () => BackHandler.addEventListener(navigation.navigate('TelaModulos'))
-            }
-        ]);
+    function telaModulos() {
+        navigation.navigate('TelaModulos')
+        
+
         return true;
     };
 
@@ -109,7 +101,7 @@ const TelaPontuacaoModulo01 = () => {
             <Text style={styles.textog}>Pontuação obtida:</Text>
             <Text style={styles.textop}>{pontuacao}</Text>
             <Text style={styles.textresult}>{result}</Text>
-            <TouchableOpacity style={styles.botoes} title="Voltar" onPress={() => navigation.navigate('BottomTabBar')}>
+            <TouchableOpacity style={styles.botoes} title="Voltar" onPress={() => navigation.navigate('TelaModulos')}>
                 <Text style={styles.textog}>Voltar</Text>
             </TouchableOpacity>
         </View>

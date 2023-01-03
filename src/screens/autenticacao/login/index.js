@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView, TouchableOpacity, BackHandler, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from "@react-navigation/native"
 import { TextInput, Avatar, Button } from 'react-native-paper';
@@ -13,7 +13,32 @@ const TelaLogin = () => {
   const screenHeight = Dimensions.get('window').height;
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  
+
+
+  useEffect(() => {
+
+    BackHandler.addEventListener("hardwareBackPress", backAction);
+
+    return () =>
+      BackHandler.removeEventListener("hardwareBackPress", backAction);
+
+  }, []);
+
+  function backAction() {
+    Alert.alert("Atenção!", "Tem certeza que deseja sair?", [
+      {
+        text: "Cancelar",
+        onPress: () => null,
+        style: "cancel"
+      },
+      {
+        text: "Sim",
+        onPress: () => BackHandler.exitApp()
+      }
+    ]);
+    return true
+  };
+
   function logar() {
     const auth = getAuth();
 
@@ -21,7 +46,7 @@ const TelaLogin = () => {
       .then(() => {
         alert('Usuário logado');
         manterLogin();
-        navigation.navigate('TelaInicial');
+        navigation.navigate('BottomTabBar');
       })
       .catch(error => {
         alert(error);

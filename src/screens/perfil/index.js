@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView, BackHandler } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { useNavigation } from "@react-navigation/native"
-import BottomTabBar from '../Tabbar';
-import { getAuth } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import { Button, IconButton, TextInput } from 'react-native-paper';
 import { get, ref, set, update } from 'firebase/database'
 import { db } from '../../../firebase';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TelaPerfil = () => {
   
@@ -29,6 +29,19 @@ const TelaPerfil = () => {
     setUserID(id);
 
 }, [buscarCredenciais()]);
+
+
+function deslogar() {
+  const auth = getAuth()
+  signOut(auth)
+    .then(() => {
+      AsyncStorage.clear();
+      alert('Usuário deslogado');
+      navigation.navigate('TelaLogin')
+    }).catch((error) => {
+      alert(error)
+    })
+}
 
 function buscarCredenciais() {
     get(ref(db, `users/${userID}/credenciais`))
@@ -91,7 +104,7 @@ function updateusername(){
         </View>
         <Text style={styles.texto} >Email:</Text>
         <Text style={styles.texto2}>{email}</Text>
-        <Button style={{fontSize: 30}} onPress={''} >Sair da conta</Button>
+        <Button style={{fontSize: 30}} onPress={() => deslogar()} >Sair da conta</Button>
       </ScrollView>
     </View>
   )

@@ -1,13 +1,30 @@
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, BackHandler } from 'react-native'
+import React, { useState, useEffect } from 'react'
 import { TextInput, Button } from 'react-native-paper';
 import Communications from 'react-native-communications';
 import * as Animatable from 'react-native-animatable'
+import { useNavigation } from '@react-navigation/native';
 
 
 const TelaSuporte = () => {
     const [assunto, setAssunto] = useState(null);
     const [mensagem, setMensagem] = useState(null);
+    const navegation = useNavigation()
+
+    useEffect(() => {
+        BackHandler.addEventListener("hardwareBackPress", telaInicial);
+        return () =>
+            BackHandler.removeEventListener("hardwareBackPress", telaInicial);
+    }, []);
+
+    function telaInicial() {
+        navegation.navigate('BottomTabBar')
+        return true
+    };
+
+
+
+
 
     function enviarEmail() {
         if (assunto != null && mensagem != null) {
@@ -48,16 +65,16 @@ const TelaSuporte = () => {
                 />
 
                 <Animatable.View
-                animation="fadeInUp"
-                delay={500}>
-                    <Animatable.View 
-                    animation="shake"
-                    iterationCount='infinite'
-                    iterationDelay={2000}>
+                    animation="fadeInUp"
+                    delay={500}>
+                    <Animatable.View
+                        animation="shake"
+                        iterationCount='infinite'
+                        iterationDelay={2000}>
                         <View>
-                            <TouchableOpacity 
-                            style={styles.buttonEnviar} 
-                            onPress={() => enviarEmail()}>
+                            <TouchableOpacity
+                                style={styles.buttonEnviar}
+                                onPress={() => enviarEmail()}>
                                 <Text style={styles.botaoTxt}>Enviar</Text>
                             </TouchableOpacity>
                         </View>
@@ -100,13 +117,13 @@ const styles = StyleSheet.create({
     buttonEnviar: {
         marginLeft: '30%',
         marginRight: '30%',
-        backgroundColor:'#5015bd',
+        backgroundColor: '#5015bd',
         height: 70,
         width: '75%',
         marginTop: '5%',
         borderRadius: 50,
         alignSelf: 'center',
-        alignItems:'center',
+        alignItems: 'center',
     },
     botaoTxt: {
         fontSize: 40,

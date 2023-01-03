@@ -1,11 +1,12 @@
-import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView, TouchableOpacity, BackHandler } from 'react-native'
+import React, { useState, useEffect } from 'react'
 import { useNavigation } from "@react-navigation/native"
 import { TextInput, Avatar, Button } from 'react-native-paper';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { get, ref, set } from 'firebase/database'
 import * as Animatable from 'react-native-animatable'
 import { db } from '../../../../firebase';
+
 //import { auth } from 'react-native-firebase';
 
 
@@ -21,6 +22,22 @@ const TelaCriarUsuario = () => {
   const [checkValidEmail, setCheckValidEmail] = useState(false);
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
+  const navegation = useNavigation()
+
+  useEffect(() => {
+
+    BackHandler.addEventListener("hardwareBackPress", telaLogin);
+
+    return () =>
+      BackHandler.removeEventListener("hardwareBackPress", telaLogin);
+
+  }, []);
+
+  function telaLogin() {
+    navegation.navigate('TelaLogin')
+    return true
+  };
+
 
   const handleCheckEmail = text => {
     let re = /\S+@\S+\.\S+/;
@@ -115,8 +132,8 @@ const TelaCriarUsuario = () => {
                 value={email}
                 textColor={'#fff'}
               />
-              
-              {checkValidEmail && email != "" &&(
+
+              {checkValidEmail && email != "" && (
                 <Text style={styles.textFailed}>Digite um email válido!</Text>
               )}
 
@@ -140,7 +157,7 @@ const TelaCriarUsuario = () => {
                 secureTextEntry={true}
               />
 
-              {senha1 != senha2 && senha1 != "" && senha2 != "" &&(
+              {senha1 != senha2 && senha1 != "" && senha2 != "" && (
                 <Text style={styles.textFailed}>As senhas não coincidem!</Text>
               )}
 
@@ -210,7 +227,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlignVertical: 'center',
     height: 50,
-    
+
   },
   buttonLogin: {
     marginTop: 1,
@@ -221,7 +238,7 @@ const styles = StyleSheet.create({
     color: '#a1a1a1'
   },
   textFailed: {
-    marginHorizontal:30,
+    marginHorizontal: 30,
     color: 'red',
   },
 });

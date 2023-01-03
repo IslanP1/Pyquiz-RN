@@ -2,24 +2,40 @@ import {
     StyleSheet, 
     Text, 
     View, 
-    Button, 
-    FlatList, 
     Dimensions, 
-    SafeAreaView, 
     ScrollView, 
     Animated,
     Image, 
-    TouchableOpacity} from 'react-native'
+    BackHandler} from 'react-native'
 import React, { useRef, useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import TelaExercicio from '../../exercicios/modulo01/exercicio01';
-import { set } from 'firebase/database';
+
 
 const {width, height} = Dimensions.get('window');
 
 
 const Teoria = () => {
+
+    const navegation = useNavigation()
+
+    useEffect(() => {
+    
+        BackHandler.addEventListener("hardwareBackPress", telaModulos);
+    
+        return () =>
+          BackHandler.removeEventListener("hardwareBackPress", telaModulos);
+
+      }, []);
+    
+      function telaModulos() {
+        navegation.navigate('TelaModulos')
+        return true
+      };
+
+
+
     
     return(
         <ScrollView style={[styles.container, {backgroundColor:'#000008'}]} scrollsToTop={true}>

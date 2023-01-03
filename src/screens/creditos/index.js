@@ -1,8 +1,7 @@
-import { StyleSheet, Text, View, Linking, FlatList, Image, Dimensions, TouchableOpacity, SafeAreaView, Modal } from 'react-native'
-import React, { useState } from 'react'
-import { Button, IconButton, MD3Colors } from 'react-native-paper'
+import { StyleSheet, Text, View, Linking, Image, Dimensions, TouchableOpacity, SafeAreaView, Modal, BackHandler } from 'react-native'
+import React, { useState, useEffect } from 'react'
 import * as Animatable from 'react-native-animatable'
-import { ScrollView } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 const {width, height} = Dimensions.get('window');
 
 
@@ -10,6 +9,18 @@ const TelaCreditos = () => {
     const [visible, setVisible] = useState(false);
     const [insta, setInsta] = useState('')
     const [github, setGithub] = useState('')
+    const navegation = useNavigation()
+
+    useEffect(() => {
+        BackHandler.addEventListener("hardwareBackPress", telaInicial);
+        return () =>
+            BackHandler.removeEventListener("hardwareBackPress", telaInicial);
+    }, []);
+
+    function telaInicial() {
+        navegation.navigate('BottomTabBar')
+        return true
+    };
 
     return (
         

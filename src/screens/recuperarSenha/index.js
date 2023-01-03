@@ -1,11 +1,31 @@
-import { StyleSheet, Text, View, ScrollView } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, View, ScrollView, BackHandler } from 'react-native'
+import React, { useState, useEffect } from 'react'
 import { TextInput, Button } from 'react-native-paper';
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import * as Animatable from 'react-native-animatable'
+import { useNavigation } from '@react-navigation/native';
 
 const TelaRecuperarSenha = () => {
     const [email, setEmail] = useState(null)
+    const navegation = useNavigation()
+    
+    useEffect(() => {
+
+        BackHandler.addEventListener("hardwareBackPress", telaLogin);
+    
+        return () =>
+          BackHandler.removeEventListener("hardwareBackPress", telaLogin);
+    
+      }, []);
+    
+      function telaLogin() {
+        navegation.navigate('TelaLogin')
+        return true
+      };
+
+
+
+
     async function sendResetEmail() {
         const auth = getAuth()
         await sendPasswordResetEmail(auth, email)

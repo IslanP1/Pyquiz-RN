@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button, TouchableOpacity, Dimensions, ScrollView, Image } from 'react-native'
+import { StyleSheet, Text, View, Button, TouchableOpacity, Dimensions, ScrollView, Image, BackHandler, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import BottomTabBar from '../Tabbar'
@@ -31,7 +31,20 @@ const TelaModulos = () => {
         const id = userCredential.uid;
         setUserID(id);
 
+        BackHandler.addEventListener("hardwareBackPress", telaInicial);
+
+        return () =>
+            BackHandler.removeEventListener("hardwareBackPress", telaInicial);
+
+
+
     }, [verificaracertos()]);
+
+
+    function telaInicial(){
+        navigation.navigate('BottomTabBar')
+        return true
+    }
 
     function verificaracertos() {
         get(ref(db, `users/${userID}/pontuacaogeral`))
@@ -170,7 +183,7 @@ const TelaModulos = () => {
 
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.botao, { borderColor: '#ffaac4' }]} >
-                <View style={{ display: 'flex', flexDirection: 'row' }}>
+                    <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
                             <Text style={styles.textog} >Módulo 5 - Listas</Text>
                             <Text style={styles.textop} >Armazenando em sequência</Text>
@@ -189,7 +202,7 @@ const TelaModulos = () => {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.botao, { borderColor: '#8c52ff' }]} >
-                <View style={{ display: 'flex', flexDirection: 'row' }}>
+                    <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
                             <Text style={styles.textog} >Módulo 6 - Dicionários</Text>
                             <Text style={styles.textop} >Armazenando diversos conteúdos</Text>
@@ -206,10 +219,10 @@ const TelaModulos = () => {
                             )}
                         </View>
                     </View>
-                    
+
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.botao, { borderColor: '#daa520' }]} >
-                <View style={{ display: 'flex', flexDirection: 'row' }}>
+                    <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
                             <Text style={styles.textog} >Módulo 7 - Funções</Text>
                             <Text style={styles.textop} >Chamando códigos</Text>
@@ -226,10 +239,10 @@ const TelaModulos = () => {
                             )}
                         </View>
                     </View>
-                    
+
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.botao, { borderColor: '#f15551' }]} >
-                <View style={{ display: 'flex', flexDirection: 'row' }}>
+                    <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
                             <Text style={styles.textog} >Módulo 8 - Tratamento de erros</Text>
                             <Text style={styles.textop} >O Fim</Text>
@@ -246,7 +259,7 @@ const TelaModulos = () => {
                             )}
                         </View>
                     </View>
-                    
+
                 </TouchableOpacity>
                 <Text />
                 <Text />
@@ -273,22 +286,22 @@ const styles = StyleSheet.create({
         backgroundColor: '#000000'
     },
     textog: {
-    color: '#fff',
-    fontSize: 22,
-    fontStyle: 'bold',
+        color: '#fff',
+        fontSize: 22,
+        fontStyle: 'bold',
     },
-    textop:{
-        color:'#a8939ecc',
-        fontSize:18,
+    textop: {
+        color: '#a8939ecc',
+        fontSize: 18,
     },
-    botao:{
-        
-        marginTop:'4%',
-        padding:20,
-        marginLeft:'5%',
-        marginRight:'5%',
-        borderWidth:5,
-        borderRadius:30,
+    botao: {
+
+        marginTop: '4%',
+        padding: 20,
+        marginLeft: '5%',
+        marginRight: '5%',
+        borderWidth: 5,
+        borderRadius: 30,
         height: '10.6%',
     },
 });
