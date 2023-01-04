@@ -65,7 +65,7 @@ const TelaRecuperarSenha = () => {
                 <Animatable.View
                     animation="fadeInUp"
                     delay={500}>
-                    <View>
+                    <View style={{ marginTop: 30 }}>
                         <Button style={styles.botaoEnviar} mode="contained" onPress={sendResetEmail}>Enviar</Button>
                     </View>
                 </Animatable.View>

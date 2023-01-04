@@ -65,10 +65,10 @@ const TelaLogin = () => {
 
 
   return (
-    <Animatable.View
-      style={[styles.container, { width: screenWidth, height: screenHeight }]}
-      animation=''>
-      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+    <KeyboardAvoidingView behavior='position' style={{height:'87%'}}>
+      <Animatable.View
+        style={[styles.container, { width: screenWidth, height: screenHeight }]}
+        animation=''>
         <ScrollView keyboardShouldPersistTaps="always">
           <View style={styles.containerLogo}>
             <Animatable.Image
@@ -112,10 +112,10 @@ const TelaLogin = () => {
               animation="shake"
               iterationCount='infinite'
               iterationDelay={2000}>
-              <View style={{ marginTop: 25 }}>
+              <View style={{ marginTop: 10 }}>
                 <Button style={styles.botaoEnviar} mode="contained" onPress={() => logar()}>Conectar-se</Button>
               </View>
-             
+
             </Animatable.View>
             <View style={{ marginTop: 15, marginBottom: '3%' }}>
               <Button textColor='#5015bd' fontSize='20' style={[styles.botaoEnviar, { backgroundColor: '#fff' }]} mode="contained" onPress={() => navigation.navigate('TelaCriarUsuario')}>Inscrever-se</Button>
@@ -127,13 +127,13 @@ const TelaLogin = () => {
                 </Text>
               </TouchableOpacity>
             </View>
-    
+
           </Animatable.View>
-          
-        
+
+
         </ScrollView>
-      </KeyboardAvoidingView>
-    </Animatable.View>
+      </Animatable.View>
+    </KeyboardAvoidingView>
   )
 }
 
@@ -179,6 +179,6 @@ const styles = StyleSheet.create({
   recuperarTexto: {
     color: '#a1a1a1',
     backgroundColor: '#000000'
-    
+
   }
 });

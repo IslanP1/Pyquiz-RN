@@ -44,7 +44,7 @@ const TelaCreditos = () => {
                 <View>
                     <TouchableOpacity 
                     style={styles.contDevOps} 
-                    onPress={() => {setVisible(true); setGithub('https://github.com/GustavoPMarcena')}}>
+                    onPress={() => {setVisible(true); setInsta('https://www.instagram.com/gustavopereiramarcena/'); setGithub('https://github.com/GustavoPMarcena')}}>
                         <Image source={require("../../../assets/marcena.jpg")} style={styles.avatar}/>
                         <View>
                             <Text style={[styles.name, {color:'#6f6'}]}>Gustavo Marcena</Text>

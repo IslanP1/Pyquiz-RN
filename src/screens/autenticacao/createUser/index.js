@@ -96,7 +96,7 @@ const TelaCriarUsuario = () => {
 
   return (
     <View style={[styles.container, { width: screenWidth, height: screenHeight }]} >
-      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+      <KeyboardAvoidingView behavior="position" style={{height:'87%'}}>
         <ScrollView keyboardShouldPersistTaps="always">
           <View style={styles.containerLogo}>
             <Animatable.Image
@@ -171,7 +171,7 @@ const TelaCriarUsuario = () => {
               animation="shake"
               iterationCount='infinite'
               iterationDelay={2000}>
-              <View style={[styles.container, { marginTop: 70 }]}>
+              <View style={[styles.container, { marginTop: 50 }]}>
                 <Button style={styles.botaoEnviar} mode="contained" onPress={() => criar()}>Cadastrar</Button>
               </View>
             </Animatable.View>
