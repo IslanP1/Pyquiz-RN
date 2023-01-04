@@ -12,28 +12,43 @@ import * as Expo from 'expo-av';
 const TelaExercicio = () => {
     const navigation = useNavigation()
     const [userID, setUserID] = useState(null);
-    const [pontuacao, setPontuacao] = useState(0)
-    const [numeroquestaoatual, setnumeroquestaoatual] = useState(0)
+    const [pontuacao, setPontuacao] = useState(0);
+    const [numeroquestaoatual, setnumeroquestaoatual] = useState(0);
+    const [mostrarquestoes, setMostrarquestoes] = useState(true)
     
-
 
     const questoes = [
         {
-            questao: '1- Qual a função do print em python?', respostas: ['Imprimir mensagens', 'Permitir que o usuario escreva uma mensagem', 'Não faz nada', 'Teste'], respostacorreta: 'Imprimir mensagens'
+            questao: '1- Qual das opções abaixo é uma forma correta de escrever uma condicional "if" em Python?', respostas: ['if x > 0 then print("x é positivo")', 'if x > 0: print("x é positivo")', 'if x > 0 print("x é positivo")', 'if (x > 0): print("x é positivo")'], respostacorreta: 'if x > 0: print("x é positivo")'
         },
         {
-            questao: '2- Qual codigo está correto?', respostas: ['print("OLA MUNDO!")', 'Pint(OLA MUNDO)', 'Exibir OLA MUNDO', 'Teste'], respostacorreta: 'print("OLA MUNDO!")'
+            questao: '2- Qual das opções abaixo é uma forma correta de escrever uma condicional "if-else" em Python?', respostas: ['if x > 0:print("x é positivo") else:print("x é negativo ou zero")', 'if x > 0:print("x é positivo") else print("x é negativo ou zero")', 'if x > 0 print("x é positivo") else print("x é negativo ou zero")', 'if (x > 0) print("x é positivo") else print("x é negativo ou zero")'], respostacorreta: 'if x > 0:print("x é positivo") else:print("x é negativo ou zero")'
         },
         {
-            questao: '3- Qual comando encaixa em: {}("Olá mundo")', respostas: ['Input', 'Print', 'Mostrar', 'Teste'], respostacorreta: 'Print'
+            questao: '3- Qual das opções abaixo é uma forma correta de escrever uma condicional "if-elif-else" em Python?', respostas: ['if x > 0:print("x é positivo") elif x < 0:print("x é negativo") else:print("x é zero")', 'if x > 0 print("x é positivo") elif x < 0 print("x é negativo") else print("x é zero")', 'if (x > 0) print("x é positivo") elif (x < 0) print("x é negativo") else print("x é zero")'], respostacorreta: 'if x > 0:print("x é positivo") elif x < 0:print("x é negativo") else:print("x é zero")'
         },
         {
-            questao: '4- Qual comando encaixa em: {}("Olá mundo")', respostas: ['Input', 'Print', 'Mostrar', 'Teste'], respostacorreta: 'Print'
+            questao: '4- Quais são as palavras-chave usadas para criar condicionais em Python?', respostas: ['if, else e else if', 'if, elif if e else', 'if, elif e else', 'if, elif e else if'], respostacorreta: 'if, elif e else'
         },
         {
-            questao: '5- Qual comando encaixa em: {}("Olá mundo")', respostas: ['Input', 'Print', 'Mostrar', 'Teste'], respostacorreta: 'Print'
+            questao: '5- Qual a palavra chave fundamental em uma condicional?', respostas: ['if', 'else', 'elif', 'else if'], respostacorreta: 'if'
         },
         {
+            questao: '6- É possível utilizar a condicional "if" sem a palavra-chave "else" em Python?', respostas: ['Verdadeiro', 'Depende', 'Falso', 'Não Informado'], respostacorreta: 'Verdadeiro'
+        },
+        {
+            questao: '7- É possível utilizar a condicional "if" com expressões lógicas compostas em Python?', respostas: ['Verdadeiro', 'Depende', 'Falso', 'Não Informado'], respostacorreta: 'Verdadeiro'
+        },
+        {
+            questao: '8- Qual comando se encaixa em: {comando} x > 0:print("positivo") else:print("negativo ou nulo")?', respostas: ['if', 'elif', 'else', 'Nenhuma da alternativas'], respostacorreta: 'if'
+        },
+        {
+            questao: '9- O que é uma condicional "if" em Python?', respostas: ['Comando de decisão que executa um código se uma condição for verdadeira e o if seja falso', 'Comando de decisão que executa um código se uma condição for falsa', 'Comando de decisão que executa um código se as condições anteriores forem falsas', 'Comando de decisão que executa um código se uma condição for verdadeira'], respostacorreta: 'Comando de decisão que executa um código se uma condição for verdadeira'
+        },
+        {
+            questao: '10- Tendo x = 0, onde if x > 0: print("Positivo") elif x == 0: print("Neutro") else: print("Negativo")', respostas: ['Positivo', 'Neutro', 'Negativo', 'Não exibirá nada'], respostacorreta: 'Neutro'
+        },
+        { 
             questao: '', respostas: ['', '', ''], respostacorreta: ''
         }
     ]
@@ -99,6 +114,7 @@ const TelaExercicio = () => {
 
 
         if (numeroquestaoatual === questoes.length - 2) {
+            setMostrarquestoes(false)
             armazenarRespostaCorreta()
             // Mostrar a pontuação final
             navigation.navigate('TelaPontuacaoModulo01')
@@ -108,6 +124,9 @@ const TelaExercicio = () => {
     };
 
     return (
+        <View>
+        {mostrarquestoes && (
+
         <ScrollView style={styles.container} scrollsToTop={true}>
             <Text style={styles.textoPergunta}>
                 {questoes[numeroquestaoatual].questao}
@@ -121,11 +140,13 @@ const TelaExercicio = () => {
             ))}
             <Text style={styles.textoAcerto}>Acertos: {pontuacao}</Text>
         </ScrollView>
-    )
+    
+       )}
+        </View>
 
 
-};
-
+)
+}
 export default TelaExercicio
 const styles = StyleSheet.create({
     container: {
@@ -155,7 +176,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         marginBottom: '5%',
         textAlign: 'center',
-        marginTop: '50%',
+        marginTop: '20%',
     },
     button: {
         marginBottom: '5%',

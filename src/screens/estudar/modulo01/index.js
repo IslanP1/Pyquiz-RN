@@ -44,12 +44,77 @@ const Teoria = () => {
                 <Image source={require("../../../../assets/python.png")} style={{ width: 200, height: 200 }}/>
             </View>
             <View>
+
                 <Text style={styles.subtitle}>Bem vindo ao Python</Text>
                 <Text style={styles.message}>
-                    São várias as características do Python que o tornam uma linguagem tão promissora e, que atrai a cada dia, mais desenvolvedores. A seguir, foram elucidados alguma dessas características e junto, uma breve descrição.</Text>
+                    A linguagem de programação, Python,  é uma das mais populares e poderosas que pode ser utilizada para projetos de diferentes finalidades. Você pode usá-la para escrever códigos simples, como scripts de automação de tarefas, ou para criar aplicativos complexos com a utilização de bibliotecas e frameworks.
+                </Text>
+
+
+                <Text style={styles.subtitle}>Motivos para estudar Python</Text>
+                <Text style={styles.message}>
+                    O Python é uma linguagem de programação popular e poderosa que pode ser usada para uma ampla variedade de projetos. Alguns dos principais motivos pelos quais as pessoas aprendem Python incluem:
+                </Text>
+
+                <Text style={styles.message}>
+                    <Text style={styles.messageDestaque}> 1. Simplicidade: </Text>
+                    Python tem uma sintaxe simples e fácil de ler, o que a torna uma ótima linguagem para iniciantes aprenderem.
+                </Text>
+
+                <Text style={styles.message}>
+                    <Text style={styles.messageDestaque}> 2. Versatilidade: </Text>
+                    Você pode usar Python para criar aplicativos de desktop, scripts de automação de tarefas, aplicativos web e muito mais.
+                </Text>
+
+                <Text style={styles.message}>
+                    <Text style={styles.messageDestaque}> 3. Comunidade ativa: </Text>
+                    Existe uma grande comunidade de programadores Python que compartilham conhecimentos e código aberto. Isso pode ser útil quando você estiver aprendendo e precisar de ajuda.
+                </Text>
+
+                <Text style={styles.message}>
+                    <Text style={styles.messageDestaque}> 4. Bibliotecas: </Text>
+                    Python vem com muitas bibliotecas pré-instaladas que o tornam mais fácil de usar para tarefas específicas, como processamento de dados e criação de gráficos.
+                </Text>
+
+
+                <Text style={styles.subtitle}>Como estudar Python?</Text>
+                <Text style={styles.message}>
+                    Existem muitas maneiras de estudar Python, dependendo de seus objetivos e do seu nível de experiência. Algumas dicas para estudar Python incluem:
+                </Text>
+
+                <Text style={styles.message}>
+                    1. Comece lendo a documentação oficial de Python. Ela fornece uma visão geral da linguagem e de como ela funciona.
+                </Text>
+
+                <Text style={styles.message}>
+                    2. Experimente alguns exemplos simples de código Python. Isso pode ajudá-lo a entender a sintaxe e a lógica da linguagem.
+                </Text>
+
+                <Text style={styles.message}>
+                    3. Faça exercícios e desafios online. Existem muitos sites que oferecem problemas de programação para que você possa praticar seus conhecimentos em Python.
+                </Text>
+
+                <Text style={styles.message}>
+                    4. Considere fazer um curso online ou comprar um livro para aprender Python. Isso pode ajudá-lo a entender os conceitos básicos e avançados da linguagem de forma mais estruturada.
+                </Text>
+
+                <Text style={styles.message}>
+                    5. Tente criar seus próprios projetos pequenos. Isso pode ajudá-lo a aplicar o que você aprendeu e a criar algo útil ao mesmo tempo.
+                </Text>
+
+                <Text style={styles.message}>
+                    6. Participar de comunidades online de programadores Python, como fóruns e grupos no Reddit, pode ser uma ótima maneira de aprender com outras pessoas e obter ajuda quando tiver dúvidas.
+                </Text>
+
+
+                <Text style={styles.subtitle}>Características do Python</Text>
+                <Text style={styles.message}>
+                    São várias as características do Python que o tornam uma linguagem tão promissora e, que atrai a cada dia, mais desenvolvedores. A seguir, foram elucidados alguma dessas características e junto, uma breve descrição.
+                </Text>
                 <Text style={styles.message}>
                     <Text style={styles.messageDestaque}> 1. Fácil de aprender: </Text>
-                    O Python é uma linguagem fácil de ser aprendida e poderosa para trabalharmos. A mesma possui uma sintaxe limpa e clara, como também, contém um conjunto de bibliotecas estáveis e bem estruturadas.</Text>
+                    O Python é uma linguagem fácil de ser aprendida e poderosa para trabalharmos. A mesma possui uma sintaxe limpa e clara, como também, contém um conjunto de bibliotecas estáveis e bem estruturadas.
+                </Text>
                 <Text style={styles.message}>
                     <Text style={styles.messageDestaque}> 2. Fácil leitura e compreensão: </Text>
                     A sintaxe da linguagem é minimalista, isso é, mantém somente o necessário, o que torna o código escrito, muitas vezes, a um texto em Inglês.</Text>
@@ -61,10 +126,14 @@ const Teoria = () => {
                     O interpretador do Python é escrito com a Linguagem C e C++, assim, o mesmo pode ser portado a todas as plataformas que possuam compiladores para a linguagem. Tendo em vista que o C++ é a linguagem mais difundida e a base de praticamente toda a informática, temos compiladores nativos ou portados para quase todas as plataformas existentes.</Text>
                 <Text style={styles.message}>
                     <Text style={styles.messageDestaque}>  5. Modo interativo: </Text>
-                    Sendo o Python uma linguagem interpretada, foi possível o desenvolvimento de ferramentas interativas, isto é, ferramentas majoritariamente em linha de comando, onde podemos executar instruções e nalisar a saída.</Text>
+                    Sendo o Python uma linguagem interpretada, foi possível o desenvolvimento de ferramentas interativas, isto é, ferramentas majoritariamente em linha de comando, onde podemos executar instruções e analisar a saída.</Text>
+
+                
+                <Text style={styles.subtitle}>Por fim</Text>
                 <Text style={styles.message}>Hoje Python está presente nas áreas de Desenvolvimento Web, Inteligência Artificial, Computação Gráfica, Big Data, Ciência de Dados e Muito Mais!</Text>
                 <Text style={styles.message}>Os tópicos aqui elucidados estão longe de esgotar os recursos do Python! Por essa razão, continuaremos o nosso estudo sobre as principais características e recursos da linguagem nas próximas seções.</Text>
                 <Text style={[styles.message, {marginBottom: '7%'}]}>Vamos agora escrever nosso primeiro código em Python, printando na tela "Hello, Python".</Text>
+
 
                 <View style={styles.terminal}>
                     <Text style={styles.messageTerminal}>
@@ -227,7 +296,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#121212',
         marginHorizontal: '7%',
         width: '86%',
-        height: '3%',
+        height: 50,
         borderRadius: 20,
         justifyContent: 'center'
     },

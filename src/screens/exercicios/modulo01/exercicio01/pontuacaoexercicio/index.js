@@ -66,7 +66,7 @@ const TelaPontuacaoModulo01 = () => {
                 const data = snapshot.val()
                 // Atribui a resposta a variável
                 setPontuacao(data.pontuacao);
-                if (data.pontuacao == 5) {
+                if (data.pontuacao == 10) {
                     setResult('Parabéns! Você completou o módulo')
                     update(ref(db, `users/${userID}/pontuacaogeral`), {
                         pontuacaomodulo1: data.pontuacao,
@@ -99,7 +99,7 @@ const TelaPontuacaoModulo01 = () => {
                 <Text style={styles.texto}>Quinto exercício: {respostaCorreta05}</Text>    
             </View>
             <Text style={styles.textog}>Pontuação obtida:</Text>
-            <Text style={styles.textop}>{pontuacao}</Text>
+            <Text style={styles.textop}>{pontuacao} / 10</Text>
             <Text style={styles.textresult}>{result}</Text>
             <TouchableOpacity style={styles.botoes} title="Voltar" onPress={() => navigation.navigate('TelaModulos')}>
                 <Text style={styles.textog}>Voltar</Text>

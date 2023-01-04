@@ -8,7 +8,6 @@ import { useNavigation } from '@react-navigation/native'
 const Stack = createNativeStackNavigator()
 import TelaInicial from '../inicial/index'
 import TelaModulos from '../conteudo/index'
-import TelaExercicio from '../exercicios/modulo01/exercicio01/index'
 import TelaModulo1 from '../estudar/modulo01'
 import TelaModulo2 from '../estudar/modulo02'
 import TelaPontuacaoModulo01 from '../exercicios/modulo01/exercicio01/pontuacaoexercicio'
@@ -31,8 +30,6 @@ const AppRoutes = () => {
         <Stack.Screen name='TelaInicial' component={TelaInicial} options={{title:'Tela inicial', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerShown: false, headerStyle:{backgroundColor: '#000000'}}}/>
 
         <Stack.Screen name='TelaModulos' component={TelaModulos} options={{title:'Lista de conteúdos', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
-
-        <Stack.Screen name='TelaExercicio' component={TelaExercicio} options={{title:'Exercícios', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
 
         <Stack.Screen name='TelaModulo1' component={TelaModulo1} options={{title:'Aprendendo', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
 

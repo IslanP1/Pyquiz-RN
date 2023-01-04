@@ -12,29 +12,43 @@ import * as Expo from 'expo-av';
 const TelaExercicio = () => {
     const navigation = useNavigation()
     const [userID, setUserID] = useState(null);
-    const [pontuacao, setPontuacao] = useState(0);
-    const [numeroquestaoatual, setnumeroquestaoatual] = useState(0);
-    const [mostrarquestoes, setMostrarquestoes] = useState(true)
+    const [pontuacao, setPontuacao] = useState(0)
+    const [numeroquestaoatual, setnumeroquestaoatual] = useState(0)
     
 
 
     const questoes = [
         {
-            questao: '1- Qual a função do print em python?', respostas: ['Imprimir mensagens', 'Permitir que o usuario escreva uma mensagem', 'Não faz nada', 'Teste'], respostacorreta: 'Imprimir mensagens'
+            questao: '1- Onde podemos encontrar a linguagem python na TI?', respostas: ['Desenvolvimento Web', 'Inteligência Artificial', 'Ciência de Dados', 'Todas as opções'], respostacorreta: 'Todas as opções'
         },
         {
-            questao: '2- Qual codigo está correto?', respostas: ['print("OLA MUNDO!")', 'Pint(OLA MUNDO)', 'Exibir OLA MUNDO', 'Teste'], respostacorreta: 'print("OLA MUNDO!")'
+            questao: '2- Qual das opções é característica do python?', respostas: ['Simplicidade', 'Linguagem de alto nível', 'Complexidade', 'Pouca documentação'], respostacorreta: 'Simplicidade'
         },
         {
-            questao: '3- Qual comando encaixa em: {}("Olá mundo")', respostas: ['Input', 'Print', 'Mostrar', 'Teste'], respostacorreta: 'Print'
+            questao: '3- Qual um boa forma para aprender python?', respostas: ['Ler artigos, pois são mais completos que as documentações', 'Não fazer exercicios, apenas ler e assistir aulas', 'Não realizar cursos online, eles tomam muito tempo', 'Participar de grupos e comunidades de programação'], respostacorreta: 'Participar de grupos e comunidades de programação'
         },
         {
-            questao: '4- Qual comando encaixa em: {}("Olá mundo")', respostas: ['Input', 'Print', 'Mostrar', 'Teste'], respostacorreta: 'Print'
+            questao: '4- Qual comando encaixa em: {}("Olá mundo")', respostas: ['input', 'print', 'mostrar', 'exibir'], respostacorreta: 'print'
         },
         {
-            questao: '5- Qual comando encaixa em: {}("Olá mundo")', respostas: ['Input', 'Print', 'Mostrar', 'Teste'], respostacorreta: 'Print'
+            questao: '5- Quais os motivos para estudar python?', respostas: ['Complexidade / Versatilidade / Comunidade ativa / Bibliotecas', 'Simplicidade / Versatilidade / Comunidade ativa / Poucas bibliotecas', 'Simplicidade / Versatilidade / Comunidade saturada / Bibliotecas', 'Simplicidade / Versatilidade / Comunidade ativa / Bibliotecas'], respostacorreta: 'Simplicidade / Versatilidade / Comunidade ativa / Bibliotecas'
         },
         {
+            questao: '6- Python é uma das mais populares e poderosas linguagens de programação?', respostas: ['Verdadeiro', 'Depende', 'Falso', 'Não Informado'], respostacorreta: 'Verdadeiro'
+        },
+        {
+            questao: '7- Python corresponde a que tipo de linguagem?', respostas: ['Cascading Style Sheets', 'Marcação', 'Programação', 'Nenhuma da anteriores'], respostacorreta: 'Programação'
+        },
+        {
+            questao: '8- Quais as características do python?', respostas: ['Difícil de aprender / Fácil leitura e compreensão / Fácil manutenção / Multiplataforma', 'Fácil de aprender / Fácil leitura e compreensão / Fácil manutenção / Multiplataforma', 'Fácil de aprender / Difícil leitura e compreensão / Fácil manutenção / Multiplataforma', 'Difícil de aprender / Difícil leitura e compreensão / Fácil manutenção / Multiplataforma'], respostacorreta: 'Fácil de aprender / Fácil leitura e compreensão / Fácil manutenção / Multiplataforma'
+        },
+        {
+            questao: '9- O que o código print("Hello, Python") exibirá?', respostas: ['Olá, Python', 'Hello', 'Python', 'Hello, Python'], respostacorreta: 'Hello, Python'
+        },
+        {
+            questao: '10- Python pode ser utilizado para construir programas complexos?', respostas: ['Depende', 'Verdadeiro', 'Falso', 'Não Informado'], respostacorreta: 'Verdadeiro'
+        },
+        { 
             questao: '', respostas: ['', '', ''], respostacorreta: ''
         }
     ]
@@ -100,7 +114,6 @@ const TelaExercicio = () => {
 
 
         if (numeroquestaoatual === questoes.length - 2) {
-            setMostrarquestoes(false)
             armazenarRespostaCorreta()
             // Mostrar a pontuação final
             navigation.navigate('TelaPontuacaoModulo01')
@@ -110,9 +123,6 @@ const TelaExercicio = () => {
     };
 
     return (
-        <View>
-        {mostrarquestoes && (
-
         <ScrollView style={styles.container} scrollsToTop={true}>
             <Text style={styles.textoPergunta}>
                 {questoes[numeroquestaoatual].questao}
@@ -126,13 +136,11 @@ const TelaExercicio = () => {
             ))}
             <Text style={styles.textoAcerto}>Acertos: {pontuacao}</Text>
         </ScrollView>
-    
-       )}
-        </View>
+    )
 
 
-)
-}
+};
+
 export default TelaExercicio
 const styles = StyleSheet.create({
     container: {
@@ -162,7 +170,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         marginBottom: '5%',
         textAlign: 'center',
-        marginTop: '50%',
+        marginTop: '20%',
     },
     button: {
         marginBottom: '5%',
