@@ -201,7 +201,7 @@ const TelaModulos = () => {
                         </View>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.botao, { borderColor: '#8c52ff' }]} >
+                <TouchableOpacity style={[styles.botao, { borderColor: '#8c52ff' }]} onPress={()=> navigation.navigate('TelaModulo06')}>
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
                             <Text style={styles.textog} >Módulo 6 - Dicionários</Text>
