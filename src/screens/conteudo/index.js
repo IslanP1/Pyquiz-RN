@@ -143,11 +143,11 @@ const TelaModulos = () => {
                     </View>
 
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.botao, { borderColor: '#daa520' }]} >
+                <TouchableOpacity style={[styles.botao, { borderColor: '#daa520' }]} onPress={() => navigation.navigate('TelaModulo3')}>
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
-                            <Text style={styles.textog} >Módulo 3 - Repetição</Text>
-                            <Text style={styles.textop} >Estruturas For e while</Text>
+                            <Text style={styles.textog} >Módulo 3 - Listas e Tuplas</Text>
+                            <Text style={styles.textop} >Armazenando em sequência</Text>
                         </View>
                         <View style={{ flex: 0.1 }}>
                             {btverde3 && (
@@ -162,11 +162,11 @@ const TelaModulos = () => {
                         </View>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.botao, { borderColor: '#7cdb54' }]} >
+                <TouchableOpacity style={[styles.botao, { borderColor: '#7cdb54' }]}  onPress={() => navigation.navigate('TelaModulo4')}>
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
-                            <Text style={styles.textog} >Módulo 4 - Tuplas</Text>
-                            <Text style={styles.textop} >Armazenando em variáveis</Text>
+                            <Text style={styles.textog} >Módulo 4 - Metodo For</Text>
+                            <Text style={styles.textop} >Repetição e loops</Text>
                         </View>
                         <View style={{ flex: 0.1 }}>
                             {btverde4 && (
@@ -182,11 +182,11 @@ const TelaModulos = () => {
                     </View>
 
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.botao, { borderColor: '#ffaac4' }]} >
+                <TouchableOpacity style={[styles.botao, { borderColor: '#ffaac4' }]} onPress={() => navigation.navigate('TelaModulo5')}>
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
-                            <Text style={styles.textog} >Módulo 5 - Listas</Text>
-                            <Text style={styles.textop} >Armazenando em sequência</Text>
+                            <Text style={styles.textog} >Módulo 5 - Metodo While</Text>
+                            <Text style={styles.textop} >Repetição e loops</Text>
                         </View>
                         <View style={{ flex: 0.1 }}>
                             {btverde5 && (

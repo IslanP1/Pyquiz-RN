@@ -19,6 +19,9 @@ import TelaPerfil from '../perfil'
 import TelaRecuperarSenha from '../recuperarSenha'
 import TelaPreload from '../preload'
 import BottomTabBar from '../Tabbar'
+import TelaModulo3 from '../estudar/modulo03'
+import TelaModulo4 from '../estudar/modulo04'
+import TelaModulo5 from '../estudar/modulo05'
 
 
 const AppRoutes = () => {
@@ -34,6 +37,12 @@ const AppRoutes = () => {
         <Stack.Screen name='TelaModulo1' component={TelaModulo1} options={{title:'Aprendendo', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
 
         <Stack.Screen name='TelaModulo2' component={TelaModulo2} options={{title:'Aprendendo', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
+
+        <Stack.Screen name='TelaModulo3' component={TelaModulo3} options={{title:'Aprendendo', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
+         
+         <Stack.Screen name='TelaModulo4' component={TelaModulo4} options={{title:'Aprendendo', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/> 
+         
+         <Stack.Screen name='TelaModulo5' component={TelaModulo5} options={{title:'Aprendendo', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}}}/>
 
         <Stack.Screen name='TelaCriarUsuario' component={TelaCriarUsuario} options={{title:'Inscrever-se', headerTitleAlign:'center', statusBarColor:'#000000', headerTintColor:'#fff', headerStyle:{backgroundColor: '#000000'}, headerBackVisible: false }}/>
 
