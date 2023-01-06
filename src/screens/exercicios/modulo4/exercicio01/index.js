@@ -19,34 +19,34 @@ const TelaExercicio = () => {
 
     const questoes = [
         {
-            questao: '1- Qual das opções abaixo é uma forma correta de escrever uma condicional "if" em Python?', respostas: ['if x > 0 then print("x é positivo")', 'if x > 0: print("x é positivo")', 'if x > 0 print("x é positivo")', 'if (x > 0): print("x é positivo")'], respostacorreta: 'if x > 0: print("x é positivo")'
+            questao: '1- O for é uma:', respostas: ['Estrutura de repetição', 'Nomenclatura de variáveis', ' Condição', 'Variável'], respostacorreta: 'Estrutura de repetição'
         },
         {
-            questao: '2- Qual das opções abaixo é uma forma correta de escrever uma condicional "if-else" em Python?', respostas: ['if x > 0:print("x é positivo") else:print("x é negativo ou zero")', 'if x > 0:print("x é positivo") else print("x é negativo ou zero")', 'if x > 0 print("x é positivo") else print("x é negativo ou zero")', 'if (x > 0) print("x é positivo") else print("x é negativo ou zero")'], respostacorreta: 'if x > 0:print("x é positivo") else:print("x é negativo ou zero")'
+            questao: '2- Para que o for é usado?', respostas: ['Contar de 1 a 100', 'Criar um useState', 'Criar condições', 'Para percorrer uma sequência de dados'], respostacorreta: 'Para percorrer uma sequência de dados'
         },
         {
-            questao: '3- Qual das opções abaixo é uma forma correta de escrever uma condicional "if-elif-else" em Python?', respostas: ['if x > 0:print("x é positivo") elif x < 0:print("x é negativo") else:print("x é zero")', 'if x > 0 print("x é positivo") elif x < 0 print("x é negativo") else print("x é zero")', 'if (x > 0) print("x é positivo") elif (x < 0) print("x é negativo") else print("x é zero")'], respostacorreta: 'if x > 0:print("x é positivo") elif x < 0:print("x é negativo") else:print("x é zero")'
+            questao: '3- Do que uma estrutura de repetição pode ser chamada?', respostas: ['Variável', 'Loop', 'Função', 'Gameobject'], respostacorreta: 'Loop'
         },
         {
-            questao: '4- Quais são as palavras-chave usadas para criar condicionais em Python?', respostas: ['if, else e else if', 'if, elif if e else', 'if, elif e else', 'if, elif e else if'], respostacorreta: 'if, elif e else'
+            questao: '4- Se usarmos um for em um elemento com 3 valores, quantas vezes o for irá rodar?', respostas: ['1', '2', '3', '4'], respostacorreta: '3'
         },
         {
-            questao: '5- Qual a palavra chave fundamental em uma condicional?', respostas: ['if', 'else', 'elif', 'else if'], respostacorreta: 'if'
+            questao: '5- O que acontece quando usamos um break no código?', respostas: ['O loop é parado', 'Nada', 'O resto do código é ignorado', 'Ocorre um erro'], respostacorreta: 'O loop é parado'
         },
         {
-            questao: '6- É possível utilizar a condicional "if" sem a palavra-chave "else" em Python?', respostas: ['Verdadeiro', 'Depende', 'Falso', 'Não Informado'], respostacorreta: 'Verdadeiro'
+            questao: <Text><Text>6- qual estrutura encaixa na seguinte condição:{'\n'}{'\n'}</Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>_________________:{'\n'}</Text></Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>{'   '}print(i){'\n'}{'\n'}</Text></Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>saída de dados: 0, 1{'\n'}</Text></Text></Text> , respostas: ['for i in range(2)', 'for i in range(1)', 'for i in range(3)', 'for i in range(0)'], respostacorreta: 'for i in range(2)'
         },
         {
-            questao: '7- É possível utilizar a condicional "if" com expressões lógicas compostas em Python?', respostas: ['Verdadeiro', 'Depende', 'Falso', 'Não Informado'], respostacorreta: 'Verdadeiro'
+            questao: '7- Qual a estrutura que permite ignorar o resto do código depois dela?', respostas: ['Stop', 'Break', '.gitignore', 'Continue'], respostacorreta: 'Continue'
         },
         {
-            questao: '8- Qual comando se encaixa em: {comando} x > 0:print("positivo") else:print("negativo ou nulo")?', respostas: ['if', 'elif', 'else', 'Nenhuma da alternativas'], respostacorreta: 'if'
+            questao: <Text><Text>8- O que acontece se o existir um valor “Teclado” nesta lista do código?{'\n'}{'\n'}</Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>for i in lista:{'\n'}</Text></Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>{'     '}if i == “Teclado”:{'\n'}</Text> <Text style={styles.messageTerminal}>{'         '}break{'\n'}</Text></Text></Text>, respostas: ['O código abaixo será ignorado', 'Ocorrerá um erro', 'O loop será parado', 'Não acontecerá nada'], respostacorreta: 'O loop será parado'
         },
         {
-            questao: '9- O que é uma condicional "if" em Python?', respostas: ['Comando de decisão que executa um código se uma condição for verdadeira e o if seja falso', 'Comando de decisão que executa um código se uma condição for falsa', 'Comando de decisão que executa um código se as condições anteriores forem falsas', 'Comando de decisão que executa um código se uma condição for verdadeira'], respostacorreta: 'Comando de decisão que executa um código se uma condição for verdadeira'
+            questao: <Text><Text>9- Qual o erro deste código?{'\n'}{'\n'}</Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>for i in lista{'\n'}</Text></Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>{'   '}print(i){'\n'}{'\n'}</Text></Text></Text>, respostas: ['A indentação está errada', 'Falta um elemento no for', 'Faltam aspas no print', 'O código está certo'], respostacorreta: 'Falta um elemento no for'
         },
         {
-            questao: '10- Tendo x = 0, onde if x > 0: print("Positivo") elif x == 0: print("Neutro") else: print("Negativo")', respostas: ['Positivo', 'Neutro', 'Negativo', 'Não exibirá nada'], respostacorreta: 'Neutro'
+            questao: <Text><Text>10- Qual será a terceira saída do for?{'\n'}{'\n'}</Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>for i in “João”:{'\n'}</Text></Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>{'    '}print(i){'\n'}</Text></Text> </Text>, respostas: ['J', 'o', 'ã', 'a'], respostacorreta: 'ã'
         },
         { 
             questao: '', respostas: ['', '', ''], respostacorreta: ''
@@ -78,12 +78,17 @@ const TelaExercicio = () => {
     }
 
     function armazenarRespostaCorreta() {
-        set(ref(db, `users/${userID}/modulo2/respostaexercicios/`), {
+        set(ref(db, `users/${userID}/modulo4/respostaexercicios/`), {
             exercicio01: questoes[0].respostacorreta,
             exercicio02: questoes[1].respostacorreta,
             exercicio03: questoes[2].respostacorreta,
             exercicio04: questoes[3].respostacorreta,
             exercicio05: questoes[4].respostacorreta,
+            exercicio06: questoes[5].respostacorreta,
+            exercicio07: questoes[6].respostacorreta,
+            exercicio08: questoes[7].respostacorreta,
+            exercicio09: questoes[8].respostacorreta,
+            exercicio10: questoes[9].respostacorreta,
         }).then(() => {
 
         })
@@ -96,7 +101,7 @@ const TelaExercicio = () => {
         if (questaoselecionada == questoes[numeroquestaoatual].respostacorreta) {
             setPontuacao(pontuacao + 1)
             mensagemCorreta()
-            set(ref(db, `users/${userID}/modulo2/exercicios`), {
+            set(ref(db, `users/${userID}/modulo4/exercicios`), {
                 pontuacao: pontuacao + 1
 
             }).then(() => {
@@ -117,7 +122,7 @@ const TelaExercicio = () => {
             setMostrarquestoes(false)
             armazenarRespostaCorreta()
             // Mostrar a pontuação final
-            navigation.navigate('TelaPontuacaoModulo02')
+            navigation.navigate('TelaPontuacaoModulo04')
 
 
         }
@@ -184,6 +189,27 @@ const styles = StyleSheet.create({
         marginRight: '10%',
         backgroundColor: '#5015bd',
         borderRadius: 20,
+    },
+    terminal: {
+        
+        marginHorizontal: '7%',
+        width: '86%',
+        paddingTop:10,
+        paddingBottom:20,
+        marginTop:20,
+        borderRadius: 20,
+        justifyContent: 'center',
+        
+               
+        
+    },
+    messageTerminal: {
+        color: '#fff',
+        fontSize: 18,
+        marginHorizontal: '5%',
+        
+        
+        
     }
 })
 

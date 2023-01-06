@@ -11,7 +11,11 @@ import TelaModulos from '../conteudo/index'
 import TelaModulo1 from '../estudar/modulo01'
 import TelaModulo2 from '../estudar/modulo02'
 import TelaPontuacaoModulo01 from '../exercicios/modulo01/exercicio01/pontuacaoexercicio'
+import TelaPontuacaoModulo02 from '../exercicios/modulo2/exercicio01/pontuacaoexercicio'
 import TelaPontuacaoModulo06 from '../exercicios/modulo06/exercicio01/pontuacaoexercicio'
+import TelaPontuacaoModulo03 from '../exercicios/modulo3/exercicio01/pontuacaoexercicio'
+import TelaPontuacaoModulo04 from '../exercicios/modulo4/exercicio01/pontuacaoexercicio'
+import TelaPontuacaoModulo05 from '../exercicios/modulo5/exercicio01/pontuacaoexercicio'
 import TelaCriarUsuario from '../autenticacao/createUser'
 import TelaLogin from '../autenticacao/login'
 import TelaCreditos from '../creditos'
@@ -53,8 +57,16 @@ const AppRoutes = () => {
         <Stack.Screen name='TelaLogin' component={TelaLogin} options={{ title: 'Login', headerTitleAlign: 'center', statusBarColor: '#000000', headerTintColor: '#fff', headerStyle: { backgroundColor: '#000000' }, headerBackVisible: false }} />
 
         <Stack.Screen name='TelaPontuacaoModulo01' component={TelaPontuacaoModulo01} options={{ title: 'Resultados', headerTitleAlign: 'center', statusBarColor: '#000000', headerTintColor: '#fff', headerStyle: { backgroundColor: '#000000' }, headerBackVisible: false }} />
+        
+        <Stack.Screen name='TelaPontuacaoModulo02' component={TelaPontuacaoModulo02} options={{ title: 'Resultados', headerTitleAlign: 'center', statusBarColor: '#000000', headerTintColor: '#fff', headerStyle: { backgroundColor: '#000000' }, headerBackVisible: false }} />
 
         <Stack.Screen name='TelaPontuacaoModulo06' component={TelaPontuacaoModulo06} options={{ title: 'Resultados', headerTitleAlign: 'center', statusBarColor: '#000000', headerTintColor: '#fff', headerStyle: { backgroundColor: '#000000' }, headerBackVisible: false }} />
+        
+        <Stack.Screen name='TelaPontuacaoModulo03' component={TelaPontuacaoModulo03} options={{ title: 'Resultados', headerTitleAlign: 'center', statusBarColor: '#000000', headerTintColor: '#fff', headerStyle: { backgroundColor: '#000000' }, headerBackVisible: false }} />
+        
+        <Stack.Screen name='TelaPontuacaoModulo04' component={TelaPontuacaoModulo04} options={{ title: 'Resultados', headerTitleAlign: 'center', statusBarColor: '#000000', headerTintColor: '#fff', headerStyle: { backgroundColor: '#000000' }, headerBackVisible: false }} />
+        
+        <Stack.Screen name='TelaPontuacaoModulo05' component={TelaPontuacaoModulo05} options={{ title: 'Resultados', headerTitleAlign: 'center', statusBarColor: '#000000', headerTintColor: '#fff', headerStyle: { backgroundColor: '#000000' }, headerBackVisible: false }} />
 
         <Stack.Screen name='TelaCreditos' component={TelaCreditos} options={{ title: 'Creditos', headerTitleAlign: 'center', statusBarColor: '#000000', headerTintColor: '#fff', headerStyle: { backgroundColor: '#000000' } }} />
 

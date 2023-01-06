@@ -10,7 +10,7 @@ import {
 import React, { useRef, useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { getAuth } from "firebase/auth";
-import TelaExercicio from '../../exercicios/modulo01/exercicio01';
+import TelaExercicio from '../../exercicios/modulo3/exercicio01';
 
 
 const {width, height} = Dimensions.get('window');

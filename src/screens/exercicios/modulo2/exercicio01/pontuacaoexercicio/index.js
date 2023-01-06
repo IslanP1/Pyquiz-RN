@@ -7,7 +7,7 @@ import { get, ref, set, update } from 'firebase/database'
 
 
 
-const TelaPontuacaoModulo01 = () => {
+const TelaPontuacaoModulo02 = () => {
 
     const [userID, setUserID] = useState(null);
     const [respostaCorreta01, setRespostaCorreta01] = useState(null);
@@ -44,7 +44,7 @@ const TelaPontuacaoModulo01 = () => {
 
 
     function buscarRespostas() {
-        get(ref(db, `users/${userID}/modulo1/respostaexercicios`))
+        get(ref(db, `users/${userID}/modulo2/respostaexercicios`))
             .then((snapshot) => {
                 const data = snapshot.val()
                 // Atribui a resposta a variável
@@ -61,7 +61,7 @@ const TelaPontuacaoModulo01 = () => {
     }
 
     function buscarPontuacao() {
-        get(ref(db, `users/${userID}/modulo1/exercicios`))
+        get(ref(db, `users/${userID}/modulo2/exercicios`))
             .then((snapshot) => {
                 const data = snapshot.val()
                 // Atribui a resposta a variável
@@ -69,7 +69,7 @@ const TelaPontuacaoModulo01 = () => {
                 if (data.pontuacao == 10) {
                     setResult('Parabéns! Você completou o módulo')
                     update(ref(db, `users/${userID}/pontuacaogeral`), {
-                        pontuacaomodulo1: data.pontuacao,
+                        pontuacaomodulo2: data.pontuacao,
 
                     }).then(() => {
                     })
@@ -108,7 +108,7 @@ const TelaPontuacaoModulo01 = () => {
     )
 }
 
-export default TelaPontuacaoModulo01
+export default TelaPontuacaoModulo02
 
 const styles = StyleSheet.create({
     container: {

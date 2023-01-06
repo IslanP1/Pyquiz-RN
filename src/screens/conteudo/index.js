@@ -51,42 +51,42 @@ const TelaModulos = () => {
             .then((snapshot) => {
                 const data = snapshot.val()
                 // Atribui a resposta a variável
-                if (data.pontuacaomodulo1 == 5) {
+                if (data.pontuacaomodulo1 == 10) {
                     setBtverde1(true)
                 } else {
                     setBtverde1(false)
                 }
-                if (data.pontuacaomodulo2 == 5) {
+                if (data.pontuacaomodulo2 == 10) {
                     setBtverde2(true)
                 } else {
                     setBtverde2(false)
                 }
-                if (data.pontuacaomodulo3 == 5) {
+                if (data.pontuacaomodulo3 == 10) {
                     setBtverde3(true)
                 } else {
                     setBtverde3(false)
                 }
-                if (data.pontuacaomodulo4 == 5) {
+                if (data.pontuacaomodulo4 == 10) {
                     setBtverde4(true)
                 } else {
                     setBtverde4(false)
                 }
-                if (data.pontuacaomodulo5 == 5) {
+                if (data.pontuacaomodulo5 == 10) {
                     setBtverde5(true)
                 } else {
                     setBtverde5(false)
                 }
-                if (data.pontuacaomodulo6 == 5) {
+                if (data.pontuacaomodulo6 == 10) {
                     setBtverde6(true)
                 } else {
                     setBtverde6(false)
                 }
-                if (data.pontuacaomodulo7 == 5) {
+                if (data.pontuacaomodulo7 == 10) {
                     setBtverde7(true)
                 } else {
                     setBtverde7(false)
                 }
-                if (data.pontuacaomodulo8 == 5) {
+                if (data.pontuacaomodulo8 == 10) {
                     setBtverde8(true)
                 } else {
                     setBtverde8(false)
