@@ -3,14 +3,9 @@ import React, { useState, useEffect } from 'react'
 import { useNavigation } from "@react-navigation/native"
 import { TextInput, Avatar, Button } from 'react-native-paper';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { get, ref, set } from 'firebase/database'
+import { ref, set } from 'firebase/database'
 import * as Animatable from 'react-native-animatable'
 import { db } from '../../../../firebase';
-
-//import { auth } from 'react-native-firebase';
-
-
-
 
 
 const TelaCriarUsuario = () => {
@@ -64,13 +59,11 @@ const TelaCriarUsuario = () => {
             set(ref(db, `users/${id}/credenciais`), {
               email: email,
               nome: name
-
             }).then(() => {
 
-            })
-              .catch((error) => {
-                alert(error)
-              });
+            }).catch((error) => {
+              
+            });
             setSenha1(null)
             setSenha2(null)
             setEmail(null)
@@ -86,7 +79,6 @@ const TelaCriarUsuario = () => {
             if (error.code === 'auth/weak-password') {
               alert('Escolha uma senha mais forte, com pelo menos 6 caracteres, incluindo letras, números e símbolos')
             }
-            alert(error);
           });
       }
     } else {

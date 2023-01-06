@@ -1,13 +1,11 @@
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { get, ref, set } from 'firebase/database'
+import { ref, set } from 'firebase/database'
 import { getAuth } from "firebase/auth";
 import { db } from '../../../../../firebase'
 import { useNavigation } from '@react-navigation/native'
 import * as Expo from 'expo-av';
 
-
-//import database from '../../../../../perguntas';
 
 const TelaExercicio = () => {
     const navigation = useNavigation()
@@ -54,11 +52,9 @@ const TelaExercicio = () => {
     ]
 
     useEffect(() => {
-        // Executar algum código aqui assim que a tela abre
         let a = getAuth()
         const teste = a.currentUser;
         const userCredential = teste;
-        // Obter o ID do usuário logado
         const id = userCredential.uid;
         setUserID(id);
     }, []);
@@ -115,9 +111,6 @@ const TelaExercicio = () => {
 
         setnumeroquestaoatual(numeroquestaoatual + 1);
         
-
-
-
         if (numeroquestaoatual === questoes.length - 2) {
             setMostrarquestoes(false)
             armazenarRespostaCorreta()

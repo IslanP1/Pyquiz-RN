@@ -9,11 +9,10 @@ import {
     BackHandler} from 'react-native'
 import React, { useRef, useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { getAuth } from "firebase/auth";
 import TelaExercicio from '../../exercicios/modulo01/exercicio01';
 
 
-const {width, height} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 
 const Teoria = () => {
@@ -154,18 +153,11 @@ const Teoria = () => {
 };
 
 
-const TelaConteudo = () => {
-    const navigation = useNavigation()
-    const [email, setEmail] = useState('teste@gmail.com')
-    const [senha, setSenha] = useState('teste5620')
+const TelaModulo01 = () => {
     const x = useRef(new Animated.Value(0)).current;
 
     const scrollRef = useRef();
     const [bloqRef, setBloqRef] = useState(true);
-
-    const handlePress = () => {
-        scrollRef.current.scrollTo({ x: 0, y: 0, animated: false });
-      };
 
     const inputRange = `${Array(2).fill(0).map((_,idx) => [
         width*idx,
@@ -227,7 +219,7 @@ const TelaConteudo = () => {
     )
 }
 
-export default TelaConteudo
+export default TelaModulo01
 
 const styles = StyleSheet.create({
     container: {

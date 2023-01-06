@@ -1,14 +1,13 @@
-import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView, Image, BackHandler, TouchableOpacity, StatusBar, Alert } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, ScrollView, BackHandler, TouchableOpacity, StatusBar, Alert } from 'react-native'
 import React, { useEffect } from 'react'
 import { useNavigation } from "@react-navigation/native"
 import * as Animatable from 'react-native-animatable'
-
-
 
 const TelaInicial = () => {
   const navigation = useNavigation()
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
+
 
 
   useEffect(() => {
@@ -36,12 +35,23 @@ const TelaInicial = () => {
   };
 
   function sair() {
-    BackHandler.exitApp()
+    Alert.alert("Atenção!", "Deseja sair do app?", [
+      {
+        text: "Cancelar",
+        onPress: () => null,
+        style: "cancel"
+      },
+      {
+        text: "Sim",
+        onPress: () => BackHandler.exitApp()
+      }
+    ]);
   }
 
   return (
     <View style={[styles.container, { width: screenWidth, height: screenHeight }]}>
       <StatusBar barStyle="dark-content" backgroundColor="#000000" />
+
       <ScrollView>
         <View style={styles.containerLogo}>
           <Animatable.Image

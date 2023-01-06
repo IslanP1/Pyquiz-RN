@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, Dimensions, ScrollView, KeyboardAvoidingView, TouchableOpacity, BackHandler, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from "@react-navigation/native"
-import { TextInput, Avatar, Button } from 'react-native-paper';
-import { getAuth, signInWithEmailAndPassword, updatePassword } from "firebase/auth";
+import { TextInput, Button } from 'react-native-paper';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Animatable from 'react-native-animatable'
 
@@ -44,25 +44,39 @@ const TelaLogin = () => {
 
     signInWithEmailAndPassword(auth, email, senha)
       .then(() => {
-        alert('Usuário logado');
         manterLogin();
         navigation.navigate('BottomTabBar');
       })
       .catch(error => {
-        alert(error);
+        if (error.code == 'auth/network-request-failed') {
+          networkError()
+        }
+        alert("Senha ou email incorreto!");
       });
+  }
+
+  function networkError(){
+    Alert.alert("Atenção!", "Aplicativo não é funcional sem internet", [
+      {
+        text: "Tentar novamente",
+        onPress: () => navigation.navigate("TelaPreload"),
+        style: "cancel"
+      },
+      {
+        text: "Ok",
+        onPress: () => BackHandler.exitApp()
+      }
+    ]);
   }
 
   async function manterLogin() {
     try {
       await AsyncStorage.setItem('email', email);
       await AsyncStorage.setItem('senha', senha);
-      alert('Guardei no local')
     } catch (error) {
-      alert(error)
+      
     }
   }
-
 
   return (
     <KeyboardAvoidingView behavior='position' style={{height:'87%'}}>
@@ -127,10 +141,7 @@ const TelaLogin = () => {
                 </Text>
               </TouchableOpacity>
             </View>
-
           </Animatable.View>
-
-
         </ScrollView>
       </Animatable.View>
     </KeyboardAvoidingView>

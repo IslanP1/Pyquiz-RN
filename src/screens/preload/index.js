@@ -1,5 +1,5 @@
-import { StyleSheet, View, ActivityIndicator, Text } from 'react-native'
-import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, ActivityIndicator } from 'react-native'
+import React, { useEffect } from 'react';
 import { useNavigation } from "@react-navigation/native"
 import * as Animatable from 'react-native-animatable'
 import { getAuth, signInWithEmailAndPassword, updatePassword } from "firebase/auth";
@@ -8,8 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TelaPreload = () => {
     const navigation = useNavigation()
-    const [isLoading, setIsLoading] = useState(true);
-    
+ 
     useEffect(() => {
         const timer = setTimeout(() => {
           verificarLogin()
@@ -26,12 +25,10 @@ const TelaPreload = () => {
           const auth = getAuth();
           signInWithEmailAndPassword(auth, emailLocal, senhaLocal)
             .then(() => {
-              alert('Seja bem vindo de volta!');
               navigation.navigate('BottomTabBar');
             })
             .catch(error => {
               navigation.navigate('TelaLogin')
-              alert(error);
             })
         }
         else {
@@ -39,7 +36,6 @@ const TelaPreload = () => {
         }
       } catch (error) {
         navigation.navigate('TelaLogin')
-        alert(error)
       }
     }
     

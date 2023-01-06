@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, BackHandler, Alert, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, BackHandler, StyleSheet } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { getAuth } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native"
@@ -48,7 +48,6 @@ const TelaPontuacaoModulo06 = () => {
         get(ref(db, `users/${userID}/modulo6/respostaexercicios`))
             .then((snapshot) => {
                 const data = snapshot.val()
-                // Atribui a resposta a variável
                 setRespostaCorreta01(data.exercicio01);
                 setRespostaCorreta02(data.exercicio02);
                 setRespostaCorreta03(data.exercicio03);
@@ -61,7 +60,6 @@ const TelaPontuacaoModulo06 = () => {
                 setRespostaCorreta10(data.exercicio10);
 
             }).catch((error) => {
-                // Em caso de erro, mostra a mensagem de erro no console
 
             });
     }

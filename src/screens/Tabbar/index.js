@@ -1,14 +1,10 @@
-import React, { useState } from 'react';
-import { BackHandler, Alert } from 'react-native';
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TelaInicial from '../inicial';
 import TelaPerfil from '../perfil';
 import { MaterialIcons } from '@expo/vector-icons';
-import { useEffect } from 'react'
 
 const Tab = createBottomTabNavigator();
-
-
 
 const MyTabs = () => {
 
@@ -28,13 +24,9 @@ const MyTabs = () => {
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="home" style={{ color: '#a8939ecc' }} size={size} />
           ),
-
-
         }}
 
       />
-
-
       <Tab.Screen
         name="Tela de perfil"
         component={SettingsScreen}
@@ -45,11 +37,7 @@ const MyTabs = () => {
           tabBarIcon: ({ color = 'red', size }) => (
             <MaterialIcons name="account-circle" style={{ color: '#a8939ecc' }} size={size} />
           ),
-
-
-
         }} />
-
     </Tab.Navigator>
   );
 };

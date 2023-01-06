@@ -1,13 +1,11 @@
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { get, ref, set } from 'firebase/database'
+import { ref, set } from 'firebase/database'
 import { getAuth } from "firebase/auth";
 import { db } from '../../../../../firebase'
 import { useNavigation } from '@react-navigation/native'
 import * as Expo from 'expo-av';
 
-
-//import database from '../../../../../perguntas';
 
 const TelaExercicio = () => {
     const navigation = useNavigation()
@@ -15,8 +13,6 @@ const TelaExercicio = () => {
     const [pontuacao, setPontuacao] = useState(0)
     const [numeroquestaoatual, setnumeroquestaoatual] = useState(0)
     
-
-
     const questoes = [
         {
             questao: '1- Onde podemos encontrar a linguagem python na TI?', respostas: ['Desenvolvimento Web', 'Inteligência Artificial', 'Ciência de Dados', 'Todas as opções'], respostacorreta: 'Todas as opções'
@@ -54,16 +50,12 @@ const TelaExercicio = () => {
     ]
 
     useEffect(() => {
-        // Executar algum código aqui assim que a tela abre
         let a = getAuth()
         const teste = a.currentUser;
         const userCredential = teste;
-        // Obter o ID do usuário logado
         const id = userCredential.uid;
         setUserID(id);
     }, []);
-
-
 
     async function mensagemCorreta() {
         const som = new Expo.Audio.Sound()
@@ -84,12 +76,16 @@ const TelaExercicio = () => {
             exercicio03: questoes[2].respostacorreta,
             exercicio04: questoes[3].respostacorreta,
             exercicio05: questoes[4].respostacorreta,
+            exercicio06: questoes[5].respostacorreta,
+            exercicio07: questoes[6].respostacorreta,
+            exercicio08: questoes[7].respostacorreta,
+            exercicio09: questoes[8].respostacorreta,
+            exercicio10: questoes[9].respostacorreta,
         }).then(() => {
 
-        })
-            .catch((error) => {
-                alert(error)
-            });
+        }).catch((error) => {
+            
+        });
     }
 
     const correcaoresposta = (questaoselecionada) => {
@@ -102,7 +98,7 @@ const TelaExercicio = () => {
             }).then(() => {
                 
             }).catch((error) => {
-                alert(error)
+             
             });
         }else{
             mensagemErrada();
@@ -110,15 +106,9 @@ const TelaExercicio = () => {
 
         setnumeroquestaoatual(numeroquestaoatual + 1);
         
-
-
-
         if (numeroquestaoatual === questoes.length - 2) {
             armazenarRespostaCorreta()
-            // Mostrar a pontuação final
             navigation.navigate('TelaPontuacaoModulo01')
-
-
         }
     };
 
@@ -137,8 +127,6 @@ const TelaExercicio = () => {
             <Text style={styles.textoAcerto}>Acertos: {pontuacao}</Text>
         </ScrollView>
     )
-
-
 };
 
 export default TelaExercicio
@@ -180,4 +168,3 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     }
 })
-

@@ -331,9 +331,7 @@ const TelaModulo06 = () => {
     const scrollRef = useRef();
     const [bloqRef, setBloqRef] = useState(true);
 
-    const handlePress = () => {
-        scrollRef.current.scrollTo({ x: 0, y: 0, animated: false });
-    };
+    
 
     const inputRange = `${Array(2).fill(0).map((_, idx) => [
         width * idx,

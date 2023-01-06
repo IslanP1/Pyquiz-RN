@@ -1,17 +1,15 @@
-import { StyleSheet, Text, View, Button, TouchableOpacity, Dimensions, ScrollView, Image, BackHandler, Alert } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, ScrollView, Image, BackHandler } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import BottomTabBar from '../Tabbar'
 import { getAuth } from 'firebase/auth'
 import { db } from '../../../firebase'
-import { get, ref, set, update } from 'firebase/database'
-
-
+import { get, ref } from 'firebase/database'
 
 const TelaModulos = () => {
-
     const [userID, setUserID] = useState(null);
     const navigation = useNavigation()
+    const [load,setLoad] = useState(true)
+    
     const screenWidth = Dimensions.get('window').width;
     const screenHeight = Dimensions.get('window').height;
 
@@ -31,15 +29,14 @@ const TelaModulos = () => {
         const id = userCredential.uid;
         setUserID(id);
 
+        navigation.addListener('focus', ()=>setLoad(!load))
+        
         BackHandler.addEventListener("hardwareBackPress", telaInicial);
 
         return () =>
             BackHandler.removeEventListener("hardwareBackPress", telaInicial);
 
-
-
-    }, [verificaracertos()]);
-
+    }, [verificaracertos(), load, navigation]);
 
     function telaInicial(){
         navigation.navigate('BottomTabBar')
@@ -95,9 +92,6 @@ const TelaModulos = () => {
                 setBtverde1(false)
 
             });
-
-
-
     }
 
     return (
@@ -116,13 +110,11 @@ const TelaModulos = () => {
                                         source={require('../../../assets/Iconedecompleto.png')}
                                         style={{ width: 32, height: 32 }}
                                     />
-
                                 </View>
                             )}
                         </View>
                     </View>
                 </TouchableOpacity>
-
                 <TouchableOpacity style={[styles.botao, { borderColor: '#ffaac4' }]} onPress={() => navigation.navigate('TelaModulo2')}>
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
@@ -136,12 +128,10 @@ const TelaModulos = () => {
                                         source={require('../../../assets/Iconedecompleto.png')}
                                         style={{ width: 32, height: 32 }}
                                     />
-
                                 </View>
                             )}
                         </View>
                     </View>
-
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.botao, { borderColor: '#daa520' }]} onPress={() => navigation.navigate('TelaModulo3')}>
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
@@ -156,7 +146,6 @@ const TelaModulos = () => {
                                         source={require('../../../assets/Iconedecompleto.png')}
                                         style={{ width: 32, height: 32 }}
                                     />
-
                                 </View>
                             )}
                         </View>
@@ -175,12 +164,10 @@ const TelaModulos = () => {
                                         source={require('../../../assets/Iconedecompleto.png')}
                                         style={{ width: 32, height: 32 }}
                                     />
-
                                 </View>
                             )}
                         </View>
                     </View>
-
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.botao, { borderColor: '#ffaac4' }]} onPress={() => navigation.navigate('TelaModulo5')}>
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
@@ -195,7 +182,6 @@ const TelaModulos = () => {
                                         source={require('../../../assets/Iconedecompleto.png')}
                                         style={{ width: 32, height: 32 }}
                                     />
-
                                 </View>
                             )}
                         </View>
@@ -214,12 +200,10 @@ const TelaModulos = () => {
                                         source={require('../../../assets/Iconedecompleto.png')}
                                         style={{ width: 32, height: 32 }}
                                     />
-
                                 </View>
                             )}
                         </View>
                     </View>
-
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.botao, { borderColor: '#daa520' }]} >
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
@@ -234,12 +218,10 @@ const TelaModulos = () => {
                                         source={require('../../../assets/Iconedecompleto.png')}
                                         style={{ width: 32, height: 32 }}
                                     />
-
                                 </View>
                             )}
                         </View>
                     </View>
-
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.botao, { borderColor: '#f15551' }]} >
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
@@ -254,26 +236,13 @@ const TelaModulos = () => {
                                         source={require('../../../assets/Iconedecompleto.png')}
                                         style={{ width: 32, height: 32 }}
                                     />
-
                                 </View>
                             )}
                         </View>
                     </View>
-
                 </TouchableOpacity>
-                <Text />
-                <Text />
-                <Text />
-                <Text />
-                <Text />
-                <Text />
-                <Text />
-
+                <Text style={{marginTop: '30%'}}/>
             </ScrollView>
-            <Text />
-            <Text />
-            <Text />
-            <Text />
         </View>
     )
 }
@@ -295,7 +264,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     botao: {
-
         marginTop: '4%',
         padding: 20,
         marginLeft: '5%',
