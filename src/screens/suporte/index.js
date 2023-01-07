@@ -1,9 +1,11 @@
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity, BackHandler } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { TextInput, Button } from 'react-native-paper';
-import Communications from 'react-native-communications';
+import { TextInput } from 'react-native-paper';
 import * as Animatable from 'react-native-animatable'
 import { useNavigation } from '@react-navigation/native';
+import * as MailComposer from 'expo-mail-composer';
+
+
 
 
 const TelaSuporte = () => {
@@ -23,22 +25,21 @@ const TelaSuporte = () => {
     };
 
 
-
-
-
     function enviarEmail() {
         if (assunto != null && mensagem != null) {
-            Communications.email(
-                ['pyquizapp@gmail.com'],
-                null,
-                null,
-                assunto,
-                mensagem,
-            );
+            MailComposer.composeAsync({
+                subject: 'Assunto do e-mail',
+                body: 'Corpo do e-mail',
+                recipients: ['islanpereiradeoliveira@gmail.com'],
+            })
         } else {
-            alert("Escreva um assunto ou uma mensagem válida!");
+            alert("Digite um assunto ou mensagem!")
         }
+
     }
+
+
+
     return (
         <View style={styles.container}>
             <ScrollView keyboardShouldPersistTaps="always">
