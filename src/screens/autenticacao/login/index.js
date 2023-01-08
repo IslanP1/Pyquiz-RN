@@ -5,7 +5,7 @@ import { TextInput, Button } from 'react-native-paper';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Animatable from 'react-native-animatable'
-
+import * as Expo from 'expo-av';
 
 const TelaLogin = () => {
   const navigation = useNavigation()
@@ -23,6 +23,16 @@ const TelaLogin = () => {
       BackHandler.removeEventListener("hardwareBackPress", backAction);
 
   }, []);
+
+
+  async function click() {
+    const som = new Expo.Audio.Sound()
+    await som.loadAsync(require('../../../../sounds/click.mp3'));
+    await som.playAsync();
+  }
+
+
+
 
   function backAction() {
     Alert.alert("Atenção!", "Tem certeza que deseja sair?", [
@@ -48,38 +58,28 @@ const TelaLogin = () => {
         navigation.navigate('BottomTabBar');
       })
       .catch(error => {
-        if (error.code == 'auth/network-request-failed') {
-          networkError()
-        }
-        alert("Senha ou email incorreto!");
+        Alert.alert("Atenção!", "Senha ou email incorreto!", [
+          {
+            text: "Ok",
+            onPress: () => null
+          }
+        ]);
       });
   }
 
-  function networkError(){
-    Alert.alert("Atenção!", "Aplicativo não é funcional sem internet", [
-      {
-        text: "Tentar novamente",
-        onPress: () => navigation.navigate("TelaPreload"),
-        style: "cancel"
-      },
-      {
-        text: "Ok",
-        onPress: () => BackHandler.exitApp()
-      }
-    ]);
-  }
+
 
   async function manterLogin() {
     try {
       await AsyncStorage.setItem('email', email);
       await AsyncStorage.setItem('senha', senha);
     } catch (error) {
-      
+
     }
   }
 
   return (
-    <KeyboardAvoidingView behavior='position' style={{height:'87%'}}>
+    <KeyboardAvoidingView behavior='position' style={{ height: '87%' }}>
       <Animatable.View
         style={[styles.container, { width: screenWidth, height: screenHeight }]}
         animation=''>
@@ -127,15 +127,15 @@ const TelaLogin = () => {
               iterationCount='infinite'
               iterationDelay={2000}>
               <View style={{ marginTop: 10 }}>
-                <Button style={styles.botaoEnviar} mode="contained" onPress={() => logar()}>Conectar-se</Button>
+                <Button style={styles.botaoEnviar} mode="contained" onPress={() => [click(), logar()]}>Conectar-se</Button>
               </View>
 
             </Animatable.View>
             <View style={{ marginTop: 15, marginBottom: '3%' }}>
-              <Button textColor='#5015bd' fontSize='20' style={[styles.botaoEnviar, { backgroundColor: '#fff' }]} mode="contained" onPress={() => navigation.navigate('TelaCriarUsuario')}>Inscrever-se</Button>
+              <Button textColor='#5015bd' fontSize='20' style={[styles.botaoEnviar, { backgroundColor: '#fff' }]} mode="contained" onPress={() => [click(), navigation.navigate('TelaCriarUsuario')]}>Inscrever-se</Button>
             </View>
             <View style={{ marginBottom: '30%' }}>
-              <TouchableOpacity textColor='#5015bd' fontSize='20' style={[styles.botaoRecuperar, { backgroundColor: '#fff' }]} mode="contained" onPress={() => navigation.navigate('TelaRecuperarSenha')}>
+              <TouchableOpacity textColor='#5015bd' fontSize='20' style={[styles.botaoRecuperar, { backgroundColor: '#fff' }]} mode="contained" onPress={() => [click(), navigation.navigate('TelaRecuperarSenha')]}>
                 <Text style={styles.recuperarTexto}>
                   Perdeu a senha? Recupere
                 </Text>

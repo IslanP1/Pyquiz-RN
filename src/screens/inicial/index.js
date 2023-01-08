@@ -2,12 +2,12 @@ import { StyleSheet, Text, View, Dimensions, ScrollView, BackHandler, TouchableO
 import React, { useEffect } from 'react'
 import { useNavigation } from "@react-navigation/native"
 import * as Animatable from 'react-native-animatable'
+import * as Expo from 'expo-av';
 
 const TelaInicial = () => {
   const navigation = useNavigation()
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
-
 
 
   useEffect(() => {
@@ -18,6 +18,12 @@ const TelaInicial = () => {
       BackHandler.removeEventListener("hardwareBackPress", backAction);
 
   }, []);
+
+  async function click() {
+    const som = new Expo.Audio.Sound()
+    await som.loadAsync(require('../../../sounds/click.mp3'));
+    await som.playAsync();
+  }
 
   function backAction() {
     Alert.alert("Atenção!", "Tem certeza que deseja sair?", [
@@ -69,21 +75,21 @@ const TelaInicial = () => {
           <View>
             <TouchableOpacity
               style={styles.botoes}
-              onPress={() => navigation.navigate('TelaModulos')}>
+              onPress={() => [click(), navigation.navigate('TelaModulos')]}>
               <Text style={styles.botaoTxt}>Jogar</Text>
             </TouchableOpacity>
           </View>
           <View>
             <TouchableOpacity
               style={styles.botoes}
-              onPress={() => navigation.navigate('TelaCreditos')}>
+              onPress={() => [click(), navigation.navigate('TelaCreditos')]}>
               <Text style={styles.botaoTxt}>Créditos</Text>
             </TouchableOpacity>
           </View>
           <View>
             <TouchableOpacity
               style={styles.botoes}
-              onPress={() => navigation.navigate('TelaSuporte')}>
+              onPress={() => [click(), navigation.navigate('TelaSuporte')]}>
               <Text style={styles.botaoTxt}>Suporte</Text>
             </TouchableOpacity>
           </View>
@@ -93,7 +99,7 @@ const TelaInicial = () => {
                 marginBottom: '5%', backgroundColor: 'red', height: 50,
                 width: '50%',
               }]}
-              onPress={() => sair()}>
+              onPress={() => [click(), sair()]}>
               <Text style={styles.botaoTxt}>Sair</Text>
             </TouchableOpacity>
           </View>

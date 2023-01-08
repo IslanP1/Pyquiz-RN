@@ -4,24 +4,31 @@ import { TextInput, Button } from 'react-native-paper';
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import * as Animatable from 'react-native-animatable'
 import { useNavigation } from '@react-navigation/native';
+import * as Expo from 'expo-av';
 
 const TelaRecuperarSenha = () => {
     const [email, setEmail] = useState(null)
     const navegation = useNavigation()
-    
+
     useEffect(() => {
 
         BackHandler.addEventListener("hardwareBackPress", telaLogin);
-    
+
         return () =>
-          BackHandler.removeEventListener("hardwareBackPress", telaLogin);
-    
-      }, []);
-    
-      function telaLogin() {
+            BackHandler.removeEventListener("hardwareBackPress", telaLogin);
+
+    }, []);
+
+    function telaLogin() {
         navegation.navigate('TelaLogin')
         return true
-      };
+    };
+
+    async function click() {
+        const som = new Expo.Audio.Sound()
+        await som.loadAsync(require('../../../sounds/click.mp3'));
+        await som.playAsync();
+    }
 
 
 
@@ -66,7 +73,7 @@ const TelaRecuperarSenha = () => {
                     animation="fadeInUp"
                     delay={500}>
                     <View style={{ marginTop: 30 }}>
-                        <Button style={styles.botaoEnviar} mode="contained" onPress={sendResetEmail}>Enviar</Button>
+                        <Button style={styles.botaoEnviar} mode="contained" onPress={() => [click(), sendResetEmail()]}>Enviar</Button>
                     </View>
                 </Animatable.View>
             </ScrollView>
@@ -79,9 +86,9 @@ export default TelaRecuperarSenha
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#000000',  
+        backgroundColor: '#000000',
     },
-    titulo : {
+    titulo: {
         color: '#ffffff',
         fontSize: 20,
         textAlign: 'center',
@@ -93,25 +100,25 @@ const styles = StyleSheet.create({
         marginLeft: '5%',
         marginRight: '5%',
         marginTop: '10%',
-        textAlign: 'justify'   
+        textAlign: 'justify'
     },
-    containerLogo:{
-        flex:1,
-        backgroundColor:'#000000',
-        justifyContent:'center',
-        alignItems:'center',
+    containerLogo: {
+        flex: 1,
+        backgroundColor: '#000000',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     caixaTexto: {
-        borderRadius:50,
-        paddingVertical:8,
+        borderRadius: 50,
+        paddingVertical: 8,
         marginLeft: 30,
         marginRight: 30,
         backgroundColor: '#000000',
         fontSize: 18,
         marginTop: '10%',
-      },
-      botaoEnviar: {
-        backgroundColor:'#5015bd',
+    },
+    botaoEnviar: {
+        backgroundColor: '#5015bd',
         marginLeft: 80,
         marginRight: 80,
         justifyContent: 'center',
@@ -119,5 +126,5 @@ const styles = StyleSheet.create({
         height: 50,
         marginTop: '10%',
         marginBottom: '30%',
-      }
+    }
 })

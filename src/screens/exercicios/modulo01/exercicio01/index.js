@@ -12,6 +12,7 @@ const TelaExercicio = () => {
     const [userID, setUserID] = useState(null);
     const [pontuacao, setPontuacao] = useState(0)
     const [numeroquestaoatual, setnumeroquestaoatual] = useState(0)
+    const [mostrarquestoes, setMostrarquestoes] = useState(true)
     
     const questoes = [
         {
@@ -107,25 +108,30 @@ const TelaExercicio = () => {
         setnumeroquestaoatual(numeroquestaoatual + 1);
         
         if (numeroquestaoatual === questoes.length - 2) {
+            setMostrarquestoes(false)
             armazenarRespostaCorreta()
             navigation.navigate('TelaPontuacaoModulo01')
         }
     };
 
     return (
-        <ScrollView style={styles.container} scrollsToTop={true}>
-            <Text style={styles.textoPergunta}>
-                {questoes[numeroquestaoatual].questao}
-            </Text>
-            {questoes[numeroquestaoatual].respostas.map((resposta) => (
-                <View style={styles.button}>
-                    <TouchableOpacity onPress={() => correcaoresposta(resposta)}>
-                        <Text style={styles.textoResposta}>{resposta}</Text>
-                    </TouchableOpacity>
-                </View>
-            ))}
-            <Text style={styles.textoAcerto}>Acertos: {pontuacao}</Text>
-        </ScrollView>
+        <View>
+            {mostrarquestoes && (
+                <ScrollView style={styles.container} scrollsToTop={true}>
+                    <Text style={styles.textoPergunta}>
+                        {questoes[numeroquestaoatual].questao}
+                    </Text>
+                    {questoes[numeroquestaoatual].respostas.map((resposta) => (
+                        <View style={styles.button}>
+                            <TouchableOpacity onPress={() => correcaoresposta(resposta)}>
+                                <Text style={styles.textoResposta}>{resposta}</Text>
+                            </TouchableOpacity>
+                        </View>
+                    ))}
+                    <Text style={styles.textoAcerto}>Acertos: {pontuacao}</Text>
+                </ScrollView>
+            )}
+        </View>
     )
 };
 

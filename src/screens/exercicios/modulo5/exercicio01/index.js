@@ -7,8 +7,6 @@ import { useNavigation } from '@react-navigation/native'
 import * as Expo from 'expo-av';
 
 
-//import database from '../../../../../perguntas';
-
 const TelaExercicio = () => {
     const navigation = useNavigation()
     const [userID, setUserID] = useState(null);
@@ -46,7 +44,7 @@ const TelaExercicio = () => {
             questao:'9- Qual das alternativas está errada?', respostas: ['while i == True:', 'wile item < 6:', 'while x == 5:', 'while loop == True:'], respostacorreta: 'wile item < 6:'
         },
         {
-            questao: <Text><Text>10- Qual estrutura entrará neste while para que a saida seja:{'\n'}{'\n'}</Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>i = 1{'\n'}</Text></Text><Text style={styles.terminal}><Text style={styles.messageTerminal}>_________________{'\n'}</Text></Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>{'   '}print( i ){'\n'}</Text></Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>{'   '}i += 1{'\n'}</Text></Text><Text style={styles.terminal}><Text style={styles.messageTerminal}>{'\n'}saída de dados: 1,2,3,4,5{'\n'}</Text></Text></Text>, respostas: ['while i < 6:', 'while i < 6', 'while i < 5:', 'while i < 5:'], respostacorreta: 'while i < 6:'
+            questao: <Text><Text>10- Qual estrutura entrará neste while para que a saida seja:{'\n'}{'\n'}</Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>i = 1{'\n'}</Text></Text><Text style={styles.terminal}><Text style={styles.messageTerminal}>_________________{'\n'}</Text></Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>{'   '}print( i ){'\n'}</Text></Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>{'   '}i += 1{'\n'}</Text></Text><Text style={styles.terminal}><Text style={styles.messageTerminal}>{'\n'}saída de dados: 1,2,3,4,5{'\n'}</Text></Text></Text>, respostas: ['while i < 6:', 'while i < 6', 'while i < 5:', 'while i > 5:'], respostacorreta: 'while i < 6:'
         },
         { 
             questao: '', respostas: ['', '', ''], respostacorreta: ''

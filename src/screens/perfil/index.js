@@ -6,6 +6,7 @@ import { Button, IconButton, TextInput } from 'react-native-paper';
 import { get, ref, set, update } from 'firebase/database'
 import { db } from '../../../firebase';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Expo from 'expo-av';
 
 const TelaPerfil = () => {
 
@@ -30,9 +31,15 @@ const TelaPerfil = () => {
 
   }, [buscarCredenciais()]);
 
+  async function click() {
+    const som = new Expo.Audio.Sound()
+    await som.loadAsync(require('../../../sounds/click.mp3'));
+    await som.playAsync();
+  }
+
 
   function deslogar() {
-
+    click();
     Alert.alert("Atenção!", "Deseja deslogar?", [
       {
         text: "Cancelar",

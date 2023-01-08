@@ -1,19 +1,17 @@
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { get, ref, set } from 'firebase/database'
+import { ref, set } from 'firebase/database'
 import { getAuth } from "firebase/auth";
 import { db } from '../../../../../firebase'
 import { useNavigation } from '@react-navigation/native'
 import * as Expo from 'expo-av';
 
-
-const TelaExercicio = () => {
+const TelaExercicioModulo02 = () => {
     const navigation = useNavigation()
     const [userID, setUserID] = useState(null);
-    const [pontuacao, setPontuacao] = useState(0);
-    const [numeroquestaoatual, setnumeroquestaoatual] = useState(0);
+    const [pontuacao, setPontuacao] = useState(0)
+    const [numeroquestaoatual, setnumeroquestaoatual] = useState(0)
     const [mostrarquestoes, setMostrarquestoes] = useState(true)
-    
 
     const questoes = [
         {
@@ -59,8 +57,6 @@ const TelaExercicio = () => {
         setUserID(id);
     }, []);
 
-
-
     async function mensagemCorreta() {
         const som = new Expo.Audio.Sound()
         await som.loadAsync(require('../../../../../sounds/correta.mp3'));
@@ -84,13 +80,12 @@ const TelaExercicio = () => {
             exercicio07: questoes[6].respostacorreta,
             exercicio08: questoes[7].respostacorreta,
             exercicio09: questoes[8].respostacorreta,
-            exercicio10: questoes[9].respostacorreta
+            exercicio10: questoes[9].respostacorreta,
         }).then(() => {
 
-        })
-            .catch((error) => {
-                alert(error)
-            });
+        }).catch((error) => {
+            alert(error)
+        });
     }
 
     const correcaoresposta = (questaoselecionada) => {
@@ -101,54 +96,45 @@ const TelaExercicio = () => {
                 pontuacao: pontuacao + 1
 
             }).then(() => {
-                
+
             }).catch((error) => {
                 alert(error)
             });
-        }else{
+        } else {
             mensagemErrada();
         };
 
         setnumeroquestaoatual(numeroquestaoatual + 1);
-        
-
-
 
         if (numeroquestaoatual === questoes.length - 2) {
             setMostrarquestoes(false)
             armazenarRespostaCorreta()
-            // Mostrar a pontuação final
             navigation.navigate('TelaPontuacaoModulo02')
-
-
         }
     };
 
     return (
         <View>
-        {mostrarquestoes && (
-
-        <ScrollView style={styles.container} scrollsToTop={true}>
-            <Text style={styles.textoPergunta}>
-                {questoes[numeroquestaoatual].questao}
-            </Text>
-            {questoes[numeroquestaoatual].respostas.map((resposta) => (
-                <View style={styles.button}>
-                    <TouchableOpacity onPress={() => correcaoresposta(resposta)}>
-                        <Text style={styles.textoResposta}>{resposta}</Text>
-                    </TouchableOpacity>
-                </View>
-            ))}
-            <Text style={styles.textoAcerto}>Acertos: {pontuacao}</Text>
-        </ScrollView>
-    
-       )}
+            {mostrarquestoes && (
+                <ScrollView style={styles.container} scrollsToTop={true}>
+                    <Text style={styles.textoPergunta}>
+                        {questoes[numeroquestaoatual].questao}
+                    </Text>
+                    {questoes[numeroquestaoatual].respostas.map((resposta) => (
+                        <View style={styles.button}>
+                            <TouchableOpacity onPress={() => correcaoresposta(resposta)}>
+                                <Text style={styles.textoResposta}>{resposta}</Text>
+                            </TouchableOpacity>
+                        </View>
+                    ))}
+                    <Text style={styles.textoAcerto}>Acertos: {pontuacao}</Text>
+                </ScrollView>
+            )}
         </View>
+    )
+};
 
-
-)
-}
-export default TelaExercicio
+export default TelaExercicioModulo02
 const styles = StyleSheet.create({
     container: {
         flex: 1,

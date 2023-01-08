@@ -6,6 +6,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, set } from 'firebase/database'
 import * as Animatable from 'react-native-animatable'
 import { db } from '../../../../firebase';
+import * as Expo from 'expo-av';
 
 
 const TelaCriarUsuario = () => {
@@ -32,6 +33,12 @@ const TelaCriarUsuario = () => {
     navegation.navigate('TelaLogin')
     return true
   };
+
+  async function click() {
+    const som = new Expo.Audio.Sound()
+    await som.loadAsync(require('../../../../sounds/click.mp3'));
+    await som.playAsync();
+  }
 
 
   const handleCheckEmail = text => {
@@ -164,12 +171,12 @@ const TelaCriarUsuario = () => {
               iterationCount='infinite'
               iterationDelay={2000}>
               <View style={[styles.container, { marginTop: 50 }]}>
-                <Button style={styles.botaoEnviar} mode="contained" onPress={() => criar()}>Cadastrar</Button>
+                <Button style={styles.botaoEnviar} mode="contained" onPress={() => [click(), criar()]}>Cadastrar</Button>
               </View>
             </Animatable.View>
             <TouchableOpacity
               style={styles.buttonLogin}
-              onPress={() => navigation.navigate('TelaLogin')}>
+              onPress={() => [click(), navigation.navigate('TelaLogin')]}>
               <Text style={styles.loginText}>Possui uma conta? Conecte-se</Text>
             </TouchableOpacity>
           </Animatable.View>

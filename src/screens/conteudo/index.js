@@ -4,12 +4,13 @@ import { useNavigation } from '@react-navigation/native'
 import { getAuth } from 'firebase/auth'
 import { db } from '../../../firebase'
 import { get, ref } from 'firebase/database'
+import * as Expo from 'expo-av';
 
 const TelaModulos = () => {
     const [userID, setUserID] = useState(null);
     const navigation = useNavigation()
-    const [load,setLoad] = useState(true)
-    
+    const [load, setLoad] = useState(true)
+
     const screenWidth = Dimensions.get('window').width;
     const screenHeight = Dimensions.get('window').height;
 
@@ -29,8 +30,8 @@ const TelaModulos = () => {
         const id = userCredential.uid;
         setUserID(id);
 
-        navigation.addListener('focus', ()=>setLoad(!load))
-        
+        navigation.addListener('focus', () => setLoad(!load))
+
         BackHandler.addEventListener("hardwareBackPress", telaInicial);
 
         return () =>
@@ -38,7 +39,13 @@ const TelaModulos = () => {
 
     }, [verificaracertos(), load, navigation]);
 
-    function telaInicial(){
+    async function click() {
+        const som = new Expo.Audio.Sound()
+        await som.loadAsync(require('../../../sounds/click.mp3'));
+        await som.playAsync();
+    }
+
+    function telaInicial() {
         navigation.navigate('BottomTabBar')
         return true
     }
@@ -97,7 +104,7 @@ const TelaModulos = () => {
     return (
         <View style={[styles.container, { width: screenWidth, height: screenHeight }]} >
             <ScrollView>
-                <TouchableOpacity style={[styles.botao, { borderColor: '#8c52ff' }]} onPress={() => navigation.navigate('TelaModulo1')}>
+                <TouchableOpacity style={[styles.botao, { borderColor: '#8c52ff' }]} onPress={() => [click(), navigation.navigate('TelaModulo1')]}>
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
                             <Text style={styles.textog} >Módulo 1 - Iniciando com python</Text>
@@ -115,7 +122,7 @@ const TelaModulos = () => {
                         </View>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.botao, { borderColor: '#ffaac4' }]} onPress={() => navigation.navigate('TelaModulo2')}>
+                <TouchableOpacity style={[styles.botao, { borderColor: '#ffaac4' }]} onPress={() => [click(), navigation.navigate('TelaModulo2')]}>
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
                             <Text style={styles.textog} >Módulo 2 - Condição</Text>
@@ -133,7 +140,7 @@ const TelaModulos = () => {
                         </View>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.botao, { borderColor: '#daa520' }]} onPress={() => navigation.navigate('TelaModulo3')}>
+                <TouchableOpacity style={[styles.botao, { borderColor: '#daa520' }]} onPress={() => [click(), navigation.navigate('TelaModulo3')]}>
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
                             <Text style={styles.textog} >Módulo 3 - Listas e Tuplas</Text>
@@ -151,7 +158,7 @@ const TelaModulos = () => {
                         </View>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.botao, { borderColor: '#7cdb54' }]}  onPress={() => navigation.navigate('TelaModulo4')}>
+                <TouchableOpacity style={[styles.botao, { borderColor: '#7cdb54' }]} onPress={() => [click(), navigation.navigate('TelaModulo4')]}>
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
                             <Text style={styles.textog} >Módulo 4 - Metodo For</Text>
@@ -169,7 +176,7 @@ const TelaModulos = () => {
                         </View>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.botao, { borderColor: '#ffaac4' }]} onPress={() => navigation.navigate('TelaModulo5')}>
+                <TouchableOpacity style={[styles.botao, { borderColor: '#ffaac4' }]} onPress={() => [click(), navigation.navigate('TelaModulo5')]}>
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
                             <Text style={styles.textog} >Módulo 5 - Metodo While</Text>
@@ -187,11 +194,11 @@ const TelaModulos = () => {
                         </View>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.botao, { borderColor: '#8c52ff' }]} onPress={()=> navigation.navigate('TelaModulo06')}>
+                <TouchableOpacity style={[styles.botao, { borderColor: '#8c52ff' }]} onPress={() => [click(), navigation.navigate('TelaModulo06')]}>
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
                             <Text style={styles.textog} >Módulo 6 - Dicionários</Text>
-                            <Text style={styles.textop} >Armazenando diversos conteúdos</Text>
+                            <Text style={styles.textop} >Estrutura e métodos mais utilizados</Text>
                         </View>
                         <View style={{ flex: 0.1 }}>
                             {btverde6 && (
@@ -205,11 +212,11 @@ const TelaModulos = () => {
                         </View>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.botao, { borderColor: '#daa520' }]} onPress={() => navigation.navigate('TelaModulo07')}>
+                <TouchableOpacity style={[styles.botao, { borderColor: '#daa520' }]} onPress={() => [click(), navigation.navigate('TelaModulo07')]}>
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
                             <Text style={styles.textog} >Módulo 7 - Funções</Text>
-                            <Text style={styles.textop} >Chamando códigos</Text>
+                            <Text style={styles.textop} >Chamando funções</Text>
                         </View>
                         <View style={{ flex: 0.1 }}>
                             {btverde7 && (
@@ -223,14 +230,14 @@ const TelaModulos = () => {
                         </View>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.botao, { borderColor: '#f15551' }]} >
+                <TouchableOpacity style={[styles.botao, { borderColor: '#f15551' }]} onPress={() => [click(), navigation.navigate('TelaModulo08')]} >
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View style={{ flex: 1 }}>
                             <Text style={styles.textog} >Módulo 8 - Tratamento de erros</Text>
-                            <Text style={styles.textop} >O Fim</Text>
+                            <Text style={styles.textop} >Try, Except, Raise e Assert</Text>
                         </View>
                         <View style={{ flex: 0.1 }}>
-                            {btverde7 && (
+                            {btverde8 && (
                                 <View>
                                     <Image
                                         source={require('../../../assets/Iconedecompleto.png')}
@@ -241,11 +248,11 @@ const TelaModulos = () => {
                         </View>
                     </View>
                 </TouchableOpacity>
-                <View style={{flex:1, marginBottom: 100}}/>
+                <View style={{ flex: 1, marginBottom: 100 }} />
             </ScrollView>
-            <Text/>
-            <Text/>
-            <Text/>
+            <Text />
+            <Text />
+            <Text />
         </View>
     )
 }

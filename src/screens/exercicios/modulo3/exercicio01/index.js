@@ -13,7 +13,7 @@ const TelaExercicio = () => {
     const [pontuacao, setPontuacao] = useState(0);
     const [numeroquestaoatual, setnumeroquestaoatual] = useState(0);
     const [mostrarquestoes, setMostrarquestoes] = useState(true)
-    
+
 
     const questoes = [
         {
@@ -32,7 +32,7 @@ const TelaExercicio = () => {
             questao: '5- Qual a sintaxe correta para criar uma tupla vazia?', respostas: ['tupla = ( )', 'tupla = [ ]', 'tupla = { }', 'tupla = <>'], respostacorreta: 'tupla = ( )'
         },
         {
-            questao: <Text><Text>6- Qual o índice correto para acessar o valor ‘Prateleira’ desta lista:{'\n'}{'\n'}</Text> <Text style={{backgroundColor:'#121212'}}><Text style={styles.messageTerminal} >lista = [‘Porta’, ‘Prateleira’, ‘Janela’]</Text></Text></Text> , respostas: ['lista[2]', 'lista[0]', 'lista[3]', 'lista[1]'], respostacorreta: 'lista[1]'
+            questao: <Text><Text>6- Qual o índice correto para acessar o valor ‘Prateleira’ desta lista:{'\n'}{'\n'}</Text> <Text style={{ backgroundColor: '#121212' }}><Text style={styles.messageTerminal} >lista = [‘Porta’, ‘Prateleira’, ‘Janela’]</Text></Text></Text>, respostas: ['lista[2]', 'lista[0]', 'lista[3]', 'lista[1]'], respostacorreta: 'lista[1]'
         },
         {
             questao: <Text><Text>7- Após usar o remove() nesta lista, como ela ficará?{'\n'}{'\n'}</Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>lista = [1, 2, 3, 4, 5]{'\n'}</Text></Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>lista.remove(2){'\n'}</Text></Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>print(lista){'\n'}</Text></Text></Text>, respostas: ['[1, 3, 4, 5]', '[ 2, 3, 4, 5 ]', '[ 1, 2, 4, 5 ]', 'Ocorrerá um erro'], respostacorreta: '[1, 3, 4, 5]'
@@ -46,7 +46,7 @@ const TelaExercicio = () => {
         {
             questao: <Text><Text>10- Como será a saída de dados após adicionar uma tupla a outra?{'\n'}{'\n'}</Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>tupla1 = (1, 2, 3){'\n'}</Text></Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>tupla2 = tupla1 + (2, 3){'\n'}</Text></Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>print(tupla2){'\n'}</Text></Text></Text>, respostas: ['(1, 2, 3, 2, 3)', '(1, 2, 3)', '(1, 2, 3, 3, 2)', 'Tuplas não armazenam valores repetidos'], respostacorreta: '(1, 2, 3, 2, 3)'
         },
-        { 
+        {
             questao: '', respostas: ['', '', ''], respostacorreta: ''
         }
     ]
@@ -87,10 +87,9 @@ const TelaExercicio = () => {
             exercicio10: questoes[9].respostacorreta,
         }).then(() => {
 
-        })
-            .catch((error) => {
-                alert(error)
-            });
+        }).catch((error) => {
+                
+        });
     }
 
     const correcaoresposta = (questaoselecionada) => {
@@ -101,16 +100,16 @@ const TelaExercicio = () => {
                 pontuacao: pontuacao + 1
 
             }).then(() => {
-                
+
             }).catch((error) => {
-                alert(error)
+               
             });
-        }else{
+        } else {
             mensagemErrada();
         };
 
         setnumeroquestaoatual(numeroquestaoatual + 1);
-        
+
         if (numeroquestaoatual === questoes.length - 2) {
             setMostrarquestoes(false)
             armazenarRespostaCorreta()
@@ -123,27 +122,27 @@ const TelaExercicio = () => {
 
     return (
         <View>
-        {mostrarquestoes && (
+            {mostrarquestoes && (
 
-        <ScrollView style={styles.container} scrollsToTop={true}>
-            <Text style={styles.textoPergunta}>
-                {questoes[numeroquestaoatual].questao}
-            </Text>
-            {questoes[numeroquestaoatual].respostas.map((resposta) => (
-                <View style={styles.button}>
-                    <TouchableOpacity onPress={() => correcaoresposta(resposta)}>
-                        <Text style={styles.textoResposta}>{resposta}</Text>
-                    </TouchableOpacity>
-                </View>
-            ))}
-            <Text style={styles.textoAcerto}>Acertos: {pontuacao}</Text>
-        </ScrollView>
-    
-       )}
+                <ScrollView style={styles.container} scrollsToTop={true}>
+                    <Text style={styles.textoPergunta}>
+                        {questoes[numeroquestaoatual].questao}
+                    </Text>
+                    {questoes[numeroquestaoatual].respostas.map((resposta) => (
+                        <View style={styles.button}>
+                            <TouchableOpacity onPress={() => correcaoresposta(resposta)}>
+                                <Text style={styles.textoResposta}>{resposta}</Text>
+                            </TouchableOpacity>
+                        </View>
+                    ))}
+                    <Text style={styles.textoAcerto}>Acertos: {pontuacao}</Text>
+                </ScrollView>
+
+            )}
         </View>
 
 
-)
+    )
 }
 export default TelaExercicio
 const styles = StyleSheet.create({
@@ -184,25 +183,25 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
     terminal: {
-        
+
         marginHorizontal: '7%',
         width: '86%',
-        paddingTop:10,
-        paddingBottom:20,
-        marginTop:20,
+        paddingTop: 10,
+        paddingBottom: 20,
+        marginTop: 20,
         borderRadius: 20,
         justifyContent: 'center',
-        
-               
-        
+
+
+
     },
     messageTerminal: {
         color: '#fff',
         fontSize: 18,
         marginHorizontal: '5%',
-        
-        
-        
+
+
+
     }
 })
 

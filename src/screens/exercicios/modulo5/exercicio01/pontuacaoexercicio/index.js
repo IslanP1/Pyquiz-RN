@@ -4,6 +4,7 @@ import { getAuth } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native"
 import { db } from '../../../../../../firebase';
 import { get, ref, update } from 'firebase/database'
+import * as Expo from 'expo-av';
 
 
 const TelaPontuacaoModulo05 = () => {
@@ -37,6 +38,13 @@ const TelaPontuacaoModulo05 = () => {
             BackHandler.removeEventListener("hardwareBackPress", telaModulos);
 
     }, [buscarRespostas(), buscarPontuacao()]);
+
+
+    async function click() {
+        const som = new Expo.Audio.Sound()
+        await som.loadAsync(require('../../../../../../sounds/click.mp3'));
+        await som.playAsync();
+    }
 
     function telaModulos() {
         navigation.navigate('TelaModulos')
@@ -112,7 +120,7 @@ const TelaPontuacaoModulo05 = () => {
             <Text style={styles.textog}>Pontuação obtida:</Text>
             <Text style={styles.textop}>{pontuacao} / 10</Text>
             <Text style={styles.textresult}>{result}</Text>
-            <TouchableOpacity style={styles.botoes} title="Voltar" onPress={() => navigation.navigate('TelaModulos')}>
+            <TouchableOpacity style={styles.botoes} title="Voltar" onPress={() => [click(), navigation.navigate('TelaModulos')]}>
                 <Text style={styles.textog}>Voltar</Text>
             </TouchableOpacity>
         </View>

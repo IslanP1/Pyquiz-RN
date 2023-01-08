@@ -4,7 +4,7 @@ import { getAuth } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native"
 import { db } from '../../../../../../firebase';
 import { get, ref, update } from 'firebase/database'
-
+import * as Expo from 'expo-av';
 
 const TelaPontuacaoModulo03 = () => {
 
@@ -43,6 +43,12 @@ const TelaPontuacaoModulo03 = () => {
         return true;
     };
 
+    async function click() {
+        const som = new Expo.Audio.Sound()
+        await som.loadAsync(require('../../../../../../sounds/click.mp3'));
+        await som.playAsync();
+    }
+
 
     function buscarRespostas() {
         get(ref(db, `users/${userID}/modulo3/respostaexercicios`))
@@ -78,7 +84,7 @@ const TelaPontuacaoModulo03 = () => {
                     }).then(() => {
 
                     }).catch((error) => {
-                        alert(error)
+                        
                     });
                 } else {
                     setResult('Infelizmente você não atingiu o limite de questões para completar o modulo!')
@@ -112,7 +118,7 @@ const TelaPontuacaoModulo03 = () => {
             <Text style={styles.textog}>Pontuação obtida:</Text>
             <Text style={styles.textop}>{pontuacao} / 10</Text>
             <Text style={styles.textresult}>{result}</Text>
-            <TouchableOpacity style={styles.botoes} title="Voltar" onPress={() => navigation.navigate('TelaModulos')}>
+            <TouchableOpacity style={styles.botoes} title="Voltar" onPress={() => [click(), navigation.navigate('TelaModulos')]}>
                 <Text style={styles.textog}>Voltar</Text>
             </TouchableOpacity>
         </View>

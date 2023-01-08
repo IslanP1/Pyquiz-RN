@@ -1,10 +1,10 @@
-import { View, Text, TouchableOpacity, BackHandler, Alert, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, BackHandler, StyleSheet } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { getAuth } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native"
 import { db } from '../../../../../../firebase';
-import { get, ref, set, update } from 'firebase/database'
-
+import { get, ref, update } from 'firebase/database'
+import * as Expo from 'expo-av';
 
 
 const TelaPontuacaoModulo02 = () => {
@@ -15,17 +15,20 @@ const TelaPontuacaoModulo02 = () => {
     const [respostaCorreta03, setRespostaCorreta03] = useState(null);
     const [respostaCorreta04, setRespostaCorreta04] = useState(null);
     const [respostaCorreta05, setRespostaCorreta05] = useState(null);
+    const [respostaCorreta06, setRespostaCorreta06] = useState(null);
+    const [respostaCorreta07, setRespostaCorreta07] = useState(null);
+    const [respostaCorreta08, setRespostaCorreta08] = useState(null);
+    const [respostaCorreta09, setRespostaCorreta09] = useState(null);
+    const [respostaCorreta10, setRespostaCorreta10] = useState(null);
     const [pontuacao, setPontuacao] = useState(null);
     const [result, setResult] = useState('');
-    
+
     const navigation = useNavigation()
 
     useEffect(() => {
-        // Executar algum código aqui assim que a tela abre
         let a = getAuth()
         const teste = a.currentUser;
         const userCredential = teste;
-        // Obter o ID do usuário logado
         const id = userCredential.uid;
         setUserID(id);
 
@@ -37,26 +40,31 @@ const TelaPontuacaoModulo02 = () => {
 
     function telaModulos() {
         navigation.navigate('TelaModulos')
-        
-
         return true;
     };
+
+    async function click() {
+        const som = new Expo.Audio.Sound()
+        await som.loadAsync(require('../../../../../../sounds/click.mp3'));
+        await som.playAsync();
+    }
 
 
     function buscarRespostas() {
         get(ref(db, `users/${userID}/modulo2/respostaexercicios`))
             .then((snapshot) => {
                 const data = snapshot.val()
-                // Atribui a resposta a variável
                 setRespostaCorreta01(data.exercicio01);
                 setRespostaCorreta02(data.exercicio02);
                 setRespostaCorreta03(data.exercicio03);
                 setRespostaCorreta04(data.exercicio04);
                 setRespostaCorreta05(data.exercicio05);
-
+                setRespostaCorreta06(data.exercicio06);
+                setRespostaCorreta07(data.exercicio07);
+                setRespostaCorreta08(data.exercicio08);
+                setRespostaCorreta09(data.exercicio09);
+                setRespostaCorreta10(data.exercicio10);
             }).catch((error) => {
-                // Em caso de erro, mostra a mensagem de erro no console
-
             });
     }
 
@@ -64,44 +72,49 @@ const TelaPontuacaoModulo02 = () => {
         get(ref(db, `users/${userID}/modulo2/exercicios`))
             .then((snapshot) => {
                 const data = snapshot.val()
-                // Atribui a resposta a variável
                 setPontuacao(data.pontuacao);
                 if (data.pontuacao == 10) {
                     setResult('Parabéns! Você completou o módulo')
                     update(ref(db, `users/${userID}/pontuacaogeral`), {
                         pontuacaomodulo2: data.pontuacao,
-
                     }).then(() => {
-                    })
-                        .catch((error) => {
-                            alert(error)
-                        });
 
+                    }).catch((error) => {
+                        alert(error)
+                    });
                 } else {
                     setResult('Infelizmente você não atingiu o limite de questões para completar o modulo!')
                 }
             }).catch((error) => {
-                // Em caso de erro, mostra a mensagem de erro no console
-
             });
     }
 
 
     return (
         <View style={{ backgroundColor: '#000000', flex: 1 }}>
-           
-            <Text style={styles.textog}>Respostas dos exercícios: </Text>
-            <View style={{marginTop:'5%', marginBottom:'5%'}} >
-                <Text style={styles.texto}>Primeiro exercício: {respostaCorreta01}</Text>
-                <Text style={styles.texto}>Segundo exercício: {respostaCorreta02}</Text>
-                <Text style={styles.texto}>Terceiro exercício: {respostaCorreta03}</Text>
-                <Text style={styles.texto}>Quarto exercício: {respostaCorreta04}</Text>
-                <Text style={styles.texto}>Quinto exercício: {respostaCorreta05}</Text>    
-            </View>
+            {
+                pontuacao === 10 ? (
+                    <View>
+                        <Text style={styles.textog}>Respostas dos exercícios: </Text>
+                        <View style={{ marginTop: '5%', marginBottom: '5%' }} >
+                            <Text style={styles.texto}>Primeiro exercício: {respostaCorreta01}</Text>
+                            <Text style={styles.texto}>Segundo exercício: {respostaCorreta02}</Text>
+                            <Text style={styles.texto}>Terceiro exercício: {respostaCorreta03}</Text>
+                            <Text style={styles.texto}>Quarto exercício: {respostaCorreta04}</Text>
+                            <Text style={styles.texto}>Quinto exercício: {respostaCorreta05}</Text>
+                            <Text style={styles.texto}>Sexto exercício: {respostaCorreta06}</Text>
+                            <Text style={styles.texto}>Sétimo exercício: {respostaCorreta07}</Text>
+                            <Text style={styles.texto}>Oitavo exercício: {respostaCorreta08}</Text>
+                            <Text style={styles.texto}>Nono exercício: {respostaCorreta09}</Text>
+                            <Text style={styles.texto}>Décimo exercício: {respostaCorreta10}</Text>
+                        </View>
+                    </View>
+                ) : null
+            }
             <Text style={styles.textog}>Pontuação obtida:</Text>
             <Text style={styles.textop}>{pontuacao} / 10</Text>
             <Text style={styles.textresult}>{result}</Text>
-            <TouchableOpacity style={styles.botoes} title="Voltar" onPress={() => navigation.navigate('TelaModulos')}>
+            <TouchableOpacity style={styles.botoes} title="Voltar" onPress={() => [click(), navigation.navigate('TelaModulos')]}>
                 <Text style={styles.textog}>Voltar</Text>
             </TouchableOpacity>
         </View>
@@ -130,6 +143,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignSelf: 'center',
         alignItems: 'center',
+        marginBottom: '10%'
     },
     textog: {
         color: '#fff',
@@ -140,9 +154,9 @@ const styles = StyleSheet.create({
     texto: {
         color: '#a8939ecc',
         fontSize: 18,
-        textAlign:'left',
-        marginLeft:'10%',
-        marginRight:'10%'
+        textAlign: 'left',
+        marginLeft: '10%',
+        marginRight: '10%'
     },
     textop: {
         color: 'white',
