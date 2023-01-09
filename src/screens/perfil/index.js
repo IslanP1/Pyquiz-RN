@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions, ScrollView, BackHandler, Alert } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, ScrollView, Alert } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { useNavigation } from "@react-navigation/native"
 import { getAuth, signOut } from "firebase/auth";
@@ -14,6 +14,7 @@ const TelaPerfil = () => {
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
   const [showContent, setShowContent] = useState(false);
+  const [load, setLoad] = useState(true)
 
   const [userID, setUserID] = useState(null);
   const [email, setEmail] = useState(null);
@@ -28,8 +29,8 @@ const TelaPerfil = () => {
     const userCredential = teste;
     const id = userCredential.uid;
     setUserID(id);
-
-  }, [buscarCredenciais()]);
+    navigation.addListener('focus', () => setLoad(!load))
+  }, [buscarCredenciais(), load, navigation]);
 
   async function click() {
     const som = new Expo.Audio.Sound()
@@ -103,9 +104,8 @@ const TelaPerfil = () => {
 
 
   return (
-    <View style={[styles.container, { width: screenWidth, height: screenHeight }]}>
-
-      <ScrollView >
+    <ScrollView>
+      <View style={[styles.container, { width: screenWidth, height: screenHeight }]}>
         <IconButton style={{ backgroundColor: '#000000', alignSelf: 'center' }} icon="account-circle" size={200} onPress={() => console.log('Pressed')} />
         <View>
           <Text style={styles.texto} onPress={() => setShowContent(true)}>Username:</Text>
@@ -130,8 +130,8 @@ const TelaPerfil = () => {
         <Text style={styles.texto} >Email:</Text>
         <Text style={styles.texto2}>{email}</Text>
         <Button style={{ fontSize: 30 }} onPress={() => deslogar()} >Sair da conta</Button>
-      </ScrollView>
-    </View>
+      </View>
+    </ScrollView>
   )
 }
 

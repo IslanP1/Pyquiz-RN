@@ -32,7 +32,7 @@ const TelaExercicio = () => {
             questao: '5- Qual a sintaxe correta para criar uma tupla vazia?', respostas: ['tupla = ( )', 'tupla = [ ]', 'tupla = { }', 'tupla = <>'], respostacorreta: 'tupla = ( )'
         },
         {
-            questao: <Text><Text>6- Qual o índice correto para acessar o valor ‘Prateleira’ desta lista:{'\n'}{'\n'}</Text> <Text style={{ backgroundColor: '#121212' }}><Text style={styles.messageTerminal} >lista = [‘Porta’, ‘Prateleira’, ‘Janela’]</Text></Text></Text>, respostas: ['lista[2]', 'lista[0]', 'lista[3]', 'lista[1]'], respostacorreta: 'lista[1]'
+            questao: <Text><Text>6- Qual o índice correto para acessar o valor ‘Prateleira’ desta lista:{'\n'}{'\n'}</Text> <Text><Text style={styles.messageTerminal} >lista = [‘Porta’, ‘Prateleira’, ‘Janela’]</Text></Text></Text>, respostas: ['lista[2]', 'lista[0]', 'lista[3]', 'lista[1]'], respostacorreta: 'lista[1]'
         },
         {
             questao: <Text><Text>7- Após usar o remove() nesta lista, como ela ficará?{'\n'}{'\n'}</Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>lista = [1, 2, 3, 4, 5]{'\n'}</Text></Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>lista.remove(2){'\n'}</Text></Text> <Text style={styles.terminal}><Text style={styles.messageTerminal}>print(lista){'\n'}</Text></Text></Text>, respostas: ['[1, 3, 4, 5]', '[ 2, 3, 4, 5 ]', '[ 1, 2, 4, 5 ]', 'Ocorrerá um erro'], respostacorreta: '[1, 3, 4, 5]'
@@ -88,7 +88,7 @@ const TelaExercicio = () => {
         }).then(() => {
 
         }).catch((error) => {
-                
+
         });
     }
 
@@ -102,7 +102,7 @@ const TelaExercicio = () => {
             }).then(() => {
 
             }).catch((error) => {
-               
+
             });
         } else {
             mensagemErrada();
