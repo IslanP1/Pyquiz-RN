@@ -102,6 +102,7 @@ const TelaInicial = () => {
               onPress={() => [click(), sair()]}>
               <Text style={styles.botaoTxt}>Sair</Text>
             </TouchableOpacity>
+            <Text style={{marginBottom:'30%'}} />
           </View>
 
         </Animatable.View>

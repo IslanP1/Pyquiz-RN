@@ -104,8 +104,8 @@ const TelaPerfil = () => {
 
 
   return (
-    <ScrollView>
-      <View style={[styles.container, { width: screenWidth, height: screenHeight }]}>
+    <ScrollView keyboardShouldPersistTaps="always">
+      <View style={[styles.container, { width: screenWidth, height: screenHeight + 100 }]}>
         <IconButton style={{ backgroundColor: '#000000', alignSelf: 'center' }} icon="account-circle" size={200} onPress={() => console.log('Pressed')} />
         <View>
           <Text style={styles.texto} onPress={() => setShowContent(true)}>Username:</Text>
@@ -129,7 +129,8 @@ const TelaPerfil = () => {
         </View>
         <Text style={styles.texto} >Email:</Text>
         <Text style={styles.texto2}>{email}</Text>
-        <Button style={{ fontSize: 30 }} onPress={() => deslogar()} >Sair da conta</Button>
+        <Button style={{ fontSize: 30, marginBottom:40 }} onPress={() => deslogar()} >Sair da conta</Button>
+        <Text style={{marginBottom:'30%'}} />
       </View>
     </ScrollView>
   )

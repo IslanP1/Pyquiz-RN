@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Linking, Image, Dimensions, TouchableOpacity, SafeAreaView, Modal, BackHandler } from 'react-native'
+import { StyleSheet, Text, View, Linking, Image, Dimensions, TouchableOpacity, SafeAreaView, Modal, BackHandler, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import * as Animatable from 'react-native-animatable'
 import { useNavigation } from '@react-navigation/native';
@@ -25,6 +25,7 @@ const TelaCreditos = () => {
     return (
         
         <View style={styles.container}>
+            <ScrollView keyboardShouldPersistTaps="always">
             <Animatable.View
             animation="fadeInLeft"
             style={styles.contHeader}>
@@ -104,6 +105,7 @@ const TelaCreditos = () => {
                 {visible ? <View style={styles.overlay}/> : null}
 
             </View>
+            </ScrollView>
         </View>
     )
 }
