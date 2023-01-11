@@ -17,7 +17,7 @@ A aplicação tem como objetivo principal, promover o estudo e aprendizagem da p
 
 
 ## Layout mobile
-<img src="https://github.com/IslanP1/Pyquiz-RN/blob/main/assets/TelaLogin.jpeg" height="480px" width="240px"/> <img src="https://github.com/IslanP1/Pyquiz-RN/blob/main/assets/TelaCadastrar.jpeg" height="480px" width="240px"/> <img src="https://github.com/IslanP1/Pyquiz-RN/blob/main/assets/TelaInicial.jpeg" height="480px" width="240px"/> <img src="https://github.com/IslanP1/Pyquiz-RN/blob/main/assets/TelaModulos.jpeg" height="480px" width="240px"/>
+<img src="https://github.com/IslanP1/Pyquiz-RN/blob/main/assets/TelaLogin.jpeg" height="480px" width="240px"/> <img src="https://github.com/IslanP1/Pyquiz-RN/blob/main/assets/TelaInicial.jpeg" height="480px" width="240px"/> <img src="https://github.com/IslanP1/Pyquiz-RN/blob/main/assets/TelaModulos.jpeg" height="480px" width="240px"/>
 
 # Tecnologias utilizadas
 ## Back end
