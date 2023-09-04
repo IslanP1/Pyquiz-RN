@@ -53,3 +53,5 @@ npm start
 ## Baixe o aplicativo em nosso site!
 <center><img src="https://github.com/IslanP1/Pyquiz-RN/blob/main/assets/landingpage-pyquiz.png"></center>
 https://luizfernandoin.github.io/LandingPage-Pyquiz/
+
+Testando...
